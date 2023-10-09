@@ -1,0 +1,36 @@
+version: "3.8"
+networks:
+  swiths-nt:
+
+services:
+  app:
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    ports:
+      - "4000:8080"
+    command: sh -c "java -jar app/app.jar"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://0.0.0.0:13306/users_db?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: "root"
+      SPRING_DATASOURCE_PASSWORD: "root"
+    networks:
+      - swiths-nt
+    depends_on:
+      - db
+
+  # Connection url DB: jdbc:mysql://0.0.0.0:13306/swiths_db, login=root, password=root
+  db:
+    image: mysql:5.7.37
+    container_name: db
+    ports:
+      - "13306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: swiths_db
+    command: [
+      '--lower-case-table-names=1'
+    ]
+    # restart: always
+    networks:
+      - swiths-nt

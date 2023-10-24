@@ -2,28 +2,23 @@
 server:
   port: 8080
 
-# Enable Automatic Restart
 spring:
+  config.activate.on-profile: default
   devtools:
     livereload:
       enabled: true
     restart:
       enabled: true
 
-#  datasource:
-#    driver-class-name: com.mysql.jdbc.Driver
-#    url: jdbc:mysql://127.0.0.1:13306/running?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
-#    username: root
-#    password: root
+  # DB Connection
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:13306/swiths_db?useSSL=false&allowPublicKeyRetrieval=true
+    username: user
+    password: userpw
 
-jpa:
-  open-in-view: true
-  hibernate:
-    ddl-auto: create
-    naming:
-      physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    use-new-id-generator-mappings: false
-  show-sql: true
-  properties:
-    hibernate.format_sql: true
-    dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  jpa:
+    open-in-view: true
+    show-sql: true
+    hibernate:
+      ddl-auto: create

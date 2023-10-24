@@ -29,8 +29,8 @@ public class Post {
     @Column(length = 20, nullable = false)
     private String title; // 스터디명
 
-    @Column(length = 20)
-    private String short_content; // 썸네일 상 보이는 간략 설명
+    @Column(name = "short_content", length = 20)
+    private String shortContent; // 썸네일 상 보이는 간략 설명
 
     @Column(length = 100, nullable = false)
     private String content; // 스터디 설명창을 누르면 보이는 상세 설명 창

@@ -42,14 +42,14 @@ public class User {
     @JoinColumn(name = "major_id")
     private Major major;
 
-    @Column(length = 10)
-    private String student_id; // 학번
+    @Column(name = "student_id", length = 10)
+    private String studentId; // 학번
 
     @Column(length = 10)
     private String department; // 학부
 
     @Column(length = 1)
-    private String statement; // 학번
+    private String statement; // 학적상태
 
     @CreationTimestamp
     @Column(name = "created_at")

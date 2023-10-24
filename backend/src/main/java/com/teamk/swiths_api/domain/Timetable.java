@@ -1,6 +1,6 @@
 package com.teamk.swiths_api.domain;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,13 +24,16 @@ public class Timetable {
     @Column(length = 20, nullable = false)
     private String title; //시간표 수업명
 
-    @Column(nullable = false)
-    private LocalTime start_time; //수업 시작 시간 ex) 15:30
+    @Column(name = "start_time", nullable = false)
+    private LocalDateTime startTime; //수업 시작 시간 ex) 15:30
 
-    @Column(nullable = false)
-    private LocalTime emd_Time; // 수업 종료 시간 ex) 17:30
+    @Column(name = "end_Time", nullable = false)
+    private LocalDateTime endTime; // 수업 종료 시간 ex) 17:30
 
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user; //유저 id 일대일 참조
+
+    @Column(length = 10, nullable = false)
+    private String day; //요일
 }

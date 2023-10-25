@@ -1,24 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react'
-import { css } from '@emotion/react'
-import Header from './components/Header'
-import banner from './images/banner.jpg'
+import { Routes, Route } from 'react-router-dom'
+import HomePage from './Pages/HomePage'
+import WritePage from './Pages/WritePage'
 
 function App() {
   return (
-    <div>
-      <Header />
-      <div css={bannerStyle}>
-        <img src={banner} alt="banner"></img>
-      </div>
-    </div>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/write" element={<WritePage />} />
+    </Routes>
   )
 }
-
-const bannerStyle = css`
-  padding-top: 120px;
-  width: 1920px;
-  height: 478px;
-`
 
 export default App

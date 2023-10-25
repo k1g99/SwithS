@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react'
 import { css } from '@emotion/react'
-import search from '../images/search.svg'
+import search from '../../images/search.svg'
 
 function Search() {
   return (

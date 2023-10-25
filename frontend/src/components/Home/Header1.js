@@ -2,19 +2,22 @@
 import React from 'react'
 import { css } from '@emotion/react'
 import Search from './Search'
-import Button from './Button'
-import my from '../images/my.svg'
+import Button from '../Button'
+import my from '../../images/my.svg'
+import { Link } from 'react-router-dom'
 
-function Header() {
+function Header1() {
   return (
     <header css={headerStyle}>
-      <div css={logoStyle}>로고</div>
+      <div css={logoStyle}></div>
       <ul css={ulStyle}>
         <li>
           <Search />
         </li>
         <li>
-          <Button />
+          <Link to="/write">
+            <Button />
+          </Link>
         </li>
         <li>
           <button css={myBtnStyle}>
@@ -28,21 +31,27 @@ function Header() {
 
 const headerStyle = css`
   display: flex;
-  position: fixed;
   width: 1920px;
   height: 80px;
   flex-shrink: 0;
   border-bottom: 1px solid #ccc;
 `
 
-const logoStyle = css``
+const logoStyle = css`
+  margin-top: 16px;
+  margin-left: 100px;
+  width: 254px;
+  height: 49px;
+  flex-shrink: 0;
+  background: var(--gray-gray-2, #ccc);
+`
 
 const ulStyle = css`
-  margin-left: 600px;
+  margin-left: 733px;
   display: flex;
   list-style: none;
   align-items: center;
-  gap: 65px;
+  gap: 63px;
 `
 
 const myBtnStyle = css`
@@ -56,4 +65,4 @@ const myBtnStyle = css`
   border-radius: 999px;
   background: var(--green-green, #1d482e);
 `
-export default Header
+export default Header1

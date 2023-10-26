@@ -3,6 +3,8 @@ package com.teamk.swiths_api.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,7 +29,8 @@ public class Club {
     private String name; // 스터디 이름
 
     @Column(nullable = false, length = 1)
-    private String category; // 스터디(S) or 멘토링(M)
+    @Enumerated(EnumType.STRING)
+    private Category category; // 스터디(S) or 멘토링(M)
     // TODO : AttributeConverter 로 변경하면 더 좋을 듯!
 
     @OneToOne
@@ -50,4 +53,9 @@ public class Club {
     @Column(name = "num_recruit", nullable = false)
     @ColumnDefault("5")
     private int numRecruit;
+}
+
+enum Category {
+    STUDY,
+    MENTORING;
 }

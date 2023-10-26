@@ -18,7 +18,7 @@ public class Major {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 50, nullable = false)
     private String name; // 과목 명
 
 }

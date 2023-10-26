@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -35,7 +37,7 @@ public class User {
     @Column(length = 20, nullable = false)
     private String name; // 유저이름
 
-    @Column(length = 10, nullable = false)
+    @Column(length = 100, nullable = false)
     private String password; // 유저 비밀번호
 
     @OneToOne
@@ -45,11 +47,12 @@ public class User {
     @Column(name = "student_id", length = 10)
     private String studentId; // 학번
 
-    @Column(length = 10)
+    @Column(length = 50)
     private String department; // 학부
 
-    @Column(length = 1)
-    private String statement; // 학적상태
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Statement statement; // 학적상태
 
     @CreationTimestamp
     @Column(name = "created_at")
@@ -61,4 +64,10 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Post> posts = new ArrayList<>();
+}
+
+
+enum Statement {
+    ATTENDING,
+    GRADUATION;
 }

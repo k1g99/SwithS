@@ -28,7 +28,7 @@ public class Club {
     @Column(nullable = false, length = 20)
     private String name; // 스터디 이름
 
-    @Column(nullable = false, length = 1)
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Category category; // 스터디(S) or 멘토링(M)
     // TODO : AttributeConverter 로 변경하면 더 좋을 듯!

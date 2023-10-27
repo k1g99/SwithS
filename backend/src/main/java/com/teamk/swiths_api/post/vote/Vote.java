@@ -1,4 +1,4 @@
-package com.teamk.swiths_api.domain;
+package com.teamk.swiths_api.post.vote;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

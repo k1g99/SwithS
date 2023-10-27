@@ -1,8 +1,12 @@
-package com.teamk.swiths_api.domain;
+package com.teamk.swiths_api.user;
 
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.teamk.swiths_api.global.Major;
+import com.teamk.swiths_api.post.Post;
+
 import java.util.List;
 import java.util.ArrayList;
 

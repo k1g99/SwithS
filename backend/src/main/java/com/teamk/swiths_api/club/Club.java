@@ -1,4 +1,4 @@
-package com.teamk.swiths_api.domain;
+package com.teamk.swiths_api.club;
 
 
 import jakarta.persistence.Column;
@@ -14,6 +14,9 @@ import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+
+import com.teamk.swiths_api.global.Major;
+import com.teamk.swiths_api.user.User;
 
 @Entity
 @Getter

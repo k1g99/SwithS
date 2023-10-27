@@ -1,4 +1,6 @@
-package com.teamk.swiths_api.domain;
+package com.teamk.swiths_api.post.vote;
+
+import com.teamk.swiths_api.user.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;

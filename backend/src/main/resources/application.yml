@@ -1,6 +1,8 @@
 # Change api server port
 server:
   port: 8080
+  servlet:
+    context-path: /api
 
 spring:
   config.activate.on-profile: default

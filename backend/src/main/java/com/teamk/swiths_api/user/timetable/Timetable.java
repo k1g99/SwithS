@@ -1,6 +1,8 @@
-package com.teamk.swiths_api.domain;
+package com.teamk.swiths_api.user.timetable;
 
 import java.time.LocalDateTime;
+
+import com.teamk.swiths_api.user.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

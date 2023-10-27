@@ -1,5 +1,6 @@
 package com.teamk.swiths_api.domain;
 
+import jakarta.persistence.OneToOne;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -18,6 +19,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Getter
 @Setter
 public class Post {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
@@ -43,5 +45,8 @@ public class Post {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updated_at = LocalDateTime.now();
+
+    @OneToOne(mappedBy = "vote")
+    private Vote vote;
 
 }

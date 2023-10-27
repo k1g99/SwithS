@@ -10,7 +10,7 @@ import jakarta.persistence.ManyToOne;
 import java.time.LocalDateTime;
 
 @Entity
-public class VoteItem {
+public class VoteItemEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +19,7 @@ public class VoteItem {
 
     @ManyToOne
     @JoinColumn(name = "vote_id")
-    private Vote vote;
+    private VoteEntity vote;
 
     @Column(name = "start_time")
     private LocalDateTime startTime;

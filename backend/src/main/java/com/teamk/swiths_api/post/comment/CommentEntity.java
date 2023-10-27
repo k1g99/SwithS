@@ -13,13 +13,13 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import com.teamk.swiths_api.post.Post;
+import com.teamk.swiths_api.post.PostEntity;
 import com.teamk.swiths_api.user.User;
 
 @Entity
 @Getter
 @Setter
-public class Comment {
+public class CommentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +28,7 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "post_id")
-    private Post post;
+    private PostEntity post;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

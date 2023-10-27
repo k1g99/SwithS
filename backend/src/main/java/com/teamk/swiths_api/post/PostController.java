@@ -8,20 +8,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RestController
 @RequestMapping("/post")
 public class PostController {
-    
+
     @GetMapping()
     public String Hello(){
-        return "sdfd";
+        return "dsss";
     }
-    
+
     // @RequestMapping(method = RequestMethod.POST, path = "/postRequest")
     // public SearchVO postRequest(@RequestBody SearchVO searchVo){
     //     return searchVo;
     // }
- 
+
     // @PostMapping(value = "/postMapping")
     // public SearchVO postMapping(@RequestBody SearchVO searchVo){
     //     return searchVo;
     // }
- 
+
 }

@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.teamk.swiths_api.global.Major;
-import com.teamk.swiths_api.post.Post;
+import com.teamk.swiths_api.global.MajorEntity;
+import com.teamk.swiths_api.post.PostEntity;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -46,7 +46,7 @@ public class User {
 
     @OneToOne
     @JoinColumn(name = "major_id")
-    private Major major;
+    private MajorEntity major;
 
     @Column(name = "student_id", length = 10)
     private String studentId; // 학번
@@ -67,9 +67,8 @@ public class User {
     private LocalDateTime updated_at = LocalDateTime.now();
 
     @OneToMany(mappedBy = "user")
-    private List<Post> posts = new ArrayList<>();
+    private List<PostEntity> posts = new ArrayList<>();
 }
-
 
 enum Statement {
     ATTENDING,

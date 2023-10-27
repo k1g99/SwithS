@@ -17,7 +17,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Entity
 @Getter
 @Setter
-public class Vote {
+public class VoteEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +36,6 @@ public class Vote {
     private LocalDateTime endAt;
 
     @OneToMany(mappedBy = "vote")
-    private List<VoteItem> voteItems = new ArrayList<>();
+    private List<VoteItemEntity> voteItems = new ArrayList<>();
 
 }

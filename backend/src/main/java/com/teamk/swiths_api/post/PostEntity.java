@@ -15,13 +15,13 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import com.teamk.swiths_api.post.vote.Vote;
+import com.teamk.swiths_api.post.vote.VoteEntity;
 import com.teamk.swiths_api.user.User;
 
 @Entity
 @Getter
 @Setter
-public class Post {
+public class PostEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,6 +51,6 @@ public class Post {
 
     @OneToOne
     @JoinColumn(name = "vote_id")
-    private Vote vote;
+    private VoteEntity vote;
 
 }

@@ -15,13 +15,13 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
-import com.teamk.swiths_api.global.Major;
+import com.teamk.swiths_api.global.MajorEntity;
 import com.teamk.swiths_api.user.User;
 
 @Entity
 @Getter
 @Setter
-public class Club {
+public class ClubEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +38,7 @@ public class Club {
 
     @OneToOne
     @JoinColumn(name = "major_id")
-    private Major major; // 전공 스터디인 경우, Major 테이블 참조
+    private MajorEntity major; // 전공 스터디인 경우, Major 테이블 참조
 
     @OneToOne
     @JoinColumn(name = "user_id")

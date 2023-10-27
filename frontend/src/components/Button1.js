@@ -2,12 +2,12 @@
 import React from 'react'
 import { css } from '@emotion/react'
 
-function Button() {
-  return <button css={buttonStyle}>새글쓰기</button>
+function Button1() {
+  return <button css={button1Style}>새글쓰기</button>
 }
 
-const buttonStyle = css`
-  display: inline-flex;
+const button1Style = css`
+  display: flex;
   padding: 4px 24px;
   justify-content: center;
   align-items: center;
@@ -16,4 +16,4 @@ const buttonStyle = css`
   background: var(--gray-white, #fff);
 `
 
-export default Button
+export default Button1

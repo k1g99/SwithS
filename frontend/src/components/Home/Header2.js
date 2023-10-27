@@ -2,10 +2,12 @@
 import React from 'react'
 import { css } from '@emotion/react'
 import { Link } from 'react-router-dom'
+import logo from '../../images/logo.png'
 
 function Header2() {
   return (
     <header css={headerStyle}>
+      <img src={logo} css={logoStyle} />
       <Link to="/">
         <div css={logoStyle}></div>
       </Link>
@@ -22,12 +24,9 @@ const headerStyle = css`
 `
 
 const logoStyle = css`
-  margin-top: 16px;
+  margin-top: 5px;
   margin-left: 100px;
-  width: 254px;
-  height: 49px;
   flex-shrink: 0;
-  background: var(--gray-gray-2, #ccc);
 `
 
 export default Header2

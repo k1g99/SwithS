@@ -16,7 +16,7 @@ import lombok.Setter;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.teamk.swiths_api.post.vote.VoteEntity;
-import com.teamk.swiths_api.user.User;
+import com.teamk.swiths_api.user.UserEntity;
 
 @Entity
 @Getter
@@ -30,7 +30,7 @@ public class PostEntity {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    public User user;
+    public UserEntity user;
 
     @Column(length = 20, nullable = false)
     private String title; // 스터디명

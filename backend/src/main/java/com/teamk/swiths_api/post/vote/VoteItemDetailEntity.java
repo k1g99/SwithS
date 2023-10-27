@@ -1,6 +1,6 @@
 package com.teamk.swiths_api.post.vote;
 
-import com.teamk.swiths_api.user.User;
+import com.teamk.swiths_api.user.UserEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -22,5 +22,5 @@ public class VoteItemDetailEntity {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private UserEntity user;
 }

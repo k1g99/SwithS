@@ -1,6 +1,5 @@
 package com.teamk.swiths_api.club;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -16,7 +15,7 @@ import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
 import com.teamk.swiths_api.global.MajorEntity;
-import com.teamk.swiths_api.user.User;
+import com.teamk.swiths_api.user.UserEntity;
 
 @Entity
 @Getter
@@ -42,7 +41,7 @@ public class ClubEntity {
 
     @OneToOne
     @JoinColumn(name = "user_id")
-    private User leader;
+    private UserEntity leader;
 
     @Column(name = "start_at", nullable = false)
     private LocalDateTime startAt;

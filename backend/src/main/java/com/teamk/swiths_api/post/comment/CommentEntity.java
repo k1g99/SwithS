@@ -14,7 +14,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.teamk.swiths_api.post.PostEntity;
-import com.teamk.swiths_api.user.User;
+import com.teamk.swiths_api.user.UserEntity;
 
 @Entity
 @Getter
@@ -32,7 +32,7 @@ public class CommentEntity {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private UserEntity user;
 
     @Column(name = "content", columnDefinition = "TEXT") // Mysql TEXT data type
     private String content;

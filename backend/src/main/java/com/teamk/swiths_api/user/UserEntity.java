@@ -1,5 +1,6 @@
 package com.teamk.swiths_api.user;
 
+import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -26,6 +27,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Table(name = "user")
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

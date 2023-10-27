@@ -1,6 +1,7 @@
 package com.teamk.swiths_api.post;
 
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -21,6 +22,7 @@ import com.teamk.swiths_api.user.UserEntity;
 @Entity
 @Getter
 @Setter
+@Table(name = "post")
 public class PostEntity {
 
     @Id

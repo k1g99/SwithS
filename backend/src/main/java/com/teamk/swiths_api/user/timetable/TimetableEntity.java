@@ -1,5 +1,6 @@
 package com.teamk.swiths_api.user.timetable;
 
+import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 
 import com.teamk.swiths_api.user.UserEntity;
@@ -19,6 +20,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Table(name = "timetable")
 public class TimetableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

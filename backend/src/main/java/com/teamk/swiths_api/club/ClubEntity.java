@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +21,7 @@ import com.teamk.swiths_api.user.UserEntity;
 @Entity
 @Getter
 @Setter
+@Table(name = "club")
 public class ClubEntity {
 
     @Id

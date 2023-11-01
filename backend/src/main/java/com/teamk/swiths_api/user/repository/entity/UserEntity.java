@@ -1,16 +1,8 @@
-package com.teamk.swiths_api.user;
+package com.teamk.swiths_api.user.repository.entity;
 
-import jakarta.persistence.Table;
-import java.time.LocalDateTime;
-
-import org.hibernate.annotations.CreationTimestamp;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.teamk.swiths_api.global.MajorEntity;
 import com.teamk.swiths_api.post.PostEntity;
-
-import java.util.List;
-import java.util.ArrayList;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -21,14 +13,26 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
+@Builder
 @Getter
-@Setter
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Table(name = "user")
 public class UserEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
@@ -38,6 +42,7 @@ public class UserEntity {
     private String email; // 유저 이메일
 
     @Column(nullable = false)
+    @ColumnDefault("false")
     private Boolean admin; // 유저에게 권한을 줄지말지 정함
 
     @Column(length = 20, nullable = false)
@@ -48,6 +53,7 @@ public class UserEntity {
 
     @OneToOne
     @JoinColumn(name = "major_id")
+    @JsonIgnore
     private MajorEntity major;
 
     @Column(name = "student_id", length = 10)
@@ -72,7 +78,3 @@ public class UserEntity {
     private List<PostEntity> posts = new ArrayList<>();
 }
 
-enum Statement {
-    ATTENDING,
-    GRADUATION;
-}

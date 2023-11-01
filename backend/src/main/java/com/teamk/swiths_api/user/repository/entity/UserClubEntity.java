@@ -1,4 +1,4 @@
-package com.teamk.swiths_api.user;
+package com.teamk.swiths_api.user.repository.entity;
 
 import com.teamk.swiths_api.club.ClubEntity;
 

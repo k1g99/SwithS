@@ -1,6 +1,6 @@
 package com.teamk.swiths_api.post.vote;
 
-import com.teamk.swiths_api.user.UserEntity;
+import com.teamk.swiths_api.user.repository.entity.UserEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

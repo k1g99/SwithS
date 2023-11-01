@@ -17,7 +17,7 @@ import lombok.Setter;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.teamk.swiths_api.post.vote.VoteEntity;
-import com.teamk.swiths_api.user.UserEntity;
+import com.teamk.swiths_api.user.repository.entity.UserEntity;
 
 @Entity
 @Getter

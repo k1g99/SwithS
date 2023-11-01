@@ -16,7 +16,7 @@ import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
 import com.teamk.swiths_api.global.MajorEntity;
-import com.teamk.swiths_api.user.UserEntity;
+import com.teamk.swiths_api.user.repository.entity.UserEntity;
 
 @Entity
 @Getter

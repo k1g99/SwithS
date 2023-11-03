@@ -28,7 +28,6 @@ const containerStyle = css`
   height: 100%;
   min-width: 800px;
   min-height: 100vh;
-  background: var(--gray-gray-1, #f7f7f7);
   margin: -80px 0;
 `
 

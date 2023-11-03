@@ -4,21 +4,24 @@ import { css } from '@emotion/react'
 import { Link } from 'react-router-dom'
 import Header2 from '../components/Home/Header2'
 import Button2 from '../components/Button2'
+import Container from '../components/global/Container'
 
 function WritePage2() {
   return (
     <div>
       <Header2 />
-      <div css={writeSection}>
-        <form css={writeBox}>
-          <div css={writeTitle}>나머지 정보를 입력해주세요</div>
-          <div css={buttonBox}>
-            <Link to="/">
-              <Button2 text={'완료'} />
-            </Link>
-          </div>
-        </form>
-      </div>
+      <Container>
+        <div css={writeSection}>
+          <form css={writeBox}>
+            <div css={writeTitle}>나머지 정보를 입력해주세요</div>
+            <div css={buttonBox}>
+              <Link to="/">
+                <Button2 text={'완료'} />
+              </Link>
+            </div>
+          </form>
+        </div>
+      </Container>
     </div>
   )
 }

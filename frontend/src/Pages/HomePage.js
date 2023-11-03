@@ -4,17 +4,20 @@ import { css } from '@emotion/react'
 import Header1 from '../components/Home/Header1'
 import SectionHot from '../components/Home/SectionHot'
 import SectionCat from '../components/Home/SectionCat'
+import Container from '../components/global/Container'
 import banner from '../images/banner.png'
 
 function HomePage() {
   return (
     <div>
       <Header1 />
-      <div css={bannerStyle}>
-        <img src={banner} css={imageBox}></img>
-      </div>
-      <SectionHot />
-      <SectionCat />
+      <Container>
+        <div css={bannerStyle}>
+          <img src={banner} css={imageBox}></img>
+        </div>
+        <SectionHot />
+        <SectionCat />
+      </Container>
     </div>
   )
 }

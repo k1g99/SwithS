@@ -5,26 +5,29 @@ import Header2 from '../components/Home/Header2'
 import Button2 from '../components/Button2'
 import { Link } from 'react-router-dom'
 import InputBox from '../components/InputBox1'
+import Container from '../components/global/Container'
 
 function LoginPage() {
   return (
     <div>
       <Header2 />
-      <div css={loginTitle}>로그인</div>
-      <div css={loginSection}>
-        <form css={loginBox}>
-          <div>
-            <InputBox placeholder={'이메일'} />
-            <InputBox placeholder={'비밀번호'} />
-          </div>
-          <div css={buttonBox}>
-            <Button2 text={'로그인'} />
-            <Link to="/register">
-              <div css={registerText}>회원가입</div>
-            </Link>
-          </div>
-        </form>
-      </div>
+      <Container>
+        <div css={loginTitle}>로그인</div>
+        <div css={loginSection}>
+          <form css={loginBox}>
+            <div>
+              <InputBox placeholder={'이메일'} />
+              <InputBox placeholder={'비밀번호'} />
+            </div>
+            <div css={buttonBox}>
+              <Button2 text={'로그인'} />
+              <Link to="/register">
+                <div css={registerText}>회원가입</div>
+              </Link>
+            </div>
+          </form>
+        </div>
+      </Container>
     </div>
   )
 }

@@ -17,9 +17,14 @@ function Header2() {
 
 const headerStyle = css`
   display: flex;
-  width: 1920px;
+  position: fixed;
+  top: 0px;
+  background: white;
+  width: 100%;
+  min-width: 1000px;
   height: 80px;
   flex-shrink: 0;
+  position: sticky;
   border-bottom: 1px solid #ccc;
 `
 

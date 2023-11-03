@@ -34,24 +34,30 @@ function Header1() {
 
 const headerStyle = css`
   display: flex;
-  width: 1920px;
+  position: fixed;
+  top: 0px;
+  background: white;
+  width: 100%;
+  min-width: 1000px;
   height: 80px;
   flex-shrink: 0;
+  position: sticky;
   border-bottom: 1px solid #ccc;
 `
 
 const logoStyle = css`
   margin-top: 5px;
-  margin-left: 100px;
+  margin-left: 5%;
   flex-shrink: 0;
 `
 
 const ulStyle = css`
-  margin-left: 733px;
   display: flex;
   list-style: none;
   align-items: center;
-  gap: 63px;
+  margin-left: auto;
+  margin-right: 5%;
+  gap: 20px;
 `
 
 const myBtnStyle = css`

@@ -14,7 +14,8 @@ function Search() {
 
 const searchStyle = css`
   display: flex;
-  width: 411px;
+  min-width: 400px;
+  width: 20%;
   height: 38px;
   padding: 4px 36px;
   align-items: center;

@@ -22,8 +22,8 @@ function SectionHot() {
 }
 
 const hotStyle = css`
-  width: 1720px;
-  margin: 40px 100px;
+  width: 80%;
+  margin: 20px 7%;
 `
 
 const hotTitle = css`

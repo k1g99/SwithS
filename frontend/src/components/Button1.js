@@ -8,6 +8,7 @@ function Button1() {
 
 const button1Style = css`
   display: flex;
+  min-width: 105px;
   padding: 4px 24px;
   justify-content: center;
   align-items: center;

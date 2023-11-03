@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
     // 학생 ID로 중복 확인
     boolean existsByStudentId(String studentId);
+    // 이메일 중복 확인
+    boolean existsByEmail(String email);
 }

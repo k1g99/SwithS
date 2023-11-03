@@ -15,6 +15,9 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +42,8 @@ public class UserEntity {
     @Column(unique = true, nullable = false)
     private Long id;
 
+    @NotBlank(message = "이메일은 필수 입력 값입니다.")
+    @Email(message = "이메일 형식에 맞지 않습니다.")
     @Column(length = 30, nullable = false)
     private String email; // 유저 이메일
 

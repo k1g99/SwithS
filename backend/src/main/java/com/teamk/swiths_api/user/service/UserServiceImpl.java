@@ -30,6 +30,15 @@ public class UserServiceImpl implements UserService {
     public UserEntity createUser(CreateUserRequest createUserRequest) {
         createUserRequest.setAdmin(false); // 새로 생성되는 user는 항상 admin이 아님
 
+        // 이메일 중복 확인
+        if (userRepository.existsByEmail(createUserRequest.getEmail())) {
+            throw new RuntimeException("이미 가입된 이메일입니다.");
+        }
+
+        // 도메인 확인
+        // TODO: 골뱅이 뒤에 SKKU 확인하는 것 -> 현재는 DB에 안들어가게만 처리해놓음
+
+
         // 학번 중복 확인
         if (userRepository.existsByStudentId(createUserRequest.getStudentId())) {
             throw new RuntimeException("이미 존재하는 학번입니다.");

@@ -1,4 +1,4 @@
-package com.teamk.swiths_api.domain;
+package com.teamk.swiths_api.post.vote;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,13 +7,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 
 @Entity
-@Getter
-@Setter
-public class UserClub {
+@Table(name = "vote_item")
+public class VoteItemEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,11 +20,13 @@ public class UserClub {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "vote_id")
+    private VoteEntity vote;
 
-    @ManyToOne
-    @JoinColumn(name = "club_id", nullable = false)
-    private Club club;
+    @Column(name = "start_time")
+    private LocalDateTime startTime;
+
+    @Column(name = "end_time")
+    private LocalDateTime endTime;
 
 }

@@ -1,6 +1,9 @@
-package com.teamk.swiths_api.domain;
+package com.teamk.swiths_api.user.timetable;
 
+import jakarta.persistence.Table;
 import java.time.LocalDateTime;
+
+import com.teamk.swiths_api.user.repository.entity.UserEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,7 +20,8 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Timetable {
+@Table(name = "timetable")
+public class TimetableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
@@ -34,7 +38,7 @@ public class Timetable {
 
     @OneToOne
     @JoinColumn(name = "user_id")
-    private User user; // 유저 id 일대일 참조
+    private UserEntity user; // 유저 id 일대일 참조
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)

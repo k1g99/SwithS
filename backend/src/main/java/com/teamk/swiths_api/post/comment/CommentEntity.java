@@ -1,9 +1,5 @@
-package com.teamk.swiths_api.domain;
+package com.teamk.swiths_api.post.comment;
 
-import jakarta.persistence.OneToOne;
-import org.hibernate.annotations.CreationTimestamp;
-
-import java.time.LocalDateTime;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,14 +7,21 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.teamk.swiths_api.post.PostEntity;
+import com.teamk.swiths_api.user.repository.entity.UserEntity;
 
 @Entity
 @Getter
 @Setter
-public class Post {
+@Table(name = "comment")
+public class CommentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,17 +29,15 @@ public class Post {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    public User user;
+    @JoinColumn(name = "post_id")
+    private PostEntity post;
 
-    @Column(length = 20, nullable = false)
-    private String title; // 스터디명
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 
-    @Column(name = "short_content", length = 20)
-    private String shortContent; // 썸네일 상 보이는 간략 설명
-
-    @Column(nullable = false, columnDefinition = "TEXT")
-    private String content; // 스터디 설명창을 누르면 보이는 상세 설명 창
+    @Column(name = "content", columnDefinition = "TEXT") // Mysql TEXT data type
+    private String content;
 
     @CreationTimestamp
     @Column(name = "created_at")
@@ -45,8 +46,4 @@ public class Post {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updated_at = LocalDateTime.now();
-
-    @OneToOne(mappedBy = "vote")
-    private Vote vote;
-
 }

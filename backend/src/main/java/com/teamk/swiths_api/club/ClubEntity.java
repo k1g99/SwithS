@@ -1,5 +1,4 @@
-package com.teamk.swiths_api.domain;
-
+package com.teamk.swiths_api.club;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,15 +9,20 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
+import com.teamk.swiths_api.global.MajorEntity;
+import com.teamk.swiths_api.user.repository.entity.UserEntity;
+
 @Entity
 @Getter
 @Setter
-public class Club {
+@Table(name = "club")
+public class ClubEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,11 +39,11 @@ public class Club {
 
     @OneToOne
     @JoinColumn(name = "major_id")
-    private Major major; // 전공 스터디인 경우, Major 테이블 참조
+    private MajorEntity major; // 전공 스터디인 경우, Major 테이블 참조
 
     @OneToOne
     @JoinColumn(name = "user_id")
-    private User leader;
+    private UserEntity leader;
 
     @Column(name = "start_at", nullable = false)
     private LocalDateTime startAt;

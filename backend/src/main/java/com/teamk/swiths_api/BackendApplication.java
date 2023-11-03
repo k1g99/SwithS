@@ -13,9 +13,9 @@ public class BackendApplication {
         SpringApplication.run(BackendApplication.class, args);
     }
 
-    @GetMapping
-    public String HelloWorld() {
-        return "Hello World!";
-    }
+    // @GetMapping
+    // public String HelloWorld() {
+    //     return "Hello World!";
+    // }
 
 }

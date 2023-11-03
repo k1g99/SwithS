@@ -31,5 +31,4 @@ public class MajorEntity {
 
     @OneToMany(mappedBy = "major")
     private List<UserEntity> users = new ArrayList<>();
-
 }

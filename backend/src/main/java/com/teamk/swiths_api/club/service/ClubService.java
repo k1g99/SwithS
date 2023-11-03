@@ -1,0 +1,9 @@
+package com.teamk.swiths_api.club.service;
+
+import com.teamk.swiths_api.club.repository.ClubEntity;
+import com.teamk.swiths_api.club.repository.dto.CreateClub.CreateClubRequest;
+
+public interface ClubService {
+
+    ClubEntity createClub(CreateClubRequest createClubRequest);
+}

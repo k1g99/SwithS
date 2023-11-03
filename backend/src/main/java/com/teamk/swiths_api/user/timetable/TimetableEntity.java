@@ -2,6 +2,7 @@ package com.teamk.swiths_api.user.timetable;
 
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import com.teamk.swiths_api.user.repository.entity.UserEntity;
 
@@ -31,10 +32,10 @@ public class TimetableEntity {
     private String title; // 시간표 수업명
 
     @Column(name = "start_time", nullable = false)
-    private LocalDateTime startTime; // 수업 시작 시간 ex) 15:30
+    private LocalTime startTime; // 수업 시작 시간 ex) 15:30
 
     @Column(name = "end_Time", nullable = false)
-    private LocalDateTime endTime; // 수업 종료 시간 ex) 17:30
+    private LocalTime endTime; // 수업 종료 시간 ex) 17:30
 
     @OneToOne
     @JoinColumn(name = "user_id")

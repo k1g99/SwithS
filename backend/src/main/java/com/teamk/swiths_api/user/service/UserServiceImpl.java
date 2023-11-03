@@ -55,4 +55,10 @@ public class UserServiceImpl implements UserService {
         userRepository.save(userEntity);
         return userEntity;
     }
+
+    @Override
+    public UserEntity getUserById() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getUserById'");
+    }
 }

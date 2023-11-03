@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -51,7 +52,7 @@ public class UserEntity {
     @Column(length = 100, nullable = false)
     private String password; // 유저 비밀번호
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "major_id")
     @JsonIgnore
     private MajorEntity major;

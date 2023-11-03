@@ -1,6 +1,8 @@
 package com.teamk.swiths_api.user.controller;
 
-import com.teamk.swiths_api.user.controller.dto.CreateUserRequest;
+
+import com.teamk.swiths_api.user.controller.dto.CreateUser.CreateUserRequest;
+import com.teamk.swiths_api.user.controller.dto.CreateUser.CreateUserResponse;
 import com.teamk.swiths_api.user.repository.entity.UserEntity;
 import com.teamk.swiths_api.user.service.UserService;
 
@@ -27,7 +29,11 @@ public class UserController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public UserEntity createUser(@RequestBody CreateUserRequest createUserRequest) {
-        return userService.createUser(createUserRequest);
+    public CreateUserResponse createUser(@RequestBody CreateUserRequest createUserRequest) {
+        userService.createUser(createUserRequest);
+
+        CreateUserResponse result = new CreateUserResponse(200, true, "유저 생성에 성공하셨습니다.");
+
+        return result;
     }
 }

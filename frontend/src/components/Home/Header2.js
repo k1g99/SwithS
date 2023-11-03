@@ -7,9 +7,8 @@ import logo from '../../images/logo.png'
 function Header2() {
   return (
     <header css={headerStyle}>
-      <img src={logo} css={logoStyle} />
       <Link to="/">
-        <div css={logoStyle}></div>
+        <img src={logo} css={logoStyle} />
       </Link>
     </header>
   )
@@ -29,6 +28,7 @@ const headerStyle = css`
 `
 
 const logoStyle = css`
+  width: 200px;
   margin-top: 5px;
   margin-left: 100px;
   flex-shrink: 0;

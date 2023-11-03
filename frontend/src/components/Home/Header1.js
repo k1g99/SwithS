@@ -10,13 +10,15 @@ import logo from '../../images/logo.png'
 function Header1() {
   return (
     <header css={headerStyle}>
-      <img src={logo} css={logoStyle} />
+      <Link to="/">
+        <img src={logo} css={logoStyle} />
+      </Link>
       <ul css={ulStyle}>
         <li>
           <Search />
         </li>
         <li>
-          <Link to="/write">
+          <Link to="/write1">
             <Button1 />
           </Link>
         </li>
@@ -46,6 +48,7 @@ const headerStyle = css`
 `
 
 const logoStyle = css`
+  width: 200px;
   margin-top: 5px;
   margin-left: 5%;
   flex-shrink: 0;

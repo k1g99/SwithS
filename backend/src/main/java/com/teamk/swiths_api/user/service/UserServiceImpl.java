@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService {
             .statement(Statement.valueOf(createUserRequest.getStatement()))
             .build();
         userRepository.save(userEntity);
-        return userEntity;
+        return userEntity; // 리턴하는게 맞나?? 어차피 결과확인을 안하는데???
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.teamk.swiths_api.user.repository.entity;
 
-import com.teamk.swiths_api.club.ClubEntity;
+import com.teamk.swiths_api.club.repository.ClubEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

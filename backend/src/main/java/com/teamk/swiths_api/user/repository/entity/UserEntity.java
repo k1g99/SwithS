@@ -1,6 +1,7 @@
 package com.teamk.swiths_api.user.repository.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.teamk.swiths_api.club.repository.ClubEntity;
 import com.teamk.swiths_api.global.MajorEntity;
 import com.teamk.swiths_api.post.PostEntity;
 import jakarta.persistence.Column;
@@ -82,5 +83,8 @@ public class UserEntity {
 
     @OneToMany(mappedBy = "user")
     private List<PostEntity> posts = new ArrayList<>();
+
+    @OneToMany(mappedBy = "leader")
+    private List<ClubEntity> clubLeaderUser = new ArrayList<>();
 }
 

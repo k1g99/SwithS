@@ -1,4 +1,4 @@
-package com.teamk.swiths_api.club;
+package com.teamk.swiths_api.club.repository;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,11 +8,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
 import com.teamk.swiths_api.global.MajorEntity;
@@ -20,7 +23,9 @@ import com.teamk.swiths_api.user.repository.entity.UserEntity;
 
 @Entity
 @Getter
-@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Table(name = "club")
 public class ClubEntity {
 
@@ -37,11 +42,11 @@ public class ClubEntity {
     private Category category; // 스터디(S) or 멘토링(M)
     // TODO : AttributeConverter 로 변경하면 더 좋을 듯!
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "major_id")
     private MajorEntity major; // 전공 스터디인 경우, Major 테이블 참조
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity leader;
 
@@ -57,9 +62,7 @@ public class ClubEntity {
     @Column(name = "num_recruit", nullable = false)
     @ColumnDefault("5")
     private int numRecruit;
+
+
 }
 
-enum Category {
-    STUDY,
-    MENTORING;
-}

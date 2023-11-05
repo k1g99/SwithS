@@ -1,6 +1,5 @@
 package com.teamk.swiths_api.user.controller.dto;
 
-import jakarta.validation.Constraint;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;

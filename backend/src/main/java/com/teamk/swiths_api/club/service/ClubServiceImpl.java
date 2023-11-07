@@ -24,7 +24,7 @@ public class ClubServiceImpl implements ClubService {
 
     @Autowired
     public ClubServiceImpl(MajorRepository majorRepository, ClubRepository clubRepository,
-        UserRepository userRepository) {
+            UserRepository userRepository) {
         this.majorRepository = majorRepository;
         this.clubRepository = clubRepository;
         this.userRepository = userRepository;
@@ -47,15 +47,15 @@ public class ClubServiceImpl implements ClubService {
 
         // db에 저장
         ClubEntity clubEntity = ClubEntity.builder()
-            .name(createClubRequest.getName())
-            .description(createClubRequest.getDescription())
-            .category(Category.valueOf(createClubRequest.getCategory()))
-            .leader(userEntity) // userId 가져오기 -> 현재는 임시로 1로 설정
-            .startAt(createClubRequest.getStartAt()) // 프론트에서 형식 맞춰서 넘겨주기
-            .endAt(createClubRequest.getEndAt())
-            .numRecruit(createClubRequest.getNumRecruit())
-            .major(majorEntity) // optional
-            .build();
+                .name(createClubRequest.getName())
+                .description(createClubRequest.getDescription())
+                .category(Category.valueOf(createClubRequest.getCategory()))
+                .leader(userEntity) // userId 가져오기 -> 현재는 임시로 1로 설정
+                .startAt(createClubRequest.getStartAt()) // 프론트에서 형식 맞춰서 넘겨주기
+                .endAt(createClubRequest.getEndAt())
+                .numRecruit(createClubRequest.getNumRecruit())
+                .major(majorEntity) // optional
+                .build();
         clubRepository.save(clubEntity);
 
         return clubEntity; // 여기도 마찬가지,, 리턴하는게 맞음?
@@ -64,5 +64,15 @@ public class ClubServiceImpl implements ClubService {
     @Override
     public List<ClubEntity> findAllClub() {
         return clubRepository.findAll();
+    }
+
+    @Override
+    public ClubEntity findClub(Long id) {
+        // 만약 해당 id 클럽 없을 시 에러 반환
+        if (!clubRepository.existsById(id)) {
+            throw new RuntimeException("존재하지 않는 스터디 입니다.");
+        }
+
+        return clubRepository.getById(id);
     }
 }

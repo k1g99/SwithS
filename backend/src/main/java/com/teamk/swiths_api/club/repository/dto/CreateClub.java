@@ -1,6 +1,5 @@
 package com.teamk.swiths_api.club.repository.dto;
 
-import com.teamk.swiths_api.user.repository.entity.UserEntity;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;

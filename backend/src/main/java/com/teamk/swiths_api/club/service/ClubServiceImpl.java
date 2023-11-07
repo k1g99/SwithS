@@ -8,7 +8,8 @@ import com.teamk.swiths_api.global.MajorEntity;
 import com.teamk.swiths_api.global.MajorRepository;
 import com.teamk.swiths_api.user.repository.UserRepository;
 import com.teamk.swiths_api.user.repository.entity.UserEntity;
-import java.util.Optional;
+
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,5 +59,10 @@ public class ClubServiceImpl implements ClubService {
         clubRepository.save(clubEntity);
 
         return clubEntity; // 여기도 마찬가지,, 리턴하는게 맞음?
+    }
+
+    @Override
+    public List<ClubEntity> findAllClub() {
+        return clubRepository.findAll();
     }
 }

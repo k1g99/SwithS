@@ -1,14 +1,20 @@
 package com.teamk.swiths_api.club.controller;
 
-import com.teamk.swiths_api.club.repository.dto.CreateClub.CreateClubRequest;
-import com.teamk.swiths_api.club.repository.dto.CreateClub.CreateClubResponse;
-import com.teamk.swiths_api.club.service.ClubService;
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.teamk.swiths_api.club.repository.ClubEntity;
+import com.teamk.swiths_api.club.repository.dto.CreateClub.CreateClubRequest;
+import com.teamk.swiths_api.club.repository.dto.CreateClub.CreateClubResponse;
+import com.teamk.swiths_api.club.repository.dto.FindClub.FindAllClubResponse;
+import com.teamk.swiths_api.club.service.ClubService;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
@@ -17,6 +23,14 @@ public class ClubController {
 
     private final ClubService clubService;
 
+    // 스터디데이터 전체 조회
+    @GetMapping()
+    public FindAllClubResponse findAllClub() {
+        List<ClubEntity> clubLists = clubService.findAllClub();
+
+        FindAllClubResponse result = new FindAllClubResponse(0, false, "모든 스터디 조회에 성공하였습니다.", clubLists);
+        return result;
+    }
 
     @PostMapping()
     public CreateClubResponse createClub(@RequestBody CreateClubRequest createClubRequest) {
@@ -26,7 +40,5 @@ public class ClubController {
 
         return result;
     }
-
-
 
 }

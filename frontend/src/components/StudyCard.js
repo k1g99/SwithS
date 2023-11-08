@@ -13,7 +13,6 @@ function StudyCard(props) {
           {props.studyName}
           <div css={studyCategory}>{props.studyCategory}</div>
         </div>
-
         <div css={studyPeriod}>{props.studyPeriod}</div>
       </div>
     </div>
@@ -44,6 +43,7 @@ const studyName = css`
   line-height: 150%; /* 30px */
   font-variant: all-small-caps;
 `
+
 const studyCategory = css`
   display: inline;
   padding-left: 20px;

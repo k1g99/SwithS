@@ -67,7 +67,7 @@ function SearchPage() {
       <Header1 />
       <Container>
         {/* 검색어 */}
-        <div css={searchTitle}>{targetWord} 검색</div>
+        <div css={searchTitle}>&apos;{targetWord}&apos; 검색 결과</div>
         <div css={cardContainer}>
           <div css={cardSection}>{displayData()}</div>
         </div>

@@ -2,15 +2,15 @@
 import React from 'react'
 import { css } from '@emotion/react'
 
-function StudyCard() {
+function StudyCard(props) {
   return (
     <div css={cardContainer}>
       <div css={topSection}>
-        <div css={studyState}>진행중</div>
+        <div css={studyState}>{props.studyState}</div>
       </div>
       <div css={bottomSection}>
-        <div css={studyName}>스터디명</div>
-        <div css={studyPeriod}>스터디 기간</div>
+        <div css={studyName}>{props.studyName}</div>
+        <div css={studyPeriod}>{props.studyPeriod}</div>
       </div>
     </div>
   )

@@ -47,7 +47,6 @@ public class FindClub {
             this.endAt = entity.getEndAt();
             this.description = entity.getDescription();
             this.numRecruit = entity.getNumRecruit();
-
         }
     }
 

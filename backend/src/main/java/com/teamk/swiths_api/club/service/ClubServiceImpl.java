@@ -10,6 +10,9 @@ import com.teamk.swiths_api.user.repository.UserRepository;
 import com.teamk.swiths_api.user.repository.entity.UserEntity;
 
 import java.util.List;
+
+import javax.management.RuntimeErrorException;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -74,5 +77,15 @@ public class ClubServiceImpl implements ClubService {
         }
 
         return clubRepository.getById(id);
+    }
+
+    @Override
+    public List<ClubEntity> searchClub(String keyword) {
+        // keyword가 공백이면 전체 반환
+        if (keyword == null || keyword.isBlank()) {
+            return clubRepository.findAll();
+        } else {
+            return clubRepository.findByNameContaining(keyword);
+        }
     }
 }

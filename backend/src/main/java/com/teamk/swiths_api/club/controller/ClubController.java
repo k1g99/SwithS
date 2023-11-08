@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.teamk.swiths_api.club.repository.ClubEntity;
@@ -44,6 +45,7 @@ public class ClubController {
         return result;
     }
 
+    // 스터디 생성
     @PostMapping()
     public CreateClubResponse createClub(@RequestBody CreateClubRequest createClubRequest) {
         clubService.createClub(createClubRequest);
@@ -53,4 +55,13 @@ public class ClubController {
         return result;
     }
 
+    // 스터디 검색
+    @GetMapping("/searchs")
+    public FindAllClubResponse searchClub(@RequestParam String keyword) {
+        List<ClubEntity> clubLists = clubService.searchClub(keyword);
+
+        FindAllClubResponse result = new FindAllClubResponse(200, true, "스터디 검색에 성공하였습니다.", clubLists);
+
+        return result;
+    }
 }

@@ -8,6 +8,8 @@ import LoginPage from './Pages/LoginPage'
 import RegisterPage from './Pages/RegisterPage'
 import { useEffect } from 'react'
 import { api } from './api'
+import MystudyPage from './Pages/MystudyPage'
+import SearchPage from './Pages/SearchPage'
 
 function App() {
   useEffect(() => {
@@ -29,6 +31,8 @@ function App() {
       <Route path="/write2" element={<WritePage2 />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
+      <Route path="/mystudy" element={<MystudyPage />} />
+      <Route path="/search" element={<SearchPage />} />
     </Routes>
   )
 }

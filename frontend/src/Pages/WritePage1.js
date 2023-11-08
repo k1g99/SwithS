@@ -5,31 +5,64 @@ import { Link } from 'react-router-dom'
 import Header2 from '../components/Home/Header2'
 import Button2 from '../components/Button2'
 import Container from '../components/global/Container'
+import SelectBox from '../components/SelectBox'
 
 function WritePage1() {
+  const submitHandler = () => {}
+
   return (
     <div>
       <Header2 />
       <Container>
         <div css={writeSection}>
-          <form css={writeBox}>
+          <div css={writeBox}>
             <div css={writeTitle}>스터디 정보를 입력해주세요</div>
-            <div>
+            <form onSubmit={submitHandler} className="uploadForm">
               <div css={inputText}>스터디 이름</div>
               <input css={inputStyle}></input>
-            </div>
-            <div css={detailSection}>
               <div css={inputText}>스터디 설명</div>
               <div css={areaBox}>
                 <textarea css={areaStyle}></textarea>
               </div>
-            </div>
-            <div css={buttonBox}>
-              <Link to="/write2">
-                <Button2 text={'다음'} />
-              </Link>
-            </div>
-          </form>
+
+              <div css={selectContainer}>
+                <div css={selectBox}>
+                  <SelectBox
+                    text={'모집구분'}
+                    options={['스터디', '프로젝트']}
+                  />
+                  <SelectBox
+                    text={'카테고리'}
+                    options={['코딩', '디자인', '미술']}
+                  />
+                  <SelectBox text={'진행기간'} />
+                </div>
+                <div css={selectBox}>
+                  <SelectBox
+                    text={'모집인원'}
+                    options={[
+                      '1',
+                      '2',
+                      '3',
+                      '4',
+                      '5',
+                      '6',
+                      '7',
+                      '8',
+                      '9',
+                      '10',
+                    ]}
+                  />
+                  <SelectBox text={'모집마감일'} />
+                </div>
+              </div>
+              <div css={buttonBox}>
+                <Link to="/write2">
+                  <Button2 text={'완료'} onClick={submitHandler} />
+                </Link>
+              </div>
+            </form>
+          </div>
         </div>
       </Container>
     </div>
@@ -59,7 +92,7 @@ const writeTitle = css`
 `
 
 const inputText = css`
-  margin-top: 40px;
+  margin-top: 30px;
   color: #000;
   /* Subheading/Subheading2 */
   font-size: 24px;
@@ -81,9 +114,6 @@ const inputStyle = css`
   border: 1px solid var(--gray-gray-2, #ccc);
 `
 
-const detailSection = css`
-  margin-top: 28px;
-`
 const areaBox = css`
   margin-top: 12px;
   display: flex;
@@ -93,8 +123,8 @@ const areaBox = css`
   border: 1px solid var(--gray-gray-2, #ccc);
 `
 const areaStyle = css`
-  width: 700px;
-  height: 200px;
+  width: 99%;
+  height: 22px;
   flex-shrink: 0;
   color: var(--gray-gray-5, #262626);
   /* Body/Body 1 */
@@ -105,11 +135,24 @@ const areaStyle = css`
   font-variant: all-small-caps;
 `
 
-const buttonBox = css`
-  margin-top: 60px;
+const selectContainer = css`
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  display: flex;
+  gap: 120px;
 `
 
+const selectBox = css`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+`
+const buttonBox = css`
+  margin: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
 export default WritePage1

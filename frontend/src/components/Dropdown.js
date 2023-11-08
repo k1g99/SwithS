@@ -17,18 +17,8 @@ function Dropdown() {
 
 const dropdownStyle = css`
   position: absolute;
-  top: 60px;
-  right: 0px;
-  width: 206px;
-  height: 205px;
-  flex-shrink: 0;
-  background: white;
-  border: 1px solid black;
-  border-radius: 8px;
-  z-index: 100;
-  fill: var(--gray-white, #fff);
-  stroke-width: 1px;
-  stroke: var(--green-green, #1d482e);
+  top: 72px;
+  right: 72px;
 `
 
 export default Dropdown

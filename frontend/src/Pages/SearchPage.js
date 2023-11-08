@@ -50,6 +50,7 @@ function SearchPage() {
         <StudyCard
           key={item.id}
           studyName={item.name}
+          studyCategory={item.category}
           studyState={checkState(item.startAt, item.endAt)}
           studyPeriod={
             new Date(item.startAt).toLocaleDateString() +

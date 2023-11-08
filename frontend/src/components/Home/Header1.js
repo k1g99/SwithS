@@ -50,7 +50,7 @@ const headerStyle = css`
 const logoStyle = css`
   width: 200px;
   margin-top: 5px;
-  margin-left: 5%;
+  margin-left: 100px;
   flex-shrink: 0;
 `
 

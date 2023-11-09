@@ -31,7 +31,7 @@ function Header1() {
           <Search />
         </li>
         <li>
-          <Link to="/write1">
+          <Link to="/write">
             <Button1 />
           </Link>
         </li>

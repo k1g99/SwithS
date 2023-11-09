@@ -3,11 +3,11 @@ import React from 'react'
 import { css } from '@emotion/react'
 import PropTypes from 'prop-types'
 
-const SelectBox = ({ text, name, options }) => {
+const SelectBox = ({ text, name, options, onChange }) => {
   return (
     <div>
       <div css={selectText}>{text}</div>
-      <select name={name} css={boxStyle}>
+      <select name={name} css={boxStyle} onChange={onChange}>
         {options &&
           options.map((options) => (
             <option key={options} value={options}>
@@ -47,5 +47,6 @@ const boxStyle = css`
   align-items: center;
   border-radius: 8px;
   background: var(--gray-gray-1, #f7f7f7);
+  border: 1px solid var(--gray-gray-2, #ccc);
 `
 export default SelectBox

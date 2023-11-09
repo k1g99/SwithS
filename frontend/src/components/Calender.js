@@ -6,7 +6,7 @@ import { css } from '@emotion/react'
 import PropTypes from 'prop-types'
 import 'react-datepicker/dist/react-datepicker.css'
 
-const Calender = ({ text }) => {
+const Calender = ({ text, setDate }) => {
   const [dateRange, setDateRange] = useState([null, null])
   const [startDate, endDate] = dateRange
 
@@ -20,6 +20,7 @@ const Calender = ({ text }) => {
         endDate={endDate}
         onChange={(update) => {
           setDateRange(update)
+          setDate(update)
         }}
         isClearable={true}
       />

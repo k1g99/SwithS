@@ -11,3 +11,5 @@ INSERT INTO club (num_recruit, end_at, start_at, user_id, name, description, cat
 INSERT INTO club (num_recruit, end_at, start_at, user_id, name, description, category, major_id) VALUES (6, "2020-03-20 10:15:18", "2020-03-08 10:15:18", 2, 'asfsafsa', 'desc2', "STUDY",2);
 INSERT INTO club (num_recruit, end_at, start_at, user_id, name, description, category, major_id) VALUES (7, "2020-02-20 10:15:18", "2020-02-08 10:15:18", 3, 'asdf', 'desc3', "STUDY",2);
 INSERT INTO club (num_recruit, end_at, start_at, user_id, name, description, category, major_id) VALUES (3, "2020-01-20 10:15:18", "2020-03-08 10:15:18", 2, 'asfsafsa', 'desc4', "STUDY",3);
+
+INSERT INTO timetable (title,start_time ,end_Time,user_id,day) VALUES ('철수 과외', "20:00:00","22:00:00",1 , "FRI" );

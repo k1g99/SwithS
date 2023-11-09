@@ -66,8 +66,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserEntity getUserById() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getUserById'");
+    public UserEntity getUserById(Long id) {
+        // 유저 존재 안할시
+        if (!userRepository.existsById(id))
+        {
+            throw new RuntimeException("존재하지 않는 유저입니다.");
+        }
+
+        return userRepository.getById(id);
     }
 }

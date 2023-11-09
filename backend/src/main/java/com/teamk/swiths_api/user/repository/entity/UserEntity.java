@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.teamk.swiths_api.club.repository.ClubEntity;
@@ -35,6 +36,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Getter
 @NoArgsConstructor
+@EnableJpaRepositories
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Table(name = "user")
 public class UserEntity {
@@ -73,6 +75,10 @@ public class UserEntity {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Statement statement; // 학적상태
+
+    // TODO: builder 문제 해결..아래 전부다
+    @OneToMany(mappedBy = "user")
+    private List<TimetableEntity> timetables = new ArrayList<>();
 
     @CreationTimestamp
     @Column(name = "created_at")

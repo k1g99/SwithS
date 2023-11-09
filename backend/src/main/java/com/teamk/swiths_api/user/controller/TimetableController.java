@@ -4,7 +4,10 @@ import com.teamk.swiths_api.user.controller.dto.CreateTimetable.CreateTimetableR
 import com.teamk.swiths_api.user.controller.dto.CreateTimetable.CreateTimetableRequest;
 import com.teamk.swiths_api.user.controller.dto.FindTimetable.FindTimetableResponse;
 import com.teamk.swiths_api.user.repository.entity.TimetableEntity;
+import com.teamk.swiths_api.user.repository.entity.UserEntity;
 import com.teamk.swiths_api.user.service.TimetableService;
+import com.teamk.swiths_api.user.service.UserService;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +19,13 @@ import java.util.List;
 @RequestMapping("/timetable")
 public class TimetableController {
     private final TimetableService timetableService;
+    private final UserService userService;
 
     @GetMapping("/{user}")
     public FindTimetableResponse getTimetableByUser(@PathVariable Long user){
-        List<TimetableEntity> timetableLists = timetableService.getTimetableByUser(user);
+        UserEntity userInfo = userService.getUserById(user);
+
+        List<TimetableEntity> timetableLists = timetableService.getTimetableByUser(userInfo);
 
         FindTimetableResponse result = new FindTimetableResponse(200, true, "시간표 조회에 성공하였습니다.", timetableLists);
 

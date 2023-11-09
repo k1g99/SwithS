@@ -10,6 +10,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     boolean existsByStudentId(String studentId);
     // 이메일 중복 확인
     boolean existsByEmail(String email);
-
+    // 유저 id로 확인
+    boolean existsById(Long id);
     UserEntity getById(Long id);
 }

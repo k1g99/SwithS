@@ -14,38 +14,38 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class TimetableServiceImpl implements TimetableService{
+public class TimetableServiceImpl implements TimetableService {
     private UserRepository userRepository;
     private TimetableRepository timetableRepository;
+
     @Autowired
-    public TimetableServiceImpl(UserRepository userRepository, TimetableRepository timetableRepository){
+    public TimetableServiceImpl(UserRepository userRepository, TimetableRepository timetableRepository) {
         this.timetableRepository = timetableRepository;
         this.userRepository = userRepository;
     }
+
     @Override
-    public List<TimetableEntity> getTimetableByUser(Long user) {
-        if (!userRepository.existsById(user)) {
-            throw new RuntimeException("존재하지 않는 유저입니다.");
-        } else if (!timetableRepository.existsByUser(user)) {
+    public List<TimetableEntity> getTimetableByUser(UserEntity user) {
+        if (!timetableRepository.existsByUser(user)) {
             throw new RuntimeException("저장되어 있는 시간표가 없습니다.");
-        } else {
-            return timetableRepository.findByUser(user);
         }
+
+        return timetableRepository.findByUser(user);
     }
 
     @Override
     public TimetableEntity createTimetable(CreateTimetableRequest createTimetableRequest) {
         UserEntity userEntity = userRepository.getById(createTimetableRequest.getUser());
-        if(userEntity == null){
+        if (userEntity == null) {
             throw new RuntimeException("존재하지 않는 유저 입니다.");
         }
         TimetableEntity timetableEntity = TimetableEntity.builder()
-            .user(userEntity)
-            .day(Day.valueOf(createTimetableRequest.getDay()))
-            .endTime(createTimetableRequest.getEndTime())
-            .startTime(createTimetableRequest.getStartTime())
-            .title(createTimetableRequest.getTitle())
-            .build();
+                .user(userEntity)
+                .day(Day.valueOf(createTimetableRequest.getDay()))
+                .endTime(createTimetableRequest.getEndTime())
+                .startTime(createTimetableRequest.getStartTime())
+                .title(createTimetableRequest.getTitle())
+                .build();
         timetableRepository.save(timetableEntity);
         return timetableEntity;
     }

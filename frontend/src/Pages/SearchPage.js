@@ -61,7 +61,7 @@ function SearchPage() {
       ))
     }
   }
-  
+
   return (
     <div>
       <Header1 />

@@ -6,6 +6,7 @@ import Header2 from '../components/Home/Header2'
 import Button2 from '../components/Button2'
 import Container from '../components/global/Container'
 import SelectBox from '../components/SelectBox'
+import Calender from '../components/Calender'
 
 function WritePage1() {
   const submitHandler = () => {}
@@ -35,27 +36,17 @@ function WritePage1() {
                     text={'카테고리'}
                     options={['코딩', '디자인', '미술']}
                   />
-                  <SelectBox text={'진행기간'} />
+                  <Calender text={'진행기간'} />
                 </div>
                 <div css={selectBox}>
                   <SelectBox
                     text={'모집인원'}
-                    options={[
-                      '1',
-                      '2',
-                      '3',
-                      '4',
-                      '5',
-                      '6',
-                      '7',
-                      '8',
-                      '9',
-                      '10',
-                    ]}
+                    options={['1', '2', '3', '4', '5']}
                   />
-                  <SelectBox text={'모집마감일'} />
+                  <Calender text={'모집기간'} />
                 </div>
               </div>
+
               <div css={buttonBox}>
                 <Link to="/write2">
                   <Button2 text={'완료'} onClick={submitHandler} />
@@ -155,4 +146,5 @@ const buttonBox = css`
   align-items: center;
   justify-content: center;
 `
+
 export default WritePage1

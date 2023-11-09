@@ -33,11 +33,11 @@ function SearchPage() {
     const endDate = new Date(endAt)
 
     if (today < startDate) {
-      return '모집중'
+      return '모집 전'
     } else if (today > endDate) {
-      return '종료'
+      return '모집 종료'
     } else {
-      return '진행중'
+      return '모집 중'
     }
   }
 
@@ -51,7 +51,7 @@ function SearchPage() {
           key={item.id}
           studyName={item.name}
           studyCategory={item.category}
-          studyState={checkState(item.startAt, item.endAt)}
+          studyState={checkState(item.registerStartAt, item.registerEndAt)}
           studyPeriod={
             new Date(item.startAt).toLocaleDateString() +
             ' ~ ' +

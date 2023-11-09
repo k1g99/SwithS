@@ -56,6 +56,8 @@ public class ClubServiceImpl implements ClubService {
                 .leader(userEntity) // userId 가져오기 -> 현재는 임시로 1로 설정
                 .startAt(createClubRequest.getStartAt()) // 프론트에서 형식 맞춰서 넘겨주기
                 .endAt(createClubRequest.getEndAt())
+                .registerStartAt(createClubRequest.getRegisterStartAt())
+                .registerEndAt(createClubRequest.getRegisterEndAt())
                 .numRecruit(createClubRequest.getNumRecruit())
                 .major(majorEntity) // optional
                 .build();

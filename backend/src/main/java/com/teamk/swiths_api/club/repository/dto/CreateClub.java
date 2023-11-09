@@ -20,6 +20,10 @@ public class CreateClub {
         private LocalDateTime startAt;
         @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
         private LocalDateTime endAt;
+        @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+        private LocalDateTime registerStartAt;
+        @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+        private LocalDateTime registerEndAt;
         private String description;
         private int numRecruit;
     }
@@ -27,7 +31,6 @@ public class CreateClub {
     @Getter
     @AllArgsConstructor
     public static class CreateClubResponse {
-
         private int statusCode;
         private boolean isSuccess;
         private String message;

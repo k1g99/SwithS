@@ -59,6 +59,12 @@ public class ClubEntity {
     @Column(name = "end_at", nullable = false)
     private LocalDateTime endAt;
 
+    @Column(name = "register_start_at", nullable = false)
+    private LocalDateTime registerStartAt;
+
+    @Column(name = "register_end_at", nullable = false)
+    private LocalDateTime registerEndAt;
+
     @Column(nullable = false, length = 100)
     private String description;
 

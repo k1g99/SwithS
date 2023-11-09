@@ -1,13 +1,26 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react'
+import React, { useState } from 'react'
 import { css } from '@emotion/react'
 import Search from './Search'
 import Button1 from '../Button1'
 import my from '../../images/my.svg'
 import { Link } from 'react-router-dom'
 import logo from '../../images/logo.png'
+import Dropdown from '../Dropdown'
 
 function Header1() {
+  const [view, setView] = useState(false)
+
+  const handleClickView = () => {
+    setView(!view)
+  }
+
+  const handleBlur = () => {
+    setTimeout(() => {
+      setView(false)
+    }, 200)
+  }
+
   return (
     <header css={headerStyle}>
       <Link to="/">
@@ -23,11 +36,14 @@ function Header1() {
           </Link>
         </li>
         <li>
-          <Link to="/login">
-            <button css={myBtnStyle}>
-              <img src={my} alt="사람이미지" />
-            </button>
-          </Link>
+          <button
+            onBlur={handleBlur}
+            onClick={handleClickView}
+            css={myBtnStyle}
+          >
+            <img src={my} alt="사람이미지" />
+            {view && <Dropdown />}
+          </button>
         </li>
       </ul>
     </header>
@@ -50,7 +66,7 @@ const headerStyle = css`
 const logoStyle = css`
   width: 200px;
   margin-top: 5px;
-  margin-left: 5%;
+  margin-left: 100px;
   flex-shrink: 0;
 `
 

@@ -10,6 +10,7 @@ import com.teamk.swiths_api.user.repository.UserRepository;
 import com.teamk.swiths_api.user.repository.entity.UserEntity;
 
 import java.util.List;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,6 +54,8 @@ public class ClubServiceImpl implements ClubService {
                 .leader(userEntity) // userId 가져오기 -> 현재는 임시로 1로 설정
                 .startAt(createClubRequest.getStartAt()) // 프론트에서 형식 맞춰서 넘겨주기
                 .endAt(createClubRequest.getEndAt())
+                .registerStartAt(createClubRequest.getRegisterStartAt())
+                .registerEndAt(createClubRequest.getRegisterEndAt())
                 .numRecruit(createClubRequest.getNumRecruit())
                 .major(majorEntity) // optional
                 .build();
@@ -74,5 +77,15 @@ public class ClubServiceImpl implements ClubService {
         }
 
         return clubRepository.getById(id);
+    }
+
+    @Override
+    public List<ClubEntity> searchClub(String keyword) {
+        // keyword가 공백이면 전체 반환
+        if (keyword == null || keyword.isBlank()) {
+            return clubRepository.findAll();
+        } else {
+            return clubRepository.findByNameContaining(keyword);
+        }
     }
 }

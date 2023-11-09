@@ -8,5 +8,6 @@ import com.teamk.swiths_api.club.repository.dto.CreateClub.CreateClubRequest;
 public interface ClubService {
     ClubEntity createClub(CreateClubRequest createClubRequest);
     List<ClubEntity> findAllClub();
+    List<ClubEntity> searchClub(String keyword);
     ClubEntity findClub(Long id);
 }

@@ -11,8 +11,6 @@ import com.teamk.swiths_api.user.repository.entity.UserEntity;
 
 import java.util.List;
 
-import javax.management.RuntimeErrorException;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

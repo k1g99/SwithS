@@ -2,15 +2,18 @@
 import React from 'react'
 import { css } from '@emotion/react'
 
-function StudyCard() {
+function StudyCard(props) {
   return (
     <div css={cardContainer}>
       <div css={topSection}>
-        <div css={studyState}>진행중</div>
+        <div css={studyState}>{props.studyState}</div>
       </div>
       <div css={bottomSection}>
-        <div css={studyName}>스터디명</div>
-        <div css={studyPeriod}>스터디 기간</div>
+        <div css={studyName}>
+          {props.studyName}
+          <div css={studyCategory}>{props.studyCategory}</div>
+        </div>
+        <div css={studyPeriod}>{props.studyPeriod}</div>
       </div>
     </div>
   )
@@ -38,6 +41,18 @@ const studyName = css`
   font-style: normal;
   font-weight: 500;
   line-height: 150%; /* 30px */
+  font-variant: all-small-caps;
+`
+
+const studyCategory = css`
+  display: inline;
+  padding-left: 20px;
+  color: var(--gray-gray-5, #262626);
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 21px */
   font-variant: all-small-caps;
 `
 

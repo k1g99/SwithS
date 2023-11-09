@@ -2,20 +2,50 @@
 import React from 'react'
 import { css } from '@emotion/react'
 import search from '../../images/search.svg'
+// import { api } from '../../api'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function Search() {
+  const [clubSearchWord, setClubSearchWord] = useState('')
+  const navigate = useNavigate()
+
+  const listenEnter = (e) => {
+    if (e.key === 'Enter') {
+      redirectToSearchPage(clubSearchWord)
+    }
+  }
+
+  const clickSearchBtn = () => {
+    redirectToSearchPage(clubSearchWord)
+  }
+
+  const redirectToSearchPage = (targetWord) => {
+    navigate('/search', {
+      state: { targetWord: targetWord },
+    })
+  }
+
   return (
     <div css={searchStyle}>
-      <div css={searchBox}>검색어를 입력하세요</div>
-      <img src={search} alt="검색이미지" />
+      <input
+        type="text"
+        css={searchBox}
+        placeholder="검색어를 입력하세요"
+        onKeyDown={(e) => listenEnter(e)}
+        onChange={(e) => setClubSearchWord(e.target.value)}
+      />
+      <button css={searchBtnStyle} onClick={clickSearchBtn}>
+        <img src={search} alt="검색이미지" />
+      </button>
     </div>
   )
 }
 
 const searchStyle = css`
   display: flex;
-  min-width: 400px;
-  width: 20%;
+  min-width: 200px;
+  width: auto;
   height: 38px;
   padding: 4px 36px;
   align-items: center;
@@ -26,16 +56,15 @@ const searchStyle = css`
 `
 
 const searchBox = css`
-  width: 303px;
+  width: auto;
   flex-shrink: 0;
-  color: var(--gray-gray-3, #999);
-  /* Title/Title */
-  font-family: Pretendard;
-  font-size: 20px;
-  font-style: normal;
   font-weight: 500;
-  line-height: 150%; /* 30px */
-  font-variant: all-small-caps;
+  border: none;
+  background: none;
+`
+const searchBtnStyle = css`
+  border: none;
+  background: none;
 `
 
 export default Search

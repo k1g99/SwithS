@@ -22,7 +22,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping()
+    @GetMapping("")
     public UserEntity getUserById() {
         return userService.getUserById();
     }

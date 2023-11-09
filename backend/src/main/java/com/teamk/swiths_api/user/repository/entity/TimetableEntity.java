@@ -1,24 +1,19 @@
 package com.teamk.swiths_api.user.repository.entity;
 
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
+@Builder
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Table(name = "timetable")
 public class TimetableEntity {
     @Id
@@ -35,21 +30,12 @@ public class TimetableEntity {
     @Column(name = "end_Time", nullable = false)
     private LocalTime endTime; // 수업 종료 시간 ex) 17:30
 
-    @OneToOne
+    @ManyToOne // 왜 원투원???
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private UserEntity user; // 유저 id 일대일 참조
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Day day; // 요일
-}
-
-enum Day {
-    MON,
-    TUE,
-    WED,
-    THU,
-    FRI,
-    SAT,
-    SUN;
 }

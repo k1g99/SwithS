@@ -30,11 +30,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Entity
 @Builder
 @Getter
-@NoArgsConstructor
+@EnableJpaRepositories
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Table(name = "user")
 public class UserEntity {

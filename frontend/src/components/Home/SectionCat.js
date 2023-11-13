@@ -21,7 +21,6 @@ const catTitle = css`
   font-style: normal;
   font-weight: 700;
   line-height: 150%; /* 36px */
-  font-variant: all-small-caps;
 `
 
 export default SectionCat

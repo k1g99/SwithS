@@ -33,7 +33,6 @@ const hotTitle = css`
   font-style: normal;
   font-weight: 700;
   line-height: 150%; /* 36px */
-  font-variant: all-small-caps;
 `
 
 const hotBox = css`
@@ -65,30 +64,24 @@ const contentTitle = css`
   font-style: normal;
   font-weight: 500;
   line-height: 150%; /* 21px */
-  font-variant: all-small-caps;
 `
 const contentDead = css`
   color: var(--gray-gray-3, #999);
-  /* Body/Body 2 */
-  font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: 150%; /* 21px */
-  font-variant: all-small-caps;
 `
 const hotContent2 = css`
   margin-top: 8px;
 `
 const contentInfo = css`
   color: var(--gray-gray-5, #262626);
-  /* Subheading/Subheading */
-  font-family: Pretendard;
+
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 150%; /* 24px */
-  font-variant: all-small-caps;
 `
 
 export default SectionHot

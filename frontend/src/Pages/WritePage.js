@@ -8,6 +8,7 @@ import Container from '../components/global/Container'
 import SelectBox from '../components/SelectBox'
 import Calender from '../components/Calender'
 import { api } from '../api'
+import { Link } from 'react-router-dom'
 
 function WritePage() {
   const [clubName, setClubName] = useState('')
@@ -147,7 +148,9 @@ function WritePage() {
               </div>
 
               <div css={buttonBox}>
-                <Button2 text={'완료'} onClick={submitHandler} />
+                <Link to="/">
+                  <Button2 text={'완료'} onClick={submitHandler} />
+                </Link>
               </div>
             </form>
           </div>
@@ -171,23 +174,20 @@ const writeBox = css`
 
 const writeTitle = css`
   color: var(--gray-gray-5, #262626);
-  /* Headline/Headline */
+  font-family: Pretendard-Regular;
   font-size: 48px;
   font-style: normal;
   font-weight: 400;
   line-height: 150%; /* 36px */
-  font-variant: all-small-caps;
 `
 
 const inputText = css`
   margin-top: 30px;
   color: #000;
-  /* Subheading/Subheading2 */
-  font-size: 24px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: 150%; /* 24px */
-  font-variant: all-small-caps;
 `
 
 const inputStyle = css`

@@ -20,6 +20,7 @@ function StudyCard(props) {
 }
 
 const cardContainer = css`
+  font-family: Pretendard-Regular;
   width: 340px;
   height: 335px;
   border-radius: 30px;
@@ -36,36 +37,30 @@ const topSection = css`
 const studyName = css`
   color: var(--gray-gray-5, #262626);
   /* Title/Title */
-  font-family: Pretendard;
-  font-size: 24px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: 150%; /* 30px */
-  font-variant: all-small-caps;
 `
 
 const studyCategory = css`
   display: inline;
   padding-left: 20px;
   color: var(--gray-gray-5, #262626);
-  font-family: Pretendard;
-  font-size: 15px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: 150%; /* 21px */
-  font-variant: all-small-caps;
 `
 
 const studyPeriod = css`
   margin-top: 13px;
   color: var(--gray-gray-5, #262626);
   /* Body/Body 2 */
-  font-family: Pretendard;
-  font-size: 20px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: 150%; /* 21px */
-  font-variant: all-small-caps;
 `
 
 const bottomSection = css`
@@ -85,12 +80,10 @@ const studyState = css`
   color: var(--gray-white, #fff);
   text-align: right;
   /* Caption/Caption */
-  font-family: Pretendard;
-  font-size: 18px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: 170%; /* 18px */
-  font-variant: all-small-caps;
 `
 
 export default StudyCard

@@ -36,12 +36,10 @@ const loginTitle = css`
   margin-top: 60px;
   margin-left: 200px;
   color: var(--green-green, #1d482e);
-  /* Display/Display */
   font-size: 48px;
   font-style: normal;
   font-weight: 500;
   line-height: 150%; /* 72px */
-  font-variant: all-small-caps;
 `
 const loginSection = css`
   display: flex;
@@ -86,6 +84,5 @@ const registerText = css`
   font-style: normal;
   font-weight: 400;
   line-height: 24px; /* 150% */
-  font-variant: all-small-caps;
 `
 export default LoginPage

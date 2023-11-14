@@ -1,3 +1,5 @@
+.env
+
 HELP.md
 backend/.gradle
 build/
@@ -34,6 +36,9 @@ backend/src/main/http/
 /dist/
 /nbdist/
 /.nb-gradle/
+
+### MySQL ###
+/mysql/
 
 ### VS Code ###
 .vscode/

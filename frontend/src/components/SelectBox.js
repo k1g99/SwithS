@@ -29,15 +29,16 @@ SelectBox.propTypes = {
 }
 
 const selectText = css`
+  font-family: Pretendard-Regular;
   color: #000;
   /* Subheading/Subheading2 */
-  font-size: 24px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: 150%; /* 24px */
-  font-variant: all-small-caps;
 `
 const boxStyle = css`
+  font-family: Pretendard-Regular;
   margin-top: 12px;
   display: flex;
   width: 371px;

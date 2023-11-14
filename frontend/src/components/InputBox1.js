@@ -21,11 +21,10 @@ const inputbox1Style = css`
   border-radius: 8px;
   border: 1px solid var(--gray-gray-2, #ccc);
   color: var(--gray-gray-5, #262626);
-  font-size: 24px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px; /* 150% */
-  font-variant: all-small-caps;
 `
 
 export default InputBox1

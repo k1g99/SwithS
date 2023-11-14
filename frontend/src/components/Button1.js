@@ -7,6 +7,7 @@ function Button1() {
 }
 
 const button1Style = css`
+  font-family: Pretendard-Regular;
   display: flex;
   min-width: 105px;
   padding: 4px 24px;

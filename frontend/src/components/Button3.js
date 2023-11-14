@@ -12,6 +12,7 @@ Button3.propTypes = {
 }
 
 const button3Style = css`
+  font-family: Pretendard-Regular;
   margin-top: 16px;
   margin-left: 8px;
   display: flex;
@@ -25,11 +26,10 @@ const button3Style = css`
   background: var(--green-green, #1d482e);
   color: var(--gray-white, #fff);
   /* Headline/Headline */
-  font-size: 24px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 400;
   line-height: 150%; /* 36px */
-  font-variant: all-small-caps;
 `
 
 export default Button3

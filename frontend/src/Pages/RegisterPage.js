@@ -43,7 +43,6 @@ const registerTitle = css`
   font-style: normal;
   font-weight: 500;
   line-height: 150%; /* 72px */
-  font-variant: all-small-caps;
 `
 
 const registerSection = css`

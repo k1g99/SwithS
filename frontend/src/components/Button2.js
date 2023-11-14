@@ -12,6 +12,7 @@ Button2.propTypes = {
 }
 
 const button2Style = css`
+  font-family: Pretendard-Regular;
   display: flex;
   width: 300px;
   height: 50px;
@@ -23,11 +24,10 @@ const button2Style = css`
   background: var(--green-green, #1d482e);
   color: var(--gray-white, #fff);
   /* Headline/Headline */
-  font-size: 24px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 400;
   line-height: 150%; /* 36px */
-  font-variant: all-small-caps;
 `
 
 export default Button2

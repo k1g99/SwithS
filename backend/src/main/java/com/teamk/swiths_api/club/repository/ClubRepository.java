@@ -8,4 +8,5 @@ public interface ClubRepository extends JpaRepository<ClubEntity, Long> {
     ClubEntity getById(Long id);
     boolean existsById(Long id);
     List<ClubEntity> findByNameContaining(String name);
+    List<ClubEntity> findAllByOrderByRegisterEndAtDescCreatedAtDesc();
 }

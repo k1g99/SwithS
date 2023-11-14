@@ -66,7 +66,7 @@ public class ClubServiceImpl implements ClubService {
 
     @Override
     public List<ClubEntity> findAllClub() {
-        return clubRepository.findAll();
+        return clubRepository.findAllByOrderByRegisterEndAtDescCreatedAtDesc();
     }
 
     @Override

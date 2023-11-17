@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react'
+import React, { useRef } from 'react'
 import { css } from '@emotion/react'
 import Header2 from '../components/Home/Header2'
 import Container from '../components/global/Container'
@@ -8,6 +8,12 @@ import upload from '../images/upload.svg'
 import TextInput from '../components/TextInput'
 
 function UploadPage() {
+  const imageInput = useRef()
+
+  const onClickImageUpload = () => {
+    imageInput.current.click()
+  }
+
   return (
     <div>
       <Header2 />
@@ -19,9 +25,11 @@ function UploadPage() {
           </div>
           <div css={rightSection}>
             <div css={uploadText}>사진을 업로드하세요.</div>
-            <button css={uploadIcon}>
+            <input type="file" style={{ display: 'none' }} ref={imageInput} />
+            <button onClick={onClickImageUpload} css={uploadButton}>
               <img src={upload} css={img} />
             </button>
+
             <div css={fixSection}>
               <button css={fixText}>삭제</button>
               <button css={fixText}>수정</button>
@@ -70,7 +78,7 @@ const uploadText = css`
   line-height: 150%; /* 36px */
 `
 
-const uploadIcon = css`
+const uploadButton = css`
   margin-top: 8px;
   padding-bottom: 8px;
   border-bottom: 1px solid var(--gray-gray-2, #ccc);

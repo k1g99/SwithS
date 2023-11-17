@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/react'
 
@@ -23,15 +23,15 @@ const TextInput = ({ init }) => {
     }
   }
 
-  const handleClickOutside = (e) => {
-    if (editable == true && !ref.current.contains(e.target)) {
-      setEditable(false)
-    }
-  }
+  // const handleClickOutside = (e) => {
+  //   if (editable == true && !ref.current.contains(e.target)) {
+  //     setEditable(false)
+  //   }
+  // }
 
-  useEffect(() => {
-    window.addEventListener('click', handleClickOutside, true) // 이벤트 등록
-  })
+  // useEffect(() => {
+  //   window.addEventListener('click', handleClickOutside, true) // 이벤트 등록
+  // })
 
   return (
     <>

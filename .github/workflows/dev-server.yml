@@ -1,0 +1,20 @@
+name: Run DevServer
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  run-dev-server:
+    runs-on: self-hosted
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Compose
+        run: |
+          docker compose -f docker-compose-dev.yml down -v
+          docker compose -f docker-compose-dev.yml up -d --build
+
+      - run: echo "Done, This job's status is ${{ job.status }}."

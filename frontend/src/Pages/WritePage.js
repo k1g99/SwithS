@@ -212,6 +212,7 @@ const areaBox = css`
 `
 const areaStyle = css`
   width: 99%;
+  height: 300px;
   resize: none;
   flex-shrink: 0;
   color: var(--gray-gray-5, #262626);
@@ -226,7 +227,6 @@ const selectContainer = css`
   display: flex;
   flex-wrap: wrap;
   margin-top: 30px;
-  display: flex;
   gap: 120px;
 `
 

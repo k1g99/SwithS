@@ -3,24 +3,6 @@ networks:
   swiths-nt:
 
 services:
-# 프론트에서 따로 설정하지 않아도 실행할 수 있도록 설정했었는데, 의미가 없어짐 ㅠㅠ
-#  app:
-#    build:
-#      context: backend
-#      dockerfile: Dockerfile
-#    ports:
-#      - "4000:8080"
-#    command: sh -c "java -jar app/app.jar"
-#    environment:
-#      SPRING_DATASOURCE_URL: jdbc:mysql://0.0.0.0:13306/users_db?useSSL=false&allowPublicKeyRetrieval=true
-#      SPRING_DATASOURCE_USERNAME: "root"
-#      SPRING_DATASOURCE_PASSWORD: "root"
-#    networks:
-#      - swiths-nt
-#    depends_on:
-#      - db
-
-  # Connection url DB: jdbc:mysql://0.0.0.0:13306/swiths_db, login=root, password=root
   db:
     image: mysql:8.0
     container_name: db
@@ -31,12 +13,16 @@ services:
       MYSQL_DATABASE: swiths_db
       MYSQL_USER: user
       MYSQL_PASSWORD: userpw
-      TZ: 'Asia/Seoul'
+      TZ: "Asia/Seoul"
 
-
-    command: [
-      '--lower-case-table-names=1'
-    ]
+    command: ["--lower-case-table-names=1"]
     # restart: always
+    networks:
+      - swiths-nt
+  redis:
+    image: redis-alpine:7
+    container_name: redis
+    ports:
+      - "6379:6379"
     networks:
       - swiths-nt

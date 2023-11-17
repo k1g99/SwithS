@@ -1,3 +1,5 @@
+# get data from env file
+
 # Change api server port
 server:
   port: 8080
@@ -11,6 +13,21 @@ spring:
       enabled: true
     restart:
       enabled: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: swithssss@gmail.com # 앱 비밀번호 발급받은 google 계정
+    password:  buknnkphdciklbpi # 발급받은 앱 비밀번호
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
 
   # DB Connection
   datasource:
@@ -31,3 +48,6 @@ spring:
     init:
       data-locations: classpath*:db/data.sql
       mode: always
+
+# application-local.yml
+

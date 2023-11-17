@@ -8,7 +8,7 @@ import Container from '../components/global/Container'
 import SelectBox from '../components/SelectBox'
 import Calender from '../components/Calender'
 import { api } from '../api'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 function WritePage() {
   const [clubName, setClubName] = useState('')
@@ -37,6 +37,8 @@ function WritePage() {
 
   const submitHandler = (e) => {
     e.preventDefault()
+    console.log(e)
+
     // 변수가 하나라도 비어있으면 alert 후 break
     if (clubName === '') {
       alert('스터디 이름을 입력해주세요')
@@ -75,7 +77,7 @@ function WritePage() {
         })
         .then(() => {
           alert('스터디 생성에 성공했습니다.')
-          window.location.reload()
+          window.location.href = '/'
         })
         .catch((err) => {
           console.log(err)
@@ -148,9 +150,9 @@ function WritePage() {
               </div>
 
               <div css={buttonBox}>
-                <Link to="/">
-                  <Button2 text={'완료'} onClick={submitHandler} />
-                </Link>
+                {/* <Link to="/"> */}
+                <Button2 text={'완료'} onClick={submitHandler} />
+                {/* </Link> */}
               </div>
             </form>
           </div>

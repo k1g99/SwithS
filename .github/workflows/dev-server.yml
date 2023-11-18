@@ -41,13 +41,21 @@ jobs:
           name: swiths-dev-build
           path: ${{ env.working-directory }}/build/libs/swiths_api-0.0.1-SNAPSHOT.jar
 
+      - name: Upload docker compose file
+        uses: actions/upload-artifact@v3
+        with:
+          name: docker-compose
+          path: ./docker-compose.yml
+
   run-server:
     runs-on: self-hosted
     needs: build
     steps:
-      - name: Copy docker compose file
-        run: cp /docker-compose.yml ${{ secrets.DEV_RUN_DIR }}
-        working-directory: ${{ secrets.DEV_RUN_DIR }}
+      - name: Download docker compose file
+        uses: actions/download-artifact@v3
+        with:
+          name: docker-compose
+          path: ${{ secrets.DEV_RUN_DIR }}
 
       - name: set .env file
         run: echo ${{secrets.DEV_ENV}} > .env

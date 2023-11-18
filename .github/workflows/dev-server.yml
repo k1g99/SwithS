@@ -46,7 +46,7 @@ jobs:
     needs: build
     steps:
       - name: Copy docker compose file
-        run: cp ./backend/docker-compose.yml ${{ secrets.DEV_RUN_DIR }}
+        run: cp /docker-compose.yml ${{ secrets.DEV_RUN_DIR }}
         working-directory: ${{ secrets.DEV_RUN_DIR }}
 
       - name: set .env file

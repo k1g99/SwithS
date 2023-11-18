@@ -32,7 +32,7 @@ jobs:
 
       # Gradle Build 실행
       - name: Build with Gradle
-        run: ./gradlew bootJar
+        run: ./gradlew bootJar -Pprofile=dev
         working-directory: ${{ env.working-directory }}
 
       - name: Upload build artifact

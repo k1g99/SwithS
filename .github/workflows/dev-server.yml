@@ -62,7 +62,7 @@ jobs:
         working-directory: ${{ secrets.DEV_RUN_DIR }}
 
       - name: run Database
-        run: docker-compose up -d
+        run: docker compose up -d
         working-directory: ${{ secrets.DEV_RUN_DIR }}
 
       - name: Download build artifact

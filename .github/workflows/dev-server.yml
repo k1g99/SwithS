@@ -77,5 +77,5 @@ jobs:
           path: ${{ secrets.DEV_RUN_DIR }}/build/libs
 
       - name: Run DevServer
-        run: java -jar swiths_api-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev &
+        run: nohup java -jar swiths_api-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev &
         working-directory: ${{ secrets.DEV_RUN_DIR }}/build/libs

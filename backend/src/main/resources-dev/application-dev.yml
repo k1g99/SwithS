@@ -5,13 +5,6 @@ server:
     context-path: /api
 
 spring:
-  config.activate.on-profile: default
-  devtools:
-    livereload:
-      enabled: true
-    restart:
-      enabled: true
-
   # DB Connection
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -21,8 +14,5 @@ spring:
 
   jpa:
     database: mysql
-    database-platform: org.hibernate.dialect.MySQL8Dialect
-    open-in-view: true
-    show-sql: true
     hibernate:
       ddl-auto: update

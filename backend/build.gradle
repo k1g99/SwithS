@@ -40,13 +40,19 @@ tasks.named('test') {
 }
 
 // Default는 dev 로 지정
-ext.profile = (!project.hasProperty('profile') || !profile) ? 'dev' : profile
+ext.profile = (!project.hasProperty('profile') || !profile) ? 'local' : profile
 
-// 리소스 폴더 지정
 sourceSets {
 	main {
 		resources {
 			srcDirs "src/main/resources", "src/main/resources-${profile}"
 		}
+	}
+}
+
+// resources 폴더에 중복된 파일이 있을 경우 덮어쓰기
+tasks{
+	processResources{
+		duplicatesStrategy = org.gradle.api.file.DuplicatesStrategy.INCLUDE
 	}
 }

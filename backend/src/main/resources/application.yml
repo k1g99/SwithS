@@ -5,12 +5,8 @@ server:
     context-path: /api
 
 spring:
-  config.activate.on-profile: default
-  devtools:
-    livereload:
-      enabled: true
-    restart:
-      enabled: true
+  profiles:
+    default: local
 
   # DB Connection
   datasource:

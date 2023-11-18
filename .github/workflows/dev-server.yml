@@ -6,7 +6,7 @@ on:
       - "develop"
   pull_request:
     branches:
-      - "feature/44-fix-devserver"
+      - "develop"
 
 jobs:
   run-dev-server:

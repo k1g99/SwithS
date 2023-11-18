@@ -16,7 +16,6 @@ services:
       TZ: "Asia/Seoul"
     volumes:
       - ./mysql/db:/var/lib/mysql
-      - ./backend/src/main/resources/db/data.sql:/docker-entrypoint-initdb.d/data.sql
     command:
       - --lower-case-table-names=1
       - --character-set-server=utf8mb4

@@ -45,7 +45,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: docker-compose
-          path: ./docker-compose.yml
+          path: ./docker-compose-dev.yml
 
   run-server:
     runs-on: self-hosted
@@ -58,11 +58,16 @@ jobs:
           path: ${{ secrets.DEV_RUN_DIR }}
 
       - name: set .env file
-        run: echo ${{secrets.DEV_ENV}} > .env
+        run: |
+          echo "DEV_ENV" > .env
+          echo "DEV_PATH_GECKO" >> .env
         working-directory: ${{ secrets.DEV_RUN_DIR }}
+        env:
+          DEV_ENV: ${{ secrets.DEV_ENV }}
+          PATH_GECKO: ${{ secrets.DEV_PATH_GECKO }}
 
       - name: run Database
-        run: docker compose up -d
+        run: docker compose -f docker-compose-dev.yml up -d
         working-directory: ${{ secrets.DEV_RUN_DIR }}
 
       - name: Download build artifact
@@ -72,5 +77,5 @@ jobs:
           path: ${{ secrets.DEV_RUN_DIR }}/build/libs
 
       - name: Run DevServer
-        run: java -jar build/libs/swiths_api-0.0.1-SNAPSHOT.jar
-        working-directory: ${{ secrets.DEV_RUN_DIR }}
+        run: java -jar swiths_api-0.0.1-SNAPSHOT.jar &
+        working-directory: ${{ secrets.DEV_RUN_DIR }}/build/libs

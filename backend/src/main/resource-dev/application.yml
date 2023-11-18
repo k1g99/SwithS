@@ -1,0 +1,33 @@
+# Change api server port
+server:
+  port: 4000
+  servlet:
+    context-path: /api
+
+spring:
+  config.activate.on-profile: default
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+
+  # DB Connection
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: System.getenv("MYSQL_URL")
+    username: System.getenv("MYSQL_USER")
+    password: System.getenv("MYSQL_PASSWORD")
+
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    open-in-view: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    defer-datasource-initialization: true
+  sql:
+    init:
+      data-locations: classpath*:db/data.sql
+      mode: always

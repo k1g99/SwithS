@@ -59,8 +59,8 @@ jobs:
 
       - name: set .env file
         run: |
-          echo "DEV_ENV" > .env
-          echo "DEV_PATH_GECKO" >> .env
+          echo "$DEV_ENV" > .env
+          echo "$DEV_PATH_GECKO" >> .env
         working-directory: ${{ secrets.DEV_RUN_DIR }}
         env:
           DEV_ENV: ${{ secrets.DEV_ENV }}

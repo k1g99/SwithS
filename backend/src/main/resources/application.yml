@@ -40,10 +40,16 @@ spring:
     hibernate:
       ddl-auto: create-drop
     defer-datasource-initialization: true
+
   sql:
     init:
       data-locations: classpath*:db/data.sql
       mode: always
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+  
 
 # application-local.yml
 

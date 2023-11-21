@@ -36,7 +36,7 @@ function App() {
       <Route path="/search" element={<SearchPage />} />
       <Route path="/mypage" element={<MyPage />} />
       <Route path="/upload" element={<UploadPage />} />
-      <Route path="/detail" element={<DetailPage />} />
+      <Route path="/detail/:item_id" element={<DetailPage />} />
     </Routes>
   )
 }

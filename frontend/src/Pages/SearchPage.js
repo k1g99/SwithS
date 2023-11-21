@@ -7,6 +7,7 @@ import { css } from '@emotion/react'
 import { useLocation } from 'react-router-dom'
 import { api } from '../api'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 function SearchPage() {
   const location = useLocation()
@@ -47,17 +48,19 @@ function SearchPage() {
       return '검색 결과가 없습니다.'
     } else {
       return data.clubs.map((item) => (
-        <StudyCard
-          key={item.id}
-          studyName={item.name}
-          studyCategory={item.category}
-          studyState={checkState(item.registerStartAt, item.registerEndAt)}
-          studyPeriod={
-            new Date(item.startAt).toLocaleDateString() +
-            ' ~ ' +
-            new Date(item.endAt).toLocaleDateString()
-          }
-        />
+        <Link key={item.id} to={`/detail/${item.id}`}>
+          <StudyCard
+            key={item.id}
+            studyName={item.name}
+            studyCategory={item.category}
+            studyState={checkState(item.registerStartAt, item.registerEndAt)}
+            studyPeriod={
+              new Date(item.startAt).toLocaleDateString() +
+              ' ~ ' +
+              new Date(item.endAt).toLocaleDateString()
+            }
+          />
+        </Link>
       ))
     }
   }

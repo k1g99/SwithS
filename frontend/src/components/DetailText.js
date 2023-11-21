@@ -3,18 +3,18 @@ import React from 'react'
 import { css } from '@emotion/react'
 import PropTypes from 'prop-types'
 
-const DetailText = ({ category, data }) => {
+const DetailText = ({ category, text }) => {
   return (
     <div css={textBox}>
       <div css={catStyle}>{category}</div>
-      <div css={dataStyle}>{data}</div>
+      <div css={dataStyle}>{text}</div>
     </div>
   )
 }
 
 DetailText.propTypes = {
   category: PropTypes.node,
-  data: PropTypes.node,
+  text: PropTypes.node,
 }
 const textBox = css`
   display: flex;

@@ -4,33 +4,52 @@ import { css } from '@emotion/react'
 import Header2 from '../components/Home/Header2'
 import Container from '../components/global/Container'
 import DetailText from '../components/DetailText'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import axios from 'axios'
 
 function DetailPage() {
+  const params = useParams()
+  const clubId = params.item_id
+  const [data, setData] = useState({})
+
+  useEffect(() => {
+    axios
+      .get(`/clubs/${clubId}`)
+      .then((response) => {
+        setData(response.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [clubId])
+
   return (
     <div>
       <Header2 />
       <Container>
         <div css={datailSection}>
           <div css={titleContainer}>
-            <div css={studytitle}>스터디명</div>
-            <div css={studyDate}>0000.00.00</div>
+            <div css={studytitle}>{data.name}</div>
+            <div css={studyDate}>
+              {new Date(data.startAt).toLocaleDateString() +
+                ' ~ ' +
+                new Date(data.endAt).toLocaleDateString()}
+            </div>
           </div>
           <div css={topContainer}>
             <div css={detailBox}>
-              <DetailText category={'모집구분'} data={'스터디'} />
-              <DetailText category={'모집인원'} data={'스터디'} />
-              <DetailText category={'전공'} data={'스터디'} />
+              <DetailText category={'모집구분'} text={data.category} />
+              <DetailText category={'모집인원'} text={data.numRecruit} />
             </div>
             <div css={detailBox}>
-              <DetailText category={'모집기간'} data={'스터디'} />
-              <DetailText category={'모집구분'} data={'스터디'} />
+              <DetailText category={'전공'} text={data.major} />
+              <DetailText category={'모집기간'} text={'추가해야됨'} />
             </div>
           </div>
           <div css={bottomContainer}>
             <div css={infoTitle}>설명</div>
-            <div css={infoText}>
-              어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구
-            </div>
+            <div css={infoText}>{data.description}</div>
           </div>
         </div>
       </Container>

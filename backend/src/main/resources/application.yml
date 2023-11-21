@@ -1,3 +1,5 @@
+# get data from env file
+
 # Change api server port
 server:
   port: 8080
@@ -7,6 +9,23 @@ server:
 spring:
   profiles:
     default: local
+  config.activate.on-profile: default
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: swithssss@gmail.com # 앱 비밀번호 발급받은 google 계정
+    password:  buknnkphdciklbpi # 발급받은 앱 비밀번호
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
   # DB Connection
   datasource:
@@ -23,7 +42,16 @@ spring:
     hibernate:
       ddl-auto: create-drop
     defer-datasource-initialization: true
+
   sql:
     init:
       data-locations: classpath*:db/data.sql
       mode: always
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+  
+
+# application-local.yml
+

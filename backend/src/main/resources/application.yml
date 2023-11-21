@@ -7,6 +7,8 @@ server:
     context-path: /api
 
 spring:
+  profiles:
+    default: local
   config.activate.on-profile: default
   devtools:
     livereload:

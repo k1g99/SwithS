@@ -4,8 +4,8 @@ import com.teamk.swiths_api.club.repository.Category;
 import com.teamk.swiths_api.club.repository.ClubEntity;
 import com.teamk.swiths_api.club.repository.ClubRepository;
 import com.teamk.swiths_api.club.repository.dto.CreateClub.CreateClubRequest;
-import com.teamk.swiths_api.global.MajorEntity;
-import com.teamk.swiths_api.global.MajorRepository;
+import com.teamk.swiths_api.major.repository.MajorEntity;
+import com.teamk.swiths_api.major.repository.MajorRepository;
 import com.teamk.swiths_api.user.repository.UserRepository;
 import com.teamk.swiths_api.user.repository.entity.UserEntity;
 

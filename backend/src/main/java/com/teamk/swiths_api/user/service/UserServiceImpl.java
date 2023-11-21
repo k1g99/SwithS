@@ -1,7 +1,7 @@
 package com.teamk.swiths_api.user.service;
 
-import com.teamk.swiths_api.global.MajorEntity;
-import com.teamk.swiths_api.global.MajorRepository;
+import com.teamk.swiths_api.major.repository.MajorEntity;
+import com.teamk.swiths_api.major.repository.MajorRepository;
 import com.teamk.swiths_api.user.controller.dto.CreateUser.CreateUserRequest;
 import com.teamk.swiths_api.user.controller.dto.Email.EmailRequest;
 import com.teamk.swiths_api.user.repository.UserRepository;

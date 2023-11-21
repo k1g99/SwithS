@@ -21,7 +21,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.teamk.swiths_api.global.MajorEntity;
+import com.teamk.swiths_api.major.repository.MajorEntity;
 import com.teamk.swiths_api.user.repository.entity.UserEntity;
 
 @Entity

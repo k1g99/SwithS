@@ -7,9 +7,9 @@ server:
     context-path: /api
 
 spring:
-  profiles:
-    default: local
-  config.activate.on-profile: default
+  config:
+    activate:
+      on-profile: local
   mail:
     host: smtp.gmail.com
     port: 587

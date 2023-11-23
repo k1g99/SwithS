@@ -45,5 +45,7 @@ spring:
     redis:
       host: 127.0.0.1
       port: 6379
-# application-local.yml
+  
+jwt:
+  secret: VlwEyVBsYt9V7zq57TejMnVUyzblYcfPQye08f7MGVA9XkHa
 

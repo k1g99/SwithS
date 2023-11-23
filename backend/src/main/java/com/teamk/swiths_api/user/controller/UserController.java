@@ -1,6 +1,7 @@
 package com.teamk.swiths_api.user.controller;
 
 
+import org.jboss.logging.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,15 +11,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.teamk.swiths_api.user.controller.dto.SignInDto;
 import com.teamk.swiths_api.user.controller.dto.CreateUser.CreateUserRequest;
 import com.teamk.swiths_api.user.controller.dto.CreateUser.CreateUserResponse;
 import com.teamk.swiths_api.user.controller.dto.Email.EmailRequest;
 import com.teamk.swiths_api.user.controller.dto.Email.EmailResponse;
+import com.teamk.swiths_api.user.jwt.SecurityUtil;
+import com.teamk.swiths_api.user.jwt.dto.JwtToken;
 import com.teamk.swiths_api.user.service.UserService;
+
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/user")
@@ -59,6 +66,24 @@ public class UserController {
 
 
         return result;
+    }
+
+    @PostMapping("/signin")
+    public JwtToken signIn(@RequestBody SignInDto signInDto) {
+        String username = signInDto.getUsername();
+        String password = signInDto.getPassword();
+        JwtToken jwtToken = userService.signIn(username, password);
+
+        log.info("jwtToken: {}", jwtToken);
+        log.info("jwtToken accessToken = {}, refreshToken = {}", jwtToken.getAccessToken(), jwtToken.getRefreshToken());
+        return jwtToken;
+    }
+
+    @PostMapping("/test")
+    public String test() {
+        String name = SecurityUtil.getNowUserName();
+
+        return name + "님 환영합니다.";
     }
 }
 

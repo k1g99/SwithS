@@ -1,4 +1,4 @@
-package com.teamk.swiths_api.post;
+package com.teamk.swiths_api.post.repository;
 
 import org.springframework.stereotype.Repository;
 

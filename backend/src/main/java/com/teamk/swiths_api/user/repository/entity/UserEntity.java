@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.teamk.swiths_api.club.repository.ClubEntity;
 import com.teamk.swiths_api.global.MajorEntity;
-import com.teamk.swiths_api.post.PostEntity;
+import com.teamk.swiths_api.post.repository.PostEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

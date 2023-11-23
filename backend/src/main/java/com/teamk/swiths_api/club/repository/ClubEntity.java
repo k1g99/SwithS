@@ -73,6 +73,31 @@ public class ClubEntity {
     @ColumnDefault("5")
     private int numRecruit;
 
+    @Column(name = "timetable_mon")
+    @ColumnDefault("0")
+    private Long timetableMon;
+
+    @Column(name = "timetable_tue")
+    @ColumnDefault("0")
+    private Long timetableTue;
+
+    @Column(name = "timetable_wed")
+    @ColumnDefault("0")
+    private Long timetableWed;
+    @Column(name = "timetable_thu")
+    @ColumnDefault("0")
+    private Long timetableThu;
+    @Column(name = "timetable_fri")
+    @ColumnDefault("0")
+    private Long timetableFri;
+    @Column(name = "timetable_sat")
+    @ColumnDefault("0")
+    private Long timetableSat;
+    @Column(name = "timetable_sun")
+    @ColumnDefault("0")
+    private Long timetableSun;
+
+
     @CreationTimestamp
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();

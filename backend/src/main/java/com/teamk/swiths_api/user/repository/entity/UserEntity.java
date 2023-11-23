@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.teamk.swiths_api.club.repository.ClubEntity;
-import com.teamk.swiths_api.global.MajorEntity;
+import com.teamk.swiths_api.major.repository.MajorEntity;
 import com.teamk.swiths_api.post.PostEntity;
 
 import jakarta.persistence.Column;

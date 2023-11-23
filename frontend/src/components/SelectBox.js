@@ -29,7 +29,7 @@ SelectBox.propTypes = {
 }
 
 const selectText = css`
-  font-family: Pretendard-Regular;
+  font-family: Pretendard;
   color: #000;
   /* Subheading/Subheading2 */
   font-size: 16px;
@@ -38,7 +38,7 @@ const selectText = css`
   line-height: 150%; /* 24px */
 `
 const boxStyle = css`
-  font-family: Pretendard-Regular;
+  font-family: Pretendard;
   margin-top: 12px;
   display: flex;
   width: 371px;

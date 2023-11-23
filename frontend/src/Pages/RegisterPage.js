@@ -1,13 +1,34 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react'
+import React, { useState } from 'react'
 import { css } from '@emotion/react'
 import Header2 from '../components/Home/Header2'
 import InputBox1 from '../components/InputBox1'
 import InputBox2 from '../components/InputBox2'
 import Button2 from '../components/Button2'
 import Button3 from '../components/Button3'
+import { api } from '../api'
 
 function RegisterPage() {
+  const [useremail, setUseremail] = useState('')
+
+  const handleChange = (e) => {
+    setUseremail(e.target.value)
+  }
+  const emailSend = (e) => {
+    e.preventDefault()
+    api
+      .post('/user/auth/email', {
+        email: useremail,
+      })
+      .then(() => {
+        alert('이메일 전송에 완료했습니다.')
+      })
+      .catch((err) => {
+        console.log(err)
+        alert('실패했습니다.')
+      })
+  }
+
   return (
     <div>
       <Header2 />
@@ -16,8 +37,8 @@ function RegisterPage() {
         <form css={registerBox}>
           <InputBox1 placeholder={'이름'} />
           <div css={buttonInput}>
-            <InputBox2 placeholder={'이메일'} />
-            <Button3 text={'보내기'} />
+            <InputBox2 placeholder={'이메일'} onChange={handleChange} />
+            <Button3 text={'보내기'} onClick={emailSend} />
           </div>
           <div css={buttonInput}>
             <InputBox2 placeholder={'인증번호'} />

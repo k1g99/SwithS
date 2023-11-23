@@ -33,6 +33,8 @@ function WritePage() {
     수학과: 'math',
     미술학과: 'art',
     영어영문학과: 'english',
+    교양: 'culture',
+    취업: 'job',
   }
 
   const submitHandler = (e) => {
@@ -117,7 +119,7 @@ function WritePage() {
                     }}
                   />
                   <SelectBox
-                    text={'전공'}
+                    text={'카테고리'}
                     options={Object.keys(MAJOR)}
                     onChange={(e) => {
                       setClubCategory(e.target.value)
@@ -193,7 +195,6 @@ const inputText = css`
 `
 
 const inputStyle = css`
-  font-size: 18px;
   margin-top: 12px;
   display: flex;
   width: 500px;

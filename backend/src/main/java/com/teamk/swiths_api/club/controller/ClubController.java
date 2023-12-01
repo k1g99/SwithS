@@ -57,8 +57,8 @@ public class ClubController {
 
     // 스터디 검색
     @GetMapping("/searchs")
-    public FindAllClubResponse searchClub(@RequestParam String keyword) {
-        List<ClubEntity> clubLists = clubService.searchClub(keyword);
+    public FindAllClubResponse searchClub(@RequestParam String keyword, @RequestParam Long major) {
+        List<ClubEntity> clubLists = clubService.searchClub(keyword, major);
 
         FindAllClubResponse result = new FindAllClubResponse(200, true, "스터디 검색에 성공하였습니다.", clubLists);
 

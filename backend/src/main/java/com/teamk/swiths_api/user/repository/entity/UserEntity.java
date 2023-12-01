@@ -60,10 +60,6 @@ public class UserEntity implements UserDetails {
     @Column(length = 30, nullable = false)
     private String email; // 유저 이메일
 
-    @Column(nullable = false)
-    @ColumnDefault("false")
-    private Boolean admin; // 유저에게 권한을 줄지말지 정함
-
     @Column(length = 20, nullable = false)
     private String username; // 유저이름
 
@@ -81,7 +77,7 @@ public class UserEntity implements UserDetails {
     @Column(length = 50)
     private String department; // 학부
 
-    @Column(nullable = false)
+    @Column
     @Enumerated(EnumType.STRING)
     private Statement statement; // 학적상태
 

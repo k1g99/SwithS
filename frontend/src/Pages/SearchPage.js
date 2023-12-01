@@ -15,7 +15,22 @@ function SearchPage() {
   const location = useLocation()
   const userInfo = { ...location.state }
   const targetWord = userInfo.targetWord
+  const targetMajor = userInfo.targetMajor
   const [data, setData] = useState(null)
+  const [majorList, setMajorList] = useState([])
+
+  // 전공 목록 가져오기
+  React.useEffect(() => {
+    api
+      .get('/major')
+      .then((res) => {
+        setMajorList(res.data.majors)
+        console.log(majorList)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
 
   // targetWord가 바뀔 때 마다 실행
   React.useEffect(() => {
@@ -23,6 +38,7 @@ function SearchPage() {
       .get('/clubs/searchs', {
         params: {
           keyword: targetWord,
+          major: targetMajor,
         },
       })
       .then((response) => {
@@ -67,7 +83,7 @@ function SearchPage() {
       ))
     } else {
       return data.clubs
-        .filter((item) => item.category === filterParam)
+        .filter((item) => item.major.id == filterParam)
         .map((item) => (
           <Link key={item.id} to={`/detail/${item.id}`}>
             <StudyCard
@@ -101,11 +117,17 @@ function SearchPage() {
               }}
             >
               <option value="All">전체</option>
+              {majorList.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.name}
+                </option>
+              ))}
+              {/* <option value="All">전체</option>
               <option value="software">소프트웨어학과</option>
               <option value="math">수학과</option>
               <option value="english">영어영문학과</option>
               <option value="culture">교양</option>
-              <option value="job">취업</option>
+              <option value="job">취업</option> */}
             </select>
           </div>
           <div>

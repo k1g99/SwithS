@@ -46,7 +46,7 @@ public class ClubEntity {
 
     @ManyToOne
     @JoinColumn(name = "major_id")
-    @JsonIgnore // get 요청시 무한참조 현상 발생해서 추가함 TODO: DTO 클래스 처리하는거 생각(이 방법이 더 좋을거 같음)
+    // get 요청시 무한참조 현상 발생해서 추가함 TODO: DTO 클래스 처리하는거 생각(이 방법이 더 좋을거 같음)
     private MajorEntity major; // 전공 스터디인 경우, Major 테이블 참조
 
     @ManyToOne

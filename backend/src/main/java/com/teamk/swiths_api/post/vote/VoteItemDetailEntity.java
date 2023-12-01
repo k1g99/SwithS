@@ -10,6 +10,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+import java.time.LocalTime;
+
 @Entity
 @Table(name = "vote_item_detail")
 public class VoteItemDetailEntity {
@@ -20,8 +22,14 @@ public class VoteItemDetailEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "vote_item_id", nullable = false)
-    private VoteEntity voteItem;
+    @JoinColumn(name = "vote_id", nullable = false)
+    private VoteEntity vote;
+
+    @Column(name = "start_time")
+    private LocalTime startTime;
+
+    @Column(name = "end_time")
+    private LocalTime endTime;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)

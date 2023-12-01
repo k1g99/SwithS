@@ -86,7 +86,7 @@ public class ClubServiceImpl implements ClubService {
             return clubRepository.findAll();
         } else if (keyword == null || keyword.isBlank()){
             return clubRepository.findByMajor_Id(major);
-        } else if (major == null) {
+        } else if (major == null || major == 0) {
             return clubRepository.findByNameContaining(keyword);
         } else {
             return clubRepository.findByNameContainingAndMajor_Id(keyword, major);

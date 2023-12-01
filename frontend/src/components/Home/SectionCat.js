@@ -12,7 +12,6 @@ function SectionCat() {
       .get('/major')
       .then((res) => {
         setMajorList(res.data.majors)
-        console.log(majorList)
       })
       .catch((err) => {
         console.log(err)
@@ -24,7 +23,7 @@ function SectionCat() {
       <div css={catTitle}>카테고리별 스터디 / 프로젝트 바로가기</div>
       <div css={catSection}>
         {majorList.map((item) => (
-          <Button4 key={item.id} text={item.name} />
+          <Button4 key={item.id} id={item.id} text={item.name} />
         ))}
         {/* <Button4 text={'소프트웨어'} />
         <Button4 text={'수학'} />

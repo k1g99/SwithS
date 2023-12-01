@@ -2,29 +2,23 @@
 import React from 'react'
 import { css } from '@emotion/react'
 import PropTypes from 'prop-types'
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const Button4 = ({ text }) => {
-  const [clubCategoryWord, setClubCategoryWord] = useState('')
+const Button4 = ({ id, text }) => {
   const navigate = useNavigate()
 
-  const clickCategoryBtn = () => {
-    redirectToCategoryPage(clubCategoryWord)
+  const clickCategoryBtn = (e) => {
+    redirectToCategoryPage(e.target.id)
   }
 
   const redirectToCategoryPage = (targetCat) => {
-    navigate('/category', {
-      state: { targetCat: targetCat },
+    navigate('/search', {
+      state: { targetWord: '', targetMajor: targetCat },
     })
   }
 
   return (
-    <button
-      css={button4Style}
-      onClick={clickCategoryBtn}
-      onChange={(e) => setClubCategoryWord(e.target.value)}
-    >
+    <button id={id} css={button4Style} onClick={clickCategoryBtn}>
       {text}
     </button>
   )

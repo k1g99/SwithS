@@ -1,0 +1,19 @@
+package com.teamk.swiths_api.post.dto;
+
+import com.teamk.swiths_api.club.repository.ClubEntity;
+import com.teamk.swiths_api.post.PostEntity;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+import java.util.List;
+
+public class FindPost {
+    @Getter
+    @AllArgsConstructor
+    public static class FindAllPostResponse{
+        private int statusCode;
+        private boolean isSuccess;
+        private String message;
+        private List<PostEntity> posts;
+    }
+}

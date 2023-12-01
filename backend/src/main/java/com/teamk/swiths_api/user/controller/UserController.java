@@ -1,7 +1,6 @@
 package com.teamk.swiths_api.user.controller;
 
 
-import org.jboss.logging.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,15 +10,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.teamk.swiths_api.user.controller.dto.SignInDto;
 import com.teamk.swiths_api.user.controller.dto.CreateUser.CreateUserRequest;
 import com.teamk.swiths_api.user.controller.dto.CreateUser.CreateUserResponse;
 import com.teamk.swiths_api.user.controller.dto.Email.EmailRequest;
 import com.teamk.swiths_api.user.controller.dto.Email.EmailResponse;
+import com.teamk.swiths_api.user.controller.dto.SignInDto;
 import com.teamk.swiths_api.user.jwt.SecurityUtil;
 import com.teamk.swiths_api.user.jwt.dto.JwtToken;
 import com.teamk.swiths_api.user.service.UserService;
-
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -44,7 +42,7 @@ public class UserController {
     public CreateUserResponse createUser(@RequestBody CreateUserRequest createUserRequest) {
         userService.createUser(createUserRequest);
 
-        CreateUserResponse result = new CreateUserResponse(200, true, "유저 생성에 성공하셨습니다.");
+        CreateUserResponse result = new CreateUserResponse(200, true, "회원가입에 성공하셨습니다.");
 
         return result;
     }

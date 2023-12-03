@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react'
+import { v4 as uuid_v4 } from 'uuid'
 import Header1 from '../components/Home/Header1'
 import StudyCard from '../components/StudyCard'
 import Container from '../components/global/Container'
@@ -25,7 +26,7 @@ function SearchPage() {
       .get('/major')
       .then((res) => {
         setMajorList(res.data.majors)
-        console.log(majorList)
+        // console.log(majorList)
       })
       .catch((err) => {
         console.log(err)
@@ -111,17 +112,22 @@ function SearchPage() {
         <div css={cardContainer}>
           <div css={categorySection}>
             <select
+              defaultValue={targetMajor}
+              key={uuid_v4()}
               css={selectStyle}
               onChange={(e) => {
                 setFilterParam(e.target.value)
               }}
             >
-              <option value="All">전체</option>
+              <option key={uuid_v4()} value="All">
+                전체
+              </option>
               {majorList.map((item) => (
-                <option key={item.id} value={item.id}>
+                <option key={uuid_v4()} value={item.id}>
                   {item.name}
                 </option>
               ))}
+
               {/* <option value="All">전체</option>
               <option value="software">소프트웨어학과</option>
               <option value="math">수학과</option>

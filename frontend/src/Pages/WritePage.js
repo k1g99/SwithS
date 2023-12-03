@@ -204,7 +204,6 @@ const inputText = css`
 `
 
 const inputStyle = css`
-  font-size: 18px;
   margin-top: 12px;
   display: flex;
   width: 500px;

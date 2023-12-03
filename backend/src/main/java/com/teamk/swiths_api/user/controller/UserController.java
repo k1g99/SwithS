@@ -56,7 +56,7 @@ public class UserController {
         return result;
     }
 
-    @GetMapping("/auth/verify")
+    @GetMapping("/auth/verify") // TODO: Post로 변환
     public EmailResponse verifyCode(@RequestParam("code") String code, @RequestParam("email") String email) {
         userService.checkAuthCode(code, email);
 

@@ -82,11 +82,11 @@ public class ClubServiceImpl implements ClubService {
     @Override
     public List<ClubEntity> searchClub(String keyword, Long major) {
         // keyword가 공백이면 전체 반환
-        if ((keyword == null || keyword.isBlank()) && (major == null)) {
+        if ((keyword == null || keyword.isBlank()) && (major == null || major == 0)) {
             return clubRepository.findAll();
         } else if (keyword == null || keyword.isBlank()){
             return clubRepository.findByMajor_Id(major);
-        } else if (major == null) {
+        } else if (major == null || major == 0) {
             return clubRepository.findByNameContaining(keyword);
         } else {
             return clubRepository.findByNameContainingAndMajor_Id(keyword, major);

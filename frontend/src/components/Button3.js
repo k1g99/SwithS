@@ -3,8 +3,12 @@ import React from 'react'
 import { css } from '@emotion/react'
 import PropTypes from 'prop-types'
 
-const Button3 = ({ text }) => {
-  return <button css={button3Style}>{text}</button>
+const Button3 = ({ text, onClick }) => {
+  return (
+    <button css={button3Style} onClick={onClick}>
+      {text}
+    </button>
+  )
 }
 
 Button3.propTypes = {
@@ -12,7 +16,7 @@ Button3.propTypes = {
 }
 
 const button3Style = css`
-  font-family: Pretendard-Regular;
+  font-family: Pretendard;
   margin-top: 16px;
   margin-left: 8px;
   display: flex;

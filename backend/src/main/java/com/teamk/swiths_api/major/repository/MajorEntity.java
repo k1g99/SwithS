@@ -3,6 +3,7 @@ package com.teamk.swiths_api.major.repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.teamk.swiths_api.user.repository.entity.UserEntity;
 
 import jakarta.persistence.Column;
@@ -35,5 +36,6 @@ public class MajorEntity {
     private String name; // 과목 명
 
     @OneToMany(mappedBy = "major")
+    @JsonIgnore
     private List<UserEntity> users = new ArrayList<>();
 }

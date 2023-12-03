@@ -21,7 +21,7 @@ function StudyCard(props) {
 
 const cardContainer = css`
   font-family: Pretendard-Regular;
-  width: 340px;
+  width: 350px;
   height: 335px;
   border-radius: 30px;
   border: 1px solid var(--gray-gray-2, #ccc);
@@ -29,7 +29,7 @@ const cardContainer = css`
 `
 
 const topSection = css`
-  width: 340px;
+  width: 350px;
   height: 131px;
   border-radius: 30px 30px 0px 0px;
   background: var(--green-green, #1d482e);

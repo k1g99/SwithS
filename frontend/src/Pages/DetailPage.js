@@ -7,6 +7,7 @@ import DetailText from '../components/DetailText'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import Button2 from '../components/Button2'
 
 function DetailPage() {
   const params = useParams()
@@ -50,6 +51,9 @@ function DetailPage() {
           <div css={bottomContainer}>
             <div css={infoTitle}>설명</div>
             <div css={infoText}>{data.description}</div>
+          </div>
+          <div css={buttonBox}>
+            <Button2 text={'참여하기'} />
           </div>
         </div>
       </Container>
@@ -111,11 +115,18 @@ const infoTitle = css`
 
 const infoText = css`
   margin-top: 30px;
+  height: 200px;
   color: var(--gray-gray-5, #262626);
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 150%; /* 24px */
 `
-
+const buttonBox = css`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 130px;
+`
 export default DetailPage

@@ -10,9 +10,14 @@ import { api } from './api'
 import MystudyPage from './Pages/MystudyPage'
 import SearchPage from './Pages/SearchPage'
 import MyPage from './Pages/MyPage'
-import UploadPage from './Pages/UploadPage'
-import DetailPage from './Pages/DetailPage'
+import ScheduleuploadPage from './Pages/ScheduleuploadPage'
+import StudydetailPage from './Pages/StudydetailPage'
 import CategoryPage from './Pages/CategoryPage'
+import StudyroomPage from './Pages/StudyroomPage'
+import NoticedetailPage from './Pages/NoticedetailPage'
+import ResourcePage from './Pages/ResourcePage'
+import ResourcedetailPage from './Pages/ResourcedetailPage'
+import ResourceuploadPage from './Pages/ResourceuploadPage'
 
 function App() {
   useEffect(() => {
@@ -36,9 +41,14 @@ function App() {
       <Route path="/mystudy" element={<MystudyPage />} />
       <Route path="/search" element={<SearchPage />} />
       <Route path="/mypage" element={<MyPage />} />
-      <Route path="/upload" element={<UploadPage />} />
-      <Route path="/detail/:item_id" element={<DetailPage />} />
+      <Route path="/scheduleupload" element={<ScheduleuploadPage />} />
+      <Route path="/studydetail/:item_id" element={<StudydetailPage />} />
       <Route path="/category" element={<CategoryPage />} />
+      <Route path="/studyroom" element={<StudyroomPage />} />
+      <Route path="/noticedetail" element={<NoticedetailPage />} />
+      <Route path="/resource" element={<ResourcePage />} />
+      <Route path="/resourcedetail" element={<ResourcedetailPage />} />
+      <Route path="/resourceupload" element={<ResourceuploadPage />} />
     </Routes>
   )
 }

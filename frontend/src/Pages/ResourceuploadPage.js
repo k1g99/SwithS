@@ -3,11 +3,11 @@ import React, { useRef } from 'react'
 import { css } from '@emotion/react'
 import Header2 from '../components/Home/Header2'
 import Container from '../components/global/Container'
-import Sidebar1 from '../components/Sidebar1'
+import Sidebar2 from '../components/Sidebar2'
 import upload from '../images/upload.svg'
-import TextInput from '../components/TextInput'
+import Button3 from '../components/Button3'
 
-function UploadPage() {
+function ResourceuploadPage() {
   const imageInput = useRef()
 
   const onClickImageUpload = () => {
@@ -18,25 +18,23 @@ function UploadPage() {
     <div>
       <Header2 />
       <Container>
-        <div css={uploadTitle}>시간표 업로드</div>
+        <div css={studyName}>스터디명</div>
         <div css={uploadSection}>
           <div css={leftSection}>
-            <Sidebar1 />
+            <Sidebar2 />
           </div>
           <div css={rightSection}>
-            <div css={uploadText}>사진을 업로드하세요.</div>
+            <input css={uploadText} placeholder="자료명을 입력해주세요." />
             <input type="file" style={{ display: 'none' }} ref={imageInput} />
             <button onClick={onClickImageUpload} css={uploadButton}>
               <img src={upload} css={img} />
             </button>
-
             <div css={fixSection}>
-              <button css={fixText}>삭제</button>
               <button css={fixText}>수정</button>
             </div>
-            <div css={uploadBox}>
-              <div css={headerText}>분류</div>
-              <TextInput init={'수정가능텍스트박스'} />
+            <textarea css={uploadBox}></textarea>
+            <div css={buttonBox}>
+              <Button3 text={'등록'} />
             </div>
           </div>
         </div>
@@ -45,7 +43,7 @@ function UploadPage() {
   )
 }
 
-const uploadTitle = css`
+const studyName = css`
   margin-top: 60px;
   margin-left: 200px;
   color: var(--green-green, #1d482e);
@@ -56,7 +54,6 @@ const uploadTitle = css`
 `
 
 const uploadSection = css`
-  position: relative;
   display: flex;
   margin-top: 40px;
   justify-content: center;
@@ -71,11 +68,12 @@ const rightSection = css`
 `
 const uploadText = css`
   color: var(--gray-gray-5, #262626);
-  font-family: Pretendard;
+  font-family: Pretendard-Regular;
   font-size: 24px;
   font-style: normal;
   font-weight: 400;
   line-height: 150%; /* 36px */
+  border: none;
 `
 
 const uploadButton = css`
@@ -99,7 +97,7 @@ const fixText = css`
   color: var(--gray-gray-3, #999);
   border: none;
   background: none;
-  font-family: Pretendard;
+  font-family: Pretendard-Regular;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -114,14 +112,11 @@ const uploadBox = css`
   border: 1px solid var(--gray-gray-3, #999);
   justify-content: center;
   flex-direction: column;
+  height: 534px;
+`
+const buttonBox = css`
+  margin-top: 40px;
+  margin-left: 92.5%;
 `
 
-const headerText = css`
-  color: var(--gray-gray-5, #262626);
-  font-family: Pretendard;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 150%; /* 21px */
-`
-export default UploadPage
+export default ResourceuploadPage

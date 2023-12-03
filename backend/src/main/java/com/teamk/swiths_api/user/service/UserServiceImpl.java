@@ -1,9 +1,21 @@
 package com.teamk.swiths_api.user.service;
 
-import com.teamk.swiths_api.global.MajorEntity;
-import com.teamk.swiths_api.global.MajorRepository;
+import com.teamk.swiths_api.major.repository.MajorEntity;
+import com.teamk.swiths_api.major.repository.MajorRepository;
+import java.util.Random;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Service;
+
 import com.teamk.swiths_api.user.controller.dto.CreateUser.CreateUserRequest;
 import com.teamk.swiths_api.user.controller.dto.Email.EmailRequest;
+import com.teamk.swiths_api.user.jwt.JwtTokenProvider;
+import com.teamk.swiths_api.user.jwt.dto.JwtToken;
 import com.teamk.swiths_api.user.repository.UserRepository;
 import com.teamk.swiths_api.user.repository.entity.Statement;
 import com.teamk.swiths_api.user.repository.entity.UserEntity;
@@ -12,18 +24,14 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Service;
-
-import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     private MajorRepository majorRepository;
+    private AuthenticationManagerBuilder authenticationManagerBuilder;
+    private JwtTokenProvider jwtTokenProvider;
 
     @Autowired
     private JavaMailSender javaMailSender;
@@ -32,9 +40,11 @@ public class UserServiceImpl implements UserService {
     private RedisUtil redisUtil;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, MajorRepository majorRepository) {
+    public UserServiceImpl(UserRepository userRepository, MajorRepository majorRepository, AuthenticationManagerBuilder authenticationManagerBuilder, JwtTokenProvider jwtTokenProvider) {
         this.userRepository = userRepository;
         this.majorRepository = majorRepository;
+        this.authenticationManagerBuilder = authenticationManagerBuilder;
+        this.jwtTokenProvider = jwtTokenProvider;
     }
     // @Override
     // public UserEntity getUserById() {
@@ -43,7 +53,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserEntity createUser(CreateUserRequest createUserRequest) {
-        createUserRequest.setAdmin(false); // 새로 생성되는 user는 항상 admin이 아님
 
         // 이메일 중복 확인
         if (userRepository.existsByEmail(createUserRequest.getEmail())) {
@@ -53,27 +62,11 @@ public class UserServiceImpl implements UserService {
         // 도메인 확인
         // TODO: 골뱅이 뒤에 SKKU 확인하는 것 -> 현재는 DB에 안들어가게만 처리해놓음
 
-        // 학번 중복 확인
-        if (userRepository.existsByStudentId(createUserRequest.getStudentId())) {
-            throw new RuntimeException("이미 존재하는 학번입니다.");
-        }
-
-        // Major DB 에서 FK값으로 가져오기
-        MajorEntity majorEntity = majorRepository.findByName(createUserRequest.getMajor());
-        if (majorEntity == null) {
-            throw new RuntimeException("존재하지 않는 전공입니다.");
-        }
-
         // db에 저장
         UserEntity userEntity = UserEntity.builder()
                 .email(createUserRequest.getEmail())
-                .name(createUserRequest.getName())
-                .admin(createUserRequest.getAdmin())
+                .username(createUserRequest.getUsername())
                 .password(createUserRequest.getPassword())
-                .studentId(createUserRequest.getStudentId())
-                .major(majorEntity)
-                .department(createUserRequest.getDepartment())
-                .statement(Statement.valueOf(createUserRequest.getStatement()))
                 .build();
         userRepository.save(userEntity);
         return userEntity; // 리턴하는게 맞나?? 어차피 결과확인을 안하는데???
@@ -129,6 +122,19 @@ public class UserServiceImpl implements UserService {
         }
 
         return true;
+    }
+
+    //jwt 토큰 발급
+    @Transactional
+    @Override
+    public JwtToken signIn(String username, String password) {
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
+
+        Authentication authentication2 = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+
+        JwtToken jwtToken = jwtTokenProvider.generateToken(authentication2);
+
+        return jwtToken;
     }
 
 }

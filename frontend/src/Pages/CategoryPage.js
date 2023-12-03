@@ -19,7 +19,8 @@ function CategoryPage() {
     api
       .get('/clubs/searchs', {
         params: {
-          keyword: targetCat,
+          keyword: '',
+          major: targetCat,
         },
       })
       .then((response) => {

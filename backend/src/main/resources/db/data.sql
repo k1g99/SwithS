@@ -3,9 +3,13 @@ INSERT INTO major (name) VALUES ('english');
 INSERT INTO major (name) VALUES ('art');
 INSERT INTO major (name) VALUES ('software');
 
-INSERT INTO user (name, email, password, admin, statement, major_id, student_id) VALUES ('testname','testemail@gmail.com', 'testpassword', false, 'GRADUATION', '2', '2018310739');
-INSERT INTO user (name, email, password, admin, statement, major_id, student_id) VALUES ('testname22','testemail22@gmail.com', 'testpassword2', false, 'GRADUATION', '3', '2022323023');
-INSERT INTO user (name, email, password, admin, statement, major_id, student_id) VALUES ('testname33','testemail33@gmail.com', 'testpassword3', false, 'GRADUATION', '1', '2011023940');
+INSERT INTO user (username, email, password, statement, major_id, student_id) VALUES ('testname','testemail@gmail.com', 'testpassword', 'GRADUATION', '2', '2018310739');
+INSERT INTO user (username, email, password, statement, major_id, student_id) VALUES ('testname22','testemail22@gmail.com', 'testpassword2', 'GRADUATION', '3', '2022323023');
+INSERT INTO user (username, email, password, statement, major_id, student_id) VALUES ('testname33','testemail33@gmail.com', 'testpassword3', 'GRADUATION', '1', '2011023940');
+
+INSERT INTO user_entity_roles(user_entity_id, roles) VALUES (1, 'USER');
+INSERT INTO user_entity_roles(user_entity_id, roles) VALUES (2, 'USER');
+INSERT INTO user_entity_roles(user_entity_id, roles) VALUES (3, 'USER');
 
 
 INSERT INTO club (num_recruit, end_at, start_at,register_start_at, register_end_at, user_id, name, description, category, major_id) VALUES (5, "2020-04-20 10:15:18", "2020-04-08 10:15:18","2020-02-20 10:15:18", "2020-01-08 10:15:18", 1, '캡스톤디자인1', 'desc1', "STUDY", 1);

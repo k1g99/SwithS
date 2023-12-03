@@ -3,8 +3,14 @@ import React from 'react'
 import { css } from '@emotion/react'
 import PropTypes from 'prop-types'
 
-const InputBox2 = ({ placeholder }) => {
-  return <input css={inputbox2Style} placeholder={placeholder}></input>
+const InputBox2 = ({ placeholder, onChange }) => {
+  return (
+    <input
+      css={inputbox2Style}
+      placeholder={placeholder}
+      onChange={onChange}
+    ></input>
+  )
 }
 
 InputBox2.propTypes = {

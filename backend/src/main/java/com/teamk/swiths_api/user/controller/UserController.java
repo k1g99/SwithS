@@ -14,11 +14,16 @@ import com.teamk.swiths_api.user.controller.dto.CreateUser.CreateUserRequest;
 import com.teamk.swiths_api.user.controller.dto.CreateUser.CreateUserResponse;
 import com.teamk.swiths_api.user.controller.dto.Email.EmailRequest;
 import com.teamk.swiths_api.user.controller.dto.Email.EmailResponse;
+import com.teamk.swiths_api.user.controller.dto.SignInDto;
+import com.teamk.swiths_api.user.jwt.SecurityUtil;
+import com.teamk.swiths_api.user.jwt.dto.JwtToken;
 import com.teamk.swiths_api.user.service.UserService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/user")
@@ -37,7 +42,7 @@ public class UserController {
     public CreateUserResponse createUser(@RequestBody CreateUserRequest createUserRequest) {
         userService.createUser(createUserRequest);
 
-        CreateUserResponse result = new CreateUserResponse(200, true, "유저 생성에 성공하셨습니다.");
+        CreateUserResponse result = new CreateUserResponse(200, true, "회원가입에 성공하셨습니다.");
 
         return result;
     }
@@ -51,7 +56,7 @@ public class UserController {
         return result;
     }
 
-    @GetMapping("/auth/verify")
+    @GetMapping("/auth/verify") // TODO: Post로 변환
     public EmailResponse verifyCode(@RequestParam("code") String code, @RequestParam("email") String email) {
         userService.checkAuthCode(code, email);
 
@@ -59,6 +64,24 @@ public class UserController {
 
 
         return result;
+    }
+
+    @PostMapping("/signin")
+    public JwtToken signIn(@RequestBody SignInDto signInDto) {
+        String username = signInDto.getUsername();
+        String password = signInDto.getPassword();
+        JwtToken jwtToken = userService.signIn(username, password);
+
+        log.info("jwtToken: {}", jwtToken);
+        log.info("jwtToken accessToken = {}, refreshToken = {}", jwtToken.getAccessToken(), jwtToken.getRefreshToken());
+        return jwtToken;
+    }
+
+    @PostMapping("/test")
+    public String test() {
+        String name = SecurityUtil.getNowUserName();
+
+        return name + "님 환영합니다.";
     }
 }
 

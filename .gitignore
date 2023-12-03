@@ -1,4 +1,5 @@
 .env
+*.http
 
 HELP.md
 backend/.gradle

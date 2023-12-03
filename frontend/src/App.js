@@ -13,6 +13,7 @@ import MyPage from './Pages/MyPage'
 import UploadPage from './Pages/UploadPage'
 import DetailPage from './Pages/DetailPage'
 import CategoryPage from './Pages/CategoryPage'
+import StudyroomPage from './Pages/StudyroomPage'
 
 function App() {
   useEffect(() => {
@@ -39,6 +40,7 @@ function App() {
       <Route path="/upload" element={<UploadPage />} />
       <Route path="/detail/:item_id" element={<DetailPage />} />
       <Route path="/category" element={<CategoryPage />} />
+      <Route path="/studyroom" element={<StudyroomPage />} />
     </Routes>
   )
 }

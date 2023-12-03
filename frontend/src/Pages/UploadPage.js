@@ -56,7 +56,6 @@ const uploadTitle = css`
 `
 
 const uploadSection = css`
-  position: relative;
   display: flex;
   margin-top: 40px;
   justify-content: center;
@@ -71,7 +70,7 @@ const rightSection = css`
 `
 const uploadText = css`
   color: var(--gray-gray-5, #262626);
-  font-family: Pretendard;
+  font-family: Pretendard-Regular;
   font-size: 24px;
   font-style: normal;
   font-weight: 400;
@@ -99,7 +98,7 @@ const fixText = css`
   color: var(--gray-gray-3, #999);
   border: none;
   background: none;
-  font-family: Pretendard;
+  font-family: Pretendard-Regular;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -118,7 +117,7 @@ const uploadBox = css`
 
 const headerText = css`
   color: var(--gray-gray-5, #262626);
-  font-family: Pretendard;
+  font-family: Pretendard-Regular;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;

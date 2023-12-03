@@ -12,7 +12,7 @@ Button3.propTypes = {
 }
 
 const button3Style = css`
-  font-family: Pretendard;
+  font-family: Pretendard-Regular;
   margin-top: 16px;
   margin-left: 8px;
   display: flex;

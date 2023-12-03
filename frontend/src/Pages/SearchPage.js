@@ -148,7 +148,7 @@ const cardSection = css`
 `
 
 const selectStyle = css`
-  font-family: Pretendard;
+  font-family: Pretendard-Regular;
   margin-top: 15px;
   display: flex;
   width: 150px;

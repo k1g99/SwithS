@@ -1,14 +1,17 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react'
 import { css } from '@emotion/react'
+import { Link } from 'react-router-dom'
 
 function Sidebar2() {
   return (
     <div css={sidebarStyle}>
-      <div>홈/공지</div>
-      <div>스터디 계획표</div>
-      <div>자료실</div>
-      <div>게시판</div>
+      <Link to="/studyroom">
+        <button css={menu}>홈 / 공지</button>
+      </Link>
+      <Link to="/resource">
+        <button css={menu}>자료실</button>
+      </Link>
     </div>
   )
 }
@@ -25,5 +28,17 @@ const sidebarStyle = css`
   font-style: normal;
   font-weight: 500;
   line-height: 150%; /* 24px */
+`
+
+const menu = css`
+  color: var(--gray-gray-5, #262626);
+  /* Subheading/Subheading2 */
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 24px */
+  border: none;
+  background: none;
 `
 export default Sidebar2

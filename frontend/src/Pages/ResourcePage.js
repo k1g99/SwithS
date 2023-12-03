@@ -4,9 +4,10 @@ import { css } from '@emotion/react'
 import Header2 from '../components/Home/Header2'
 import Container from '../components/global/Container'
 import Sidebar2 from '../components/Sidebar2'
-import NoticeCard from '../components/NoticeCard'
+import ResourceCard from '../components/ResourceCard'
+import { Link } from 'react-router-dom'
 
-function StudyroomPage() {
+function ResourcePage() {
   return (
     <div>
       <Header2 />
@@ -18,18 +19,12 @@ function StudyroomPage() {
           </div>
           <div css={rightSection}>
             <div css={buttonBox}>
-              <button css={writeBtn}>공지 업로드</button>
+              <Link to="/resourceupload">
+                <button css={writeBtn}>자료 업로드</button>
+              </Link>
             </div>
             <div css={cardBox}>
-              <NoticeCard />
-              <NoticeCard />
-              <NoticeCard />
-              <NoticeCard />
-              <NoticeCard />
-              <NoticeCard />
-              <NoticeCard />
-              <NoticeCard />
-              <NoticeCard />
+              <ResourceCard />
             </div>
           </div>
         </div>
@@ -86,4 +81,4 @@ const cardBox = css`
   flex-direction: column;
 `
 
-export default StudyroomPage
+export default ResourcePage

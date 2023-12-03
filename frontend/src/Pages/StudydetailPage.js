@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import Button2 from '../components/Button2'
 
-function DetailPage() {
+function StudydetailPage() {
   const params = useParams()
   const clubId = params.item_id
   const [data, setData] = useState({})
@@ -129,4 +129,4 @@ const buttonBox = css`
   gap: 12px;
   margin-top: 130px;
 `
-export default DetailPage
+export default StudydetailPage

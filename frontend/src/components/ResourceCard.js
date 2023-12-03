@@ -3,11 +3,11 @@ import React from 'react'
 import { css } from '@emotion/react'
 import { Link } from 'react-router-dom'
 
-function NoticeCard() {
+function ResourceCard() {
   return (
     <div css={container}>
-      <Link to="/noticedetail">
-        <div css={title}>공지사항 타이틀</div>
+      <Link to="/resourcedetail">
+        <div css={title}>자료 타이틀</div>
       </Link>
       <div css={bottomSection}>
         <div css={describe}>간단설명 어쩌구</div>
@@ -64,4 +64,4 @@ const detailbox = css`
   line-height: 150%; /* 21px */
 `
 
-export default NoticeCard
+export default ResourceCard

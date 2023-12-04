@@ -8,24 +8,23 @@ import lombok.Getter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
-public class CreateVoteItem {
+
+public class CreateVoteItemDetail {
     @Data
-    public static class CreateVoteItemRequest{
+    @AllArgsConstructor
+    public static class CreateVoteItemDetailRequest{
         private Long vote;
-        private Day day;
-        @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="HH:mm:ss")
-        @DateTimeFormat(pattern = "HH:mm:ss")
-        private LocalTime startAt;
-        @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="HH:mm:ss")
-        @DateTimeFormat(pattern = "HH:mm:ss")
-        private LocalTime endAt;
+        @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+        private LocalDateTime startAt;
+        @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+        private LocalDateTime endAt;
+        private Long user;
     }
 
     @Getter
     @AllArgsConstructor
-    public static class CreateVoteItemResponse{
+    public static class CreateVoteItemDetailResponse{
         private int statusCode;
         private Boolean inSuccess;
         private String msg;

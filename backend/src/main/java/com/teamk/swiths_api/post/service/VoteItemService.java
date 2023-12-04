@@ -8,7 +8,7 @@ import com.teamk.swiths_api.user.repository.entity.Day;
 import java.util.List;
 
 public interface VoteItemService {
-    void createVoteitem(CreateVoteItem.CreateVoteItemRequest createVoteItemRequest);
-    List<VoteItemEntity> getVoteItemByVote(VoteEntity vote);
-    List<VoteItemEntity> createVoteItemByTimetalbe(Long clubId, VoteEntity voteEntity);
+    VoteItemEntity createVoteitem(CreateVoteItem.CreateVoteItemRequest createVoteItemRequest);
+    List<VoteItemEntity> getVoteItemByVote(Long vote);
+    List<VoteItemEntity> createVoteItemByTimetalbe(Long clubId, Long vote);
 }

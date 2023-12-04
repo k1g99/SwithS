@@ -2,6 +2,7 @@ package com.teamk.swiths_api.post.service;
 
 import com.teamk.swiths_api.club.repository.ClubEntity;
 import com.teamk.swiths_api.club.repository.ClubRepository;
+import com.teamk.swiths_api.post.repository.VoteRepository;
 import com.teamk.swiths_api.post.repository.dto.CreateVoteItem.*;
 import com.teamk.swiths_api.post.repository.VoteItemRepository;
 import com.teamk.swiths_api.post.vote.VoteEntity;
@@ -20,30 +21,35 @@ import java.util.List;
 public class VoteItemServiceImpl implements VoteItemService {
     private static final int START_HOUR = 9;
     private VoteItemRepository voteItemRepository;
+    private VoteRepository voteRepository;
     private ClubRepository clubRepository;
 
     @Autowired
-    public VoteItemServiceImpl(VoteItemRepository voteItemRepository, ClubRepository clubRepository){
+    public VoteItemServiceImpl(VoteItemRepository voteItemRepository, VoteRepository voteRepository,ClubRepository clubRepository){
         this.voteItemRepository = voteItemRepository;
+        this.voteRepository = voteRepository;
         this.clubRepository = clubRepository;
     }
 
     @Override
-    public void createVoteitem(CreateVoteItemRequest createVoteItemRequest) {
+    public VoteItemEntity createVoteitem(CreateVoteItemRequest createVoteItemRequest) {
 
+        return null;
     }
 
     @Override
-    public List<VoteItemEntity> getVoteItemByVote(VoteEntity vote) {
-        if (!voteItemRepository.existsByVote(vote)) {
+    public List<VoteItemEntity> getVoteItemByVote(Long vote) {
+        VoteEntity voteEntity = voteRepository.getById(vote);
+        if (!voteItemRepository.existsByVote(voteEntity)) {
             throw new RuntimeException("저장되어 있는 투표가 없습니다.");
         }
-        return voteItemRepository.findByVote(vote);
+        return voteItemRepository.findByVote(voteEntity);
     }
 
     @Override
-    public List<VoteItemEntity> createVoteItemByTimetalbe(Long clubId, VoteEntity voteEntity) {
+    public List<VoteItemEntity> createVoteItemByTimetalbe(Long clubId, Long vote) {
         ClubEntity clubEntity = clubRepository.getById(clubId);
+        VoteEntity voteEntity = voteRepository.getById(vote);
         List<Long> TimetableList = new ArrayList<>();
         TimetableList.add(clubEntity.getTimetableMon());
         TimetableList.add(clubEntity.getTimetableTue());

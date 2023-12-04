@@ -28,7 +28,7 @@ public class VoteController {
     public CreateVoteResponse createVote(@RequestBody CreateVoteRequest createVoteRequest, @PathVariable Long club){
         createVoteRequest.setClub(club);
         VoteEntity voteEntity = voteService.createVote(createVoteRequest);
-        voteItemService.createVoteItemByTimetalbe(club, voteEntity);
+        voteItemService.createVoteItemByTimetalbe(club, voteEntity.getId());
         CreateVoteResponse result = new CreateVoteResponse(200, true, "투표 생성에 성공했습니다.");
 
         return result;

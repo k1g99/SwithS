@@ -9,9 +9,14 @@ import com.teamk.swiths_api.user.repository.UserRepository;
 import com.teamk.swiths_api.user.repository.entity.TimetableEntity;
 import com.teamk.swiths_api.user.repository.entity.UserClubEntity;
 import com.teamk.swiths_api.user.repository.entity.UserEntity;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
 import java.util.List;
+@Service
+@RequiredArgsConstructor
 public class UserClubServiceImpl implements UserClubService{
     UserClubRepository userClubRepository;
     UserRepository userRepository;
@@ -22,6 +27,14 @@ public class UserClubServiceImpl implements UserClubService{
     private static int calculateBitPosition(LocalTime time) {
         int minutesSinceStart = (int) START_TIME.until(time, java.time.temporal.ChronoUnit.MINUTES);
         return minutesSinceStart / TIME_INTERVAL_MINUTES;
+    }
+
+    @Autowired
+    public UserClubServiceImpl(UserRepository userRepository, TimetableRepository timetableRepository, UserClubRepository userClubRepository, ClubRepository clubRepository) {
+        this.timetableRepository = timetableRepository;
+        this.userRepository = userRepository;
+        this.clubRepository = clubRepository;
+        this.userClubRepository = userClubRepository;
     }
     @Override
     public List<Long> CompareClubTimetableBetweenUser(CreateUserClubRequest createUserClubRequest) {

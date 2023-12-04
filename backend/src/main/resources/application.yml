@@ -45,7 +45,21 @@ spring:
     redis:
       host: 127.0.0.1
       port: 6379
-  
+
 jwt:
   secret: VlwEyVBsYt9V7zq57TejMnVUyzblYcfPQye08f7MGVA9XkHa
+
+# aws
+cloud:
+  aws:
+    s3:
+      bucket: sws-bucket
+      region.static: ap-northeast-2
+      stack:
+        auto: false
+      credentials:
+        accessKey: AKIA4UN5MVL4OZ5FVYHP
+        secretKey: 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
+
+
 

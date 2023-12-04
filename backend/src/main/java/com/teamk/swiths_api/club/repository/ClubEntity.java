@@ -11,11 +11,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+
+import lombok.*;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
@@ -25,6 +22,7 @@ import com.teamk.swiths_api.major.repository.MajorEntity;
 import com.teamk.swiths_api.user.repository.entity.UserEntity;
 
 @Entity
+@Setter
 @Getter
 @Builder
 @NoArgsConstructor
@@ -72,6 +70,31 @@ public class ClubEntity {
     @Column(name = "num_recruit", nullable = false)
     @ColumnDefault("5")
     private int numRecruit;
+
+    @Column(name = "timetable_mon")
+    @ColumnDefault("0")
+    private Long timetableMon;
+
+    @Column(name = "timetable_tue")
+    @ColumnDefault("0")
+    private Long timetableTue;
+
+    @Column(name = "timetable_wed")
+    @ColumnDefault("0")
+    private Long timetableWed;
+    @Column(name = "timetable_thu")
+    @ColumnDefault("0")
+    private Long timetableThu;
+    @Column(name = "timetable_fri")
+    @ColumnDefault("0")
+    private Long timetableFri;
+    @Column(name = "timetable_sat")
+    @ColumnDefault("0")
+    private Long timetableSat;
+    @Column(name = "timetable_sun")
+    @ColumnDefault("0")
+    private Long timetableSun;
+
 
     @CreationTimestamp
     @Column(name = "created_at")

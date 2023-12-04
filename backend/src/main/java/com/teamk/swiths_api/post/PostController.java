@@ -53,7 +53,7 @@ public class PostController {
 
     @PostMapping("vote")
     public CreatePostResponse createPostVote(@RequestBody CreatePostVoteRequest createPostVoteRequest){
-        postService.creaatePostVote(createPostVoteRequest);
+        postService.createPostVote(createPostVoteRequest);
         CreatePostResponse result = new CreatePostResponse(200, true,"공지사항 생성에 성공하였습니다.");
         return result;
     }

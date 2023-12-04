@@ -1,6 +1,9 @@
 package com.teamk.swiths_api.user.controller;
 
 
+import org.openqa.selenium.bidi.log.Log;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,10 +29,17 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@PropertySource("classpath:test.properties")
 @RequestMapping("/user")
 public class UserController {
 
     private final UserService userService;
+
+    @Value("${test}")
+    private String test;
+
+    @Value("${jwt.secret}") 
+    private String secretKey;
 
     // TODO: 차후, user 정보 필요할 시 만들기
     // @GetMapping("")
@@ -82,6 +92,14 @@ public class UserController {
         String name = SecurityUtil.getNowUserName();
 
         return name + "님 환영합니다.";
+    }
+
+    @GetMapping("/hikj")
+    public String hikj() {
+
+
+
+        return secretKey;
     }
 }
 

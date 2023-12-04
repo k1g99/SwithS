@@ -35,8 +35,9 @@ public class SecurityConfig {
                                 new AntPathRequestMatcher("/user/signin"),
                                 new AntPathRequestMatcher("/user/auth/**"),
                                 new AntPathRequestMatcher("/user"),
-                                new AntPathRequestMatcher("/post/**"), // TODO: 현재, 개발의 편의를 위해 모두 액세스 허가해놓은 상태임. 추후, 권한 설정 필요
-                                new AntPathRequestMatcher("/major/**"))
+                                new AntPathRequestMatcher("/major/**"),
+                                new AntPathRequestMatcher("/user/hikj"),
+                                new AntPathRequestMatcher("/post/**")) // TODO: 현재, 개발의 편의를 위해 모두 액세스 허가해놓은 상태임. 추후, 권한 설정 필요
                         .permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/user/test")).hasRole("USER"))
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),

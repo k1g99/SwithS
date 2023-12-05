@@ -1,5 +1,6 @@
 package com.teamk.swiths_api.club.repository;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -27,6 +28,7 @@ import com.teamk.swiths_api.user.repository.entity.UserEntity;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@JsonIgnoreProperties({"leader"})
 @Table(name = "club")
 public class ClubEntity {
 

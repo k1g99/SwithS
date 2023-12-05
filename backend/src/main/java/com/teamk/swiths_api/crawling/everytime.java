@@ -38,7 +38,7 @@ public class everytime {
         this.result = result;
     }
     public List<everytimeComponent> run() {
-        System.setProperty("webdriver.gecko.driver", System.getenv("PATH_GECKO"));
+        System.setProperty("webdriver.gecko.driver", "C:\\crawling\\geckodriver.exe");
         FirefoxOptions options = new FirefoxOptions();
 
         driver = new FirefoxDriver(options);
@@ -102,7 +102,6 @@ public class everytime {
             LocalTime endTime = LocalTime.of(startYY/60,startYY%60);
             Day currentDay = Day.values()[day];
             everytimeComponent component = new everytimeComponent(subjectName,currentDay,startTime,endTime);
-            System.out.println(component.getName());
             result.add(component);
         }
     }

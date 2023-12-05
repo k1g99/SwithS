@@ -8,7 +8,7 @@ import com.teamk.swiths_api.user.repository.entity.UserEntity;
 import java.util.List;
 public interface UserClubService {
     UserClubEntity createUserClub(CreateUserClubRequest createUserClubRequest);
-    List<UserEntity> findByClub(Long club);
-    List<ClubEntity> findByUser(Long user);
+    List<UserClubEntity> findByClub(Long club);
+    List<UserClubEntity> findByUser(Long user);
     List<Long> CompareClubTimetableBetweenUser(CreateUserClubRequest createUserClubRequest);
 }

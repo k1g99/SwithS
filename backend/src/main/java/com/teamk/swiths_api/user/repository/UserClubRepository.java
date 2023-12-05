@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 public interface UserClubRepository extends JpaRepository<UserClubEntity , Long> {
-    List<ClubEntity> findByUser(UserEntity user);
-    List<UserEntity> findByClub(ClubEntity club);
+    List<UserClubEntity> findByUser(UserEntity user);
+    List<UserClubEntity> findByClub(ClubEntity club);
 
 }

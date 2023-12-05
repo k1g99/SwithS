@@ -1,6 +1,7 @@
 package com.teamk.swiths_api.user.controller.dto;
 
 import com.teamk.swiths_api.club.repository.ClubEntity;
+import com.teamk.swiths_api.club.repository.dto.ClubDto;
 import com.teamk.swiths_api.user.repository.entity.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,7 +15,7 @@ public class FindUserClub {
         private int statusCode;
         private boolean isSuccess;
         private String message;
-        private List<UserEntity> users;
+        private List<UserDto> users;
     }
 
     @Getter
@@ -23,7 +24,7 @@ public class FindUserClub {
         private int statusCode;
         private boolean isSuccess;
         private String message;
-        private List<ClubEntity> clubs;
+        private List<ClubDto> clubs;
     }
 
     @Getter

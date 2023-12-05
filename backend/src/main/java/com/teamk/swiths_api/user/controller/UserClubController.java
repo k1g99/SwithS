@@ -1,35 +1,68 @@
 package com.teamk.swiths_api.user.controller;
 
 import com.teamk.swiths_api.club.repository.ClubEntity;
+import com.teamk.swiths_api.club.repository.dto.ClubDto;
 import com.teamk.swiths_api.user.controller.dto.CreateUserClub.*;
 import com.teamk.swiths_api.user.controller.dto.FindUserClub.*;
+import com.teamk.swiths_api.user.controller.dto.UserDto;
+import com.teamk.swiths_api.user.repository.entity.UserClubEntity;
 import com.teamk.swiths_api.user.repository.entity.UserEntity;
 import com.teamk.swiths_api.user.service.UserClubService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("")
 public class UserClubController {
     private final UserClubService userClubService;
     @GetMapping("/clubs/{club}/user")
-    public FindUserByClubResponse findClub(@PathVariable Long club){
-        List<UserEntity> userLists = userClubService.findByClub(club);
+    public FindUserByClubResponse findUser(@PathVariable Long club){
+        try {
+            List<UserClubEntity> userClubList = userClubService.findByClub(club);
+            List<UserDto> userDtos = new ArrayList<>();
 
-        FindUserByClubResponse result = new FindUserByClubResponse(200,true,"유저의 스터디정보조회에 성공하였습니다.", userLists);
-
-        return result;
+            for (UserClubEntity userClubEntity : userClubList) {
+                UserEntity userEntity = userClubEntity.getUser();
+                UserDto userDto = UserDto.builder()
+                    .userId(userEntity.getId())
+                    .userName(userEntity.getUsername())
+                    // Add other fields as needed
+                    .build();
+                userDtos.add(userDto);
+            }
+            FindUserByClubResponse result = new FindUserByClubResponse(200, true, "스터디의 유저정보조회에 성공하였습니다.", userDtos);
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e; // 예외를 다시 던져서 어떤 예외가 발생했는지 확인
+        }
     }
 
     @GetMapping("/user/{user}/club")
-    public FindClubByUserResponse findUser(@PathVariable Long user){
-        List<ClubEntity> clubLists = userClubService.findByUser(user);
+    public FindClubByUserResponse findClub(@PathVariable Long user){
+        try {
+            List<UserClubEntity> UserClubList = userClubService.findByUser(user);
+            List<ClubDto> clubDtos = new ArrayList<>();
 
-        FindClubByUserResponse result = new FindClubByUserResponse(200,true,"스터디의 유저정보조회에 성공하였습니다.", clubLists);
-
-        return result;
+            for(UserClubEntity userClubEntity : UserClubList){
+                ClubEntity clubEntity = userClubEntity.getClub();
+                ClubDto clubDto = ClubDto.builder()
+                    .clubId(clubEntity.getId())
+                    .clubName(clubEntity.getName())
+                    .build();
+                clubDtos.add(clubDto);
+            }
+            FindClubByUserResponse result = new FindClubByUserResponse(200, true, "스터디의 유저정보조회에 성공하였습니다.", clubDtos);
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e; // 예외를 다시 던져서 어떤 예외가 발생했는지 확인
+        }
     }
 
     @GetMapping("/clubs/{club}/user/{user}")

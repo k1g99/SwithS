@@ -1,22 +1,18 @@
 package com.teamk.swiths_api.user.repository.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.teamk.swiths_api.club.repository.ClubEntity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Builder
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Table(name = "user_club")
 public class UserClubEntity {
 
     @Id
@@ -26,10 +22,12 @@ public class UserClubEntity {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
     private UserEntity user;
 
     @ManyToOne
     @JoinColumn(name = "club_id", nullable = false)
+    @JsonIgnore
     private ClubEntity club;
 
 }

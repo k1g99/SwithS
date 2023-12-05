@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 @Service
 @RequiredArgsConstructor
@@ -47,8 +48,15 @@ public class UserClubServiceImpl implements UserClubService{
             throw new RuntimeException("존재하지 않는 스터디입니다.");
         }
         List<TimetableEntity> TimetableList = timetableRepository.findByUser(userEntity);
-        List<Long> ClubTimetable= List.of(clubEntity.getTimetableMon(),clubEntity.getTimetableTue(),clubEntity.getTimetableWed(),clubEntity.getTimetableThu(),clubEntity.getTimetableFri(),clubEntity.getTimetableSat(),clubEntity.getTimetableSun());
-
+        List<Long> ClubTimetable = new ArrayList<>(List.of(
+            clubEntity.getTimetableMon(),
+            clubEntity.getTimetableTue(),
+            clubEntity.getTimetableWed(),
+            clubEntity.getTimetableThu(),
+            clubEntity.getTimetableFri(),
+            clubEntity.getTimetableSat(),
+            clubEntity.getTimetableSun()
+        ));
 
         for(TimetableEntity timetable : TimetableList){
             int dayIndex = timetable.getDay().ordinal();
@@ -59,6 +67,10 @@ public class UserClubServiceImpl implements UserClubService{
                 ClubTimetable.set(dayIndex, ClubTimetable.get(dayIndex) | (1L << i));
             }
         }
+        for(Long timetable : ClubTimetable){
+            System.out.println(Long.toBinaryString(timetable));
+        }
+
         return ClubTimetable;
     }
     @Override
@@ -91,7 +103,7 @@ public class UserClubServiceImpl implements UserClubService{
     }
 
     @Override
-    public List<UserEntity> findByClub(Long club) {
+    public List<UserClubEntity> findByClub(Long club) {
         ClubEntity clubEntity = clubRepository.getById(club);
         if(clubEntity == null){
             throw new RuntimeException("존재하지 않는 스터디입니다.");
@@ -100,11 +112,12 @@ public class UserClubServiceImpl implements UserClubService{
     }
 
     @Override
-    public List<ClubEntity> findByUser(Long user) {
+    public List<UserClubEntity> findByUser(Long user) {
         UserEntity userEntity = userRepository.getById(user);
         if(userEntity == null){
             throw new RuntimeException("존재하지 않는 스터디입니다.");
         }
+
         return userClubRepository.findByUser(userEntity);
     }
 

@@ -51,21 +51,3 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
-
-// Default는 dev 로 지정
-ext.profile = (!project.hasProperty('profile') || !profile) ? 'local' : profile
-
-sourceSets {
-	main {
-		resources {
-			srcDirs "src/main/resources", "src/main/resources-${profile}"
-		}
-	}
-}
-
-// resources 폴더에 중복된 파일이 있을 경우 덮어쓰기
-tasks{
-	processResources{
-		duplicatesStrategy = org.gradle.api.file.DuplicatesStrategy.INCLUDE
-	}
-}

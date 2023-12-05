@@ -70,7 +70,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: dev-run.sh
-          path: ${{ secrets.DEV_RUN_DIR }}
+          path: ${{ secrets.DEV_RUN_DIR }}/build/libs
 
       - name: set .env file
         run: |
@@ -92,5 +92,5 @@ jobs:
           path: ${{ secrets.DEV_RUN_DIR }}/build/libs
 
       - name: Run DevServer
-        run: sh ./dev-run.sh
+        run: sh dev-run.sh
         working-directory: ${{ secrets.DEV_RUN_DIR }}/build/libs

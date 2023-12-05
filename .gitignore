@@ -1,4 +1,4 @@
-.env
+# .env (어차피 반영 안됨)
 *.http
 
 HELP.md
@@ -11,6 +11,7 @@ build/
 .env
 
 backend/src/main/resources/application.yml
+backend/src/main/resources/application-dev.yml
 
 ### STS ###
 .apt_generated

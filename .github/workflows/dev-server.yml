@@ -25,7 +25,7 @@ jobs:
 
       - name: Get application.yml from secrets
         run: |
-          echo "$DEV_APPLICATION_YML" >> ./backend/src/main/resources/application.yml
+          echo $DEV_APPLICATION_YML | base64 --decode >> ./backend/src/main/resources/application.yml
         env:
           DEV_APPLICATION_YML: ${{ secrets.DEV_APPLICATION_YML }}
 

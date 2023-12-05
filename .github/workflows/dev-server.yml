@@ -23,13 +23,19 @@ jobs:
           distribution: "temurin"
           cache: "gradle"
 
+      - name: Get application.yml from secrets
+        run: |
+          echo "$DEV_APPLICATION_YML" >> ./backend/src/main/resources/application.yml
+        env:
+          DEV_APPLICATION_YML: ${{ secrets.DEV_APPLICATION_YML }}
+
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
         working-directory: ${{ env.working-directory }}
 
       # Gradle Build 실행
       - name: Build with Gradle
-        run: ./gradlew bootJar -Pprofile=dev
+        run: ./gradlew bootJar
         working-directory: ${{ env.working-directory }}
 
       - name: Upload build artifact
@@ -44,6 +50,12 @@ jobs:
           name: docker-compose
           path: ./docker-compose-dev.yml
 
+      - name: Upload dev-run.sh
+        uses: actions/upload-artifact@v3
+        with:
+          name: dev-run.sh
+          path: ./dev-run.sh
+
   run-server:
     runs-on: self-hosted
     needs: build
@@ -52,6 +64,12 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: docker-compose
+          path: ${{ secrets.DEV_RUN_DIR }}
+
+      - name: Download dev-run.sh
+        uses: actions/download-artifact@v3
+        with:
+          name: dev-run.sh
           path: ${{ secrets.DEV_RUN_DIR }}
 
       - name: set .env file
@@ -74,5 +92,5 @@ jobs:
           path: ${{ secrets.DEV_RUN_DIR }}/build/libs
 
       - name: Run DevServer
-        run: nohup java -jar swiths_api-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev &
+        run: sh ./dev-run.sh
         working-directory: ${{ secrets.DEV_RUN_DIR }}/build/libs

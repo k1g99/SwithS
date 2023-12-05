@@ -2,6 +2,7 @@ package com.teamk.swiths_api.post;
 
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.Builder;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -22,6 +23,7 @@ import com.teamk.swiths_api.user.repository.entity.UserEntity;
 @Entity
 @Getter
 @Setter
+@Builder
 @Table(name = "post")
 public class PostEntity {
 
@@ -49,7 +51,7 @@ public class PostEntity {
 
     @UpdateTimestamp
     @Column(name = "updated_at")
-    private LocalDateTime updated_at = LocalDateTime.now();
+    private LocalDateTime updatedAt = LocalDateTime.now();
 
     @OneToOne
     @JoinColumn(name = "vote_id")

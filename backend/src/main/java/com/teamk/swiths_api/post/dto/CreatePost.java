@@ -9,17 +9,19 @@ import lombok.Getter;
 public class CreatePost {
     @Data
     public static class CreatePostRequest{
-        private UserEntity user;
+        private Long user;
         private String title;
         private String content;
+        private String shortContent;
     }
 
     @Data
     public static class CreatePostVoteRequest{
-        private UserEntity user;
+        private Long user;
         private String title;
+        private String shortContent;
         private String content;
-        private VoteEntity vote;
+        private Long vote;
     }
 
     @Getter

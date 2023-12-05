@@ -10,6 +10,6 @@ public interface PostService {
     List<PostEntity> findAllPost();
     List<PostEntity> findAllVotePost();
     PostEntity patchPost(PatchPostRequest patchPostRequest);
-    PostEntity creaatePostVote(CreatePostVoteRequest createPostVoteRequest);
+    PostEntity createPostVote(CreatePostVoteRequest createPostVoteRequest);
     PostEntity patchPostVote(PatchPostVoteRequest patchPostVoteRequest);
 }

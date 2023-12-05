@@ -10,16 +10,18 @@ public class PatchPost {
     @Data
     public static class PatchPostRequest{
         private Long id;
-        private UserEntity user;
+        private Long user;
         private String title;
+        private String shortContent;
         private String content;
     }
 
     @Data
     public static class PatchPostVoteRequest{
         private Long id;
-        private UserEntity user;
+        private Long user;
         private String title;
+        private String shortContent;
         private String content;
     }
 

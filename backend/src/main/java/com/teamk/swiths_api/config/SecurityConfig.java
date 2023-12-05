@@ -28,19 +28,23 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-                .csrf(csrf -> csrf.disable())
-                .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(authorize -> authorize // url 별 권한 설정
-                        .requestMatchers(new AntPathRequestMatcher("/clubs/**"),
-                                new AntPathRequestMatcher("/user/signin"),
-                                new AntPathRequestMatcher("/user/auth/**"),
-                                new AntPathRequestMatcher("/user"),
-                                new AntPathRequestMatcher("/post/**"), // TODO: 현재, 개발의 편의를 위해 모두 액세스 허가해놓은 상태임. 추후, 권한 설정 필요
-                                new AntPathRequestMatcher("/major/**"))
-                        .permitAll()
-                        .requestMatchers(new AntPathRequestMatcher("/user/test")).hasRole("USER"))
-                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),
-                        UsernamePasswordAuthenticationFilter.class);
+            .csrf(csrf -> csrf.disable())
+            .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .authorizeHttpRequests(authorize -> authorize // url 별 권한 설정
+                // .requestMatchers(new AntPathRequestMatcher("/clubs/**"),
+                //         new AntPathRequestMatcher("/user/signin"),
+                //         new AntPathRequestMatcher("/user/auth/**"),
+                //         new AntPathRequestMatcher("/user"),
+                //         new AntPathRequestMatcher("/post/**"), // TODO: 현재, 개발의 편의를 위해 모두 액세스 허가해놓은 상태임. 추후, 권한 설정 필요
+                //         new AntPathRequestMatcher("/major/**"),
+                //         new AntPathRequestMatcher("/timetable/**"),
+                //         new AntPathRequestMatcher("/user/**"),
+                //         new AntPathRequestMatcher("/clubs/**"))
+                .anyRequest()
+                .permitAll())
+            // .requestMatchers(new AntPathRequestMatcher("/user/test")).hasRole("USER"))
+            .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),
+                UsernamePasswordAuthenticationFilter.class);
 
         return httpSecurity.build();
 

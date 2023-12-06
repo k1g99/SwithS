@@ -17,8 +17,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import com.teamk.swiths_api.club.repository.ClubEntity;
+import com.teamk.swiths_api.post.repository.PostEntity;
 import com.teamk.swiths_api.major.repository.MajorEntity;
-import com.teamk.swiths_api.post.PostEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;

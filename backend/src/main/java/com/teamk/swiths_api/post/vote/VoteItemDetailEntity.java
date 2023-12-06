@@ -1,16 +1,20 @@
 package com.teamk.swiths_api.post.vote;
 
 import com.teamk.swiths_api.user.repository.entity.UserEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "vote_item_detail")
 public class VoteItemDetailEntity {
 
@@ -20,8 +24,16 @@ public class VoteItemDetailEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "vote_item_id", nullable = false)
-    private VoteEntity voteItem;
+    @JoinColumn(name = "vote_id", nullable = false)
+    private VoteEntity vote;
+
+    @CreationTimestamp
+    @Column(name = "start_time")
+    private LocalDateTime startTime;
+
+    @CreationTimestamp
+    @Column(name = "end_time")
+    private LocalDateTime endTime;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)

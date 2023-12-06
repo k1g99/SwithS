@@ -1,5 +1,6 @@
 package com.teamk.swiths_api.club.repository;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -11,11 +12,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+
+import lombok.*;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
@@ -25,10 +23,12 @@ import com.teamk.swiths_api.major.repository.MajorEntity;
 import com.teamk.swiths_api.user.repository.entity.UserEntity;
 
 @Entity
+@Setter
 @Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@JsonIgnoreProperties({"leader"})
 @Table(name = "club")
 public class ClubEntity {
 

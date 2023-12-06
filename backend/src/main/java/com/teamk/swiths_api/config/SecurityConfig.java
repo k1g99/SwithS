@@ -38,7 +38,7 @@ public class SecurityConfig {
                         //         new AntPathRequestMatcher("/major/**"),
                         //         new AntPathRequestMatcher("/user/hikj"),
                         //         new AntPathRequestMatcher("/post/**"),
-                        //         new AntPathRequestMatcher("/file/**")) // 
+                        //         new AntPathRequestMatcher("/file/**")) //
                         .anyRequest()
                         .permitAll()) // TODO: 현재, 개발의 편의를 위해 모두 액세스 허가해놓은 상태임. 추후, 권한 설정 필요
                         // .requestMatchers(new AntPathRequestMatcher("/user/test")).hasRole("USER"))

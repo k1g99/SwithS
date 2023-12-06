@@ -1,9 +1,11 @@
-package com.teamk.swiths_api.post;
+package com.teamk.swiths_api.post.controller;
 
 import com.teamk.swiths_api.post.dto.CreatePost.*;
 import com.teamk.swiths_api.post.dto.FindPost.*;
 import com.teamk.swiths_api.post.dto.PatchPost;
 import com.teamk.swiths_api.post.dto.PatchPost.*;
+import com.teamk.swiths_api.post.repository.PostEntity;
+import com.teamk.swiths_api.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

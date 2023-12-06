@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { css } from '@emotion/react'
 // import { Link } from 'react-router-dom'
 import Header2 from '../components/Home/Header2'
@@ -14,12 +14,14 @@ function WritePage() {
   const [clubName, setClubName] = useState('')
   const [clubDescription, setClubDescription] = useState('')
   const [clubType, setClubType] = useState('스터디') // 스터디 / 프로젝트
-  const [clubCategory, setClubCategory] = useState('소프트웨어학과') // 전공
+  const [clubCategory, setClubCategory] = useState('') // 전공
   const [clubRecruitMember, setClubRecruitMember] = useState('1')
   const [clubRecruitStartDate, setClubRecruitStartDate] = useState('')
   const [clubRecruitEndDate, setClubRecruitEndDate] = useState('')
   const [clubStartDate, setClubStartDate] = useState('')
   const [clubEndDate, setClubEndDate] = useState('')
+
+  const [majorList, setMajorList] = useState([])
 
   // TPYE Enum
   const CLUB_TYPE = {
@@ -27,13 +29,20 @@ function WritePage() {
     프로젝트: 'MENTORING',
   }
 
-  // 전공 Enum     // TODO: 전공을 Get으로 불러온 다음, options에 넣어주기
-  const MAJOR = {
-    소프트웨어학과: 'software',
-    수학과: 'math',
-    미술학과: 'art',
-    영어영문학과: 'english',
-  }
+  // 페이지 로드될 때 전공 불러오기
+  useEffect(() => {
+    api
+      .get('/major')
+      .then((res) => {
+        setMajorList(res.data.majors)
+        setClubCategory(majorList[0].name)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+
+    console.log(majorList)
+  }, [])
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -67,7 +76,7 @@ function WritePage() {
           name: clubName,
           description: clubDescription,
           category: CLUB_TYPE[clubType],
-          major: MAJOR[clubCategory],
+          major: clubCategory,
           leaderId: 1, // TODO: 로그인한 유저의 id로 변경
           numRecruit: clubRecruitMember,
           registerStartAt: clubRecruitStartDate,
@@ -118,7 +127,9 @@ function WritePage() {
                   />
                   <SelectBox
                     text={'전공'}
-                    options={Object.keys(MAJOR)}
+                    options={Object.keys(majorList).map((key) => {
+                      return majorList[key].name
+                    })}
                     onChange={(e) => {
                       setClubCategory(e.target.value)
                     }}
@@ -193,7 +204,6 @@ const inputText = css`
 `
 
 const inputStyle = css`
-  font-size: 18px;
   margin-top: 12px;
   display: flex;
   width: 500px;

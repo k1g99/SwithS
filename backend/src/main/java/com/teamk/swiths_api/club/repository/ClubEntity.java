@@ -1,5 +1,6 @@
 package com.teamk.swiths_api.club.repository;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -11,24 +12,23 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+
+import lombok.*;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.teamk.swiths_api.global.MajorEntity;
+import com.teamk.swiths_api.major.repository.MajorEntity;
 import com.teamk.swiths_api.user.repository.entity.UserEntity;
 
 @Entity
+@Setter
 @Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@JsonIgnoreProperties({"leader"})
 @Table(name = "club")
 public class ClubEntity {
 
@@ -46,7 +46,7 @@ public class ClubEntity {
 
     @ManyToOne
     @JoinColumn(name = "major_id")
-    @JsonIgnore // get 요청시 무한참조 현상 발생해서 추가함 TODO: DTO 클래스 처리하는거 생각(이 방법이 더 좋을거 같음)
+    // get 요청시 무한참조 현상 발생해서 추가함 TODO: DTO 클래스 처리하는거 생각(이 방법이 더 좋을거 같음)
     private MajorEntity major; // 전공 스터디인 경우, Major 테이블 참조
 
     @ManyToOne
@@ -72,6 +72,31 @@ public class ClubEntity {
     @Column(name = "num_recruit", nullable = false)
     @ColumnDefault("5")
     private int numRecruit;
+
+    @Column(name = "timetable_mon")
+    @ColumnDefault("0")
+    private Long timetableMon;
+
+    @Column(name = "timetable_tue")
+    @ColumnDefault("0")
+    private Long timetableTue;
+
+    @Column(name = "timetable_wed")
+    @ColumnDefault("0")
+    private Long timetableWed;
+    @Column(name = "timetable_thu")
+    @ColumnDefault("0")
+    private Long timetableThu;
+    @Column(name = "timetable_fri")
+    @ColumnDefault("0")
+    private Long timetableFri;
+    @Column(name = "timetable_sat")
+    @ColumnDefault("0")
+    private Long timetableSat;
+    @Column(name = "timetable_sun")
+    @ColumnDefault("0")
+    private Long timetableSun;
+
 
     @CreationTimestamp
     @Column(name = "created_at")

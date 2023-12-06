@@ -1,4 +1,4 @@
-package com.teamk.swiths_api.post;
+package com.teamk.swiths_api.post.repository;
 
 import com.teamk.swiths_api.club.repository.ClubEntity;
 import com.teamk.swiths_api.post.vote.VoteEntity;

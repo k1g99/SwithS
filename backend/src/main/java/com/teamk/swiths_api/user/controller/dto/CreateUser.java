@@ -8,13 +8,8 @@ public class CreateUser {
     @Data
     public static class CreateUserRequest {
         private String email;
-        private String name;
-        private Boolean admin;
+        private String username;
         private String password;
-        private String studentId;
-        private String major;
-        private String department;
-        private String statement;
     }
 
     @Getter

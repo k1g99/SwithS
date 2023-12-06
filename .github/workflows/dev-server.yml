@@ -3,18 +3,94 @@ name: Run DevServer
 on:
   push:
     branches:
-      - develop
+      - "develop"
 
 jobs:
-  run-dev-server:
-    runs-on: self-hosted
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      working-directory: ./backend
+
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Set up Docker Compose
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: "temurin"
+          cache: "gradle"
+
+      - name: Get application.yml from secrets
         run: |
-          docker compose -f docker-compose-dev.yml down -v
-          docker compose -f docker-compose-dev.yml up -d --build
+          echo $DEV_APPLICATION_YML | base64 --decode >> ./backend/src/main/resources/application.yml
+        env:
+          DEV_APPLICATION_YML: ${{ secrets.DEV_APPLICATION_YML }}
 
-      - run: echo "Done, This job's status is ${{ job.status }}."
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+        working-directory: ${{ env.working-directory }}
+
+      # Gradle Build 실행
+      - name: Build with Gradle
+        run: ./gradlew bootJar
+        working-directory: ${{ env.working-directory }}
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: swiths-dev-build
+          path: ${{ env.working-directory }}/build/libs/swiths_api-0.0.1-SNAPSHOT.jar
+
+      - name: Upload docker compose file
+        uses: actions/upload-artifact@v3
+        with:
+          name: docker-compose
+          path: ./docker-compose-dev.yml
+
+      - name: Upload dev-run.sh
+        uses: actions/upload-artifact@v3
+        with:
+          name: dev-run.sh
+          path: ./dev-run.sh
+
+  run-server:
+    runs-on: self-hosted
+    needs: build
+    steps:
+      - name: Download docker compose file
+        uses: actions/download-artifact@v3
+        with:
+          name: docker-compose
+          path: ${{ secrets.DEV_RUN_DIR }}
+
+      - name: Download dev-run.sh
+        uses: actions/download-artifact@v3
+        with:
+          name: dev-run.sh
+          path: ${{ secrets.DEV_RUN_DIR }}/build/libs
+
+      - name: set .env file
+        run: |
+          echo "$DEV_ENV" >> .env
+          echo "$DEV_PATH_GECKO" >> .env
+        working-directory: ${{ secrets.DEV_RUN_DIR }}
+        env:
+          DEV_ENV: ${{ secrets.DEV_ENV }}
+          PATH_GECKO: ${{ secrets.DEV_PATH_GECKO }}
+
+      - name: run Database
+        run: docker compose -f docker-compose-dev.yml up -d
+        working-directory: ${{ secrets.DEV_RUN_DIR }}
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: swiths-dev-build
+          path: ${{ secrets.DEV_RUN_DIR }}/build/libs
+
+      - name: Run DevServer
+        run: sh dev-run.sh
+        working-directory: ${{ secrets.DEV_RUN_DIR }}/build/libs

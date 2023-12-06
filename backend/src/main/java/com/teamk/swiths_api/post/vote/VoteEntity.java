@@ -1,23 +1,22 @@
 package com.teamk.swiths_api.post.vote;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.Getter;
-import lombok.Setter;
+
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
+@Builder
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "vote")
 public class VoteEntity {
 
@@ -30,14 +29,11 @@ public class VoteEntity {
     private String title;
 
     @CreationTimestamp
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    @Column(name = "start_at")
+    private LocalDateTime startAt;
 
-    @UpdateTimestamp
+    @CreationTimestamp
     @Column(name = "end_at")
     private LocalDateTime endAt;
-
-    @OneToMany(mappedBy = "vote")
-    private List<VoteItemEntity> voteItems = new ArrayList<>();
 
 }

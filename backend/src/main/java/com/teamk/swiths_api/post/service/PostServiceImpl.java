@@ -1,13 +1,15 @@
-package com.teamk.swiths_api.post;
+package com.teamk.swiths_api.post.service;
 
 import com.teamk.swiths_api.post.dto.CreatePost.*;
 import com.teamk.swiths_api.post.dto.PatchPost.*;
-import com.teamk.swiths_api.post.vote.VoteEntity;
+import com.teamk.swiths_api.post.repository.PostEntity;
+import com.teamk.swiths_api.post.repository.PostRepository;
 import com.teamk.swiths_api.user.repository.UserRepository;
 import com.teamk.swiths_api.user.repository.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.teamk.swiths_api.post.service.PostService;
 
 import java.time.LocalDateTime;
 import java.util.List;

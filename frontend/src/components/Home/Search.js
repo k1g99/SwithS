@@ -22,7 +22,7 @@ function Search() {
 
   const redirectToSearchPage = (targetWord) => {
     navigate('/search', {
-      state: { targetWord: targetWord },
+      state: { targetWord: targetWord, targetMajor: 0 },
     })
   }
 

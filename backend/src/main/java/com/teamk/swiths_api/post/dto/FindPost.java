@@ -1,7 +1,7 @@
 package com.teamk.swiths_api.post.dto;
 
 import com.teamk.swiths_api.club.repository.ClubEntity;
-import com.teamk.swiths_api.post.PostEntity;
+import com.teamk.swiths_api.post.repository.PostEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 public class VoteServiceimpl implements VoteService {
@@ -23,8 +25,8 @@ public class VoteServiceimpl implements VoteService {
         // 타임테이블 비교 후 자동생성
         VoteEntity voteEntity = VoteEntity.builder()
             .title(createVoteRequest.getTitle())
-            .createdAt(createVoteRequest.getCreateAt())
             .endAt(createVoteRequest.getEndAt())
+            .startAt(createVoteRequest.getStartAt())
             .build();
         voteRepository.save(voteEntity);
         return voteEntity;
@@ -35,7 +37,6 @@ public class VoteServiceimpl implements VoteService {
         if(!voteRepository.existsById(id)){
             throw new RuntimeException("저장되어있는 투표가 없습니다.");
         }
-
         return voteRepository.getById(id);
     }
 }

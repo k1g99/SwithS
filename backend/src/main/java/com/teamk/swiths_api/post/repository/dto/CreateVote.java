@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.Getter;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
@@ -14,12 +15,9 @@ import java.util.List;
 public class CreateVote {
     @Data
     public static class CreateVoteRequest{
-        private Long club;
         private String title;
-        @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss")
         @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-        private LocalDateTime createAt;
-        @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss")
+        private LocalDateTime startAt;
         @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
         private LocalDateTime endAt;
     }

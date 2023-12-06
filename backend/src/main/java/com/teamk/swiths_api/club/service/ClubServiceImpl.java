@@ -4,8 +4,8 @@ import com.teamk.swiths_api.club.repository.Category;
 import com.teamk.swiths_api.club.repository.ClubEntity;
 import com.teamk.swiths_api.club.repository.ClubRepository;
 import com.teamk.swiths_api.club.repository.dto.CreateClub.CreateClubRequest;
-import com.teamk.swiths_api.global.MajorEntity;
-import com.teamk.swiths_api.global.MajorRepository;
+import com.teamk.swiths_api.major.repository.MajorEntity;
+import com.teamk.swiths_api.major.repository.MajorRepository;
 import com.teamk.swiths_api.user.repository.UserRepository;
 import com.teamk.swiths_api.user.repository.entity.UserEntity;
 
@@ -80,12 +80,16 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public List<ClubEntity> searchClub(String keyword) {
+    public List<ClubEntity> searchClub(String keyword, Long major) {
         // keyword가 공백이면 전체 반환
-        if (keyword == null || keyword.isBlank()) {
+        if ((keyword == null || keyword.isBlank()) && (major == null || major == 0)) {
             return clubRepository.findAll();
-        } else {
+        } else if (keyword == null || keyword.isBlank()){
+            return clubRepository.findByMajor_Id(major);
+        } else if (major == null || major == 0) {
             return clubRepository.findByNameContaining(keyword);
+        } else {
+            return clubRepository.findByNameContainingAndMajor_Id(keyword, major);
         }
     }
 }

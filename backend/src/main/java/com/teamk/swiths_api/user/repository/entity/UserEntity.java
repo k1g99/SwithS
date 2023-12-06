@@ -3,20 +3,29 @@ package com.teamk.swiths_api.user.repository.entity;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.Collection;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.teamk.swiths_api.club.repository.ClubEntity;
-import com.teamk.swiths_api.global.MajorEntity;
 import com.teamk.swiths_api.post.repository.PostEntity;
+import com.teamk.swiths_api.major.repository.MajorEntity;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -39,7 +48,7 @@ import lombok.NoArgsConstructor;
 @EnableJpaRepositories
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Table(name = "user")
-public class UserEntity {
+public class UserEntity implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,12 +60,8 @@ public class UserEntity {
     @Column(length = 30, nullable = false)
     private String email; // 유저 이메일
 
-    @Column(nullable = false)
-    @ColumnDefault("false")
-    private Boolean admin; // 유저에게 권한을 줄지말지 정함
-
     @Column(length = 20, nullable = false)
-    private String name; // 유저이름
+    private String username; // 유저이름
 
     @Column(length = 100, nullable = false)
     private String password; // 유저 비밀번호
@@ -72,7 +77,7 @@ public class UserEntity {
     @Column(length = 50)
     private String department; // 학부
 
-    @Column(nullable = false)
+    @Column
     @Enumerated(EnumType.STRING)
     private Statement statement; // 학적상태
 
@@ -93,5 +98,40 @@ public class UserEntity {
 
     @OneToMany(mappedBy = "leader")
     private List<ClubEntity> clubLeaderUser = new ArrayList<>();
-}
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Builder.Default
+    private List<String> roles = new ArrayList<>();
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.roles.stream()
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public String getUsername() {
+        return this.username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+}

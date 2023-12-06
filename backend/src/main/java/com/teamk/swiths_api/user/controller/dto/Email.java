@@ -4,20 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 
-public class CreateUser {
+public class Email {
     @Data
-    public static class CreateUserRequest {
+    public static class EmailRequest {
         private String email;
-        private String username;
-        private String password;
     }
 
     @Getter
     @AllArgsConstructor
-    public static class CreateUserResponse {
+    public static class EmailResponse {
         private int code;
         private Boolean isSuccess;
         private String msg;
     }
-
 }

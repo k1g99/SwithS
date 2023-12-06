@@ -2,12 +2,15 @@ package com.teamk.swiths_api.post.dto;
 
 import com.teamk.swiths_api.post.vote.VoteEntity;
 import com.teamk.swiths_api.user.repository.entity.UserEntity;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
+import lombok.*;
 
 public class PatchPost {
+
     @Data
+    @Setter
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class PatchPostRequest{
         private Long id;
         private Long user;
@@ -17,6 +20,10 @@ public class PatchPost {
     }
 
     @Data
+    @Setter
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class PatchPostVoteRequest{
         private Long id;
         private Long user;

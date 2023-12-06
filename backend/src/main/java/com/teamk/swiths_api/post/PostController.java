@@ -32,13 +32,15 @@ public class PostController {
 
     @PatchMapping({"/{id}"})
     public PatchPostResponse patchPost(@PathVariable Long id, @RequestBody PatchPostRequest patchPostRequest) {
+        patchPostRequest.setId(id);
         postService.patchPost(patchPostRequest);
         PatchPostResponse result = new PatchPostResponse(200, true, "공지사항수정에 성공하였습니다.");
         return result;
     }
 
-    @PatchMapping("vote")
+    @PatchMapping("vote/{id}")
     public PatchPostResponse patchPostVote(@PathVariable Long id, @RequestBody PatchPostVoteRequest patchPostVoteRequest) {
+        patchPostVoteRequest.setId(id);
         postService.patchPostVote(patchPostVoteRequest);
         PatchPostResponse result = new PatchPostResponse(200, true, "공지사항수정에 성공하였습니다.");
         return result;

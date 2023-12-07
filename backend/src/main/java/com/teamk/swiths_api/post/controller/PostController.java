@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
 @RequestMapping("/post")
 public class PostController {
     private final PostService postService;
-    @GetMapping()
-    public FindAllPostResponse findAllPost(){
-        List<PostEntity> PostLists = postService.findAllPost();
+    @GetMapping("{club}")
+    public FindAllPostResponse findAllPost(@PathVariable Long club){
+        List<PostEntity> PostLists = postService.findAllPost(club);
         List<PostDto> PostDtos = PostLists.stream()
             .map(PostDto::fromEntity)
             .collect(Collectors.toList());
@@ -32,23 +32,23 @@ public class PostController {
     }
 
 
-    @GetMapping("vote")
-    public FindAllPostResponse findAllPostVote(){
-        List<PostEntity> PostLists = postService.findAllVotePost();
+    @GetMapping("vote/{club}")
+    public FindAllPostResponse findAllPostVote(@PathVariable Long club){
+        List<PostEntity> PostLists = postService.findAllVotePost(club);
         List<PostDto> PostDtos = PostLists.stream()
             .map(PostDto::fromEntity)
             .collect(Collectors.toList());
 
-        FindAllPostResponse result = new FindAllPostResponse(200, true, "모든 공지사항 조회에 성공했습니다.", PostDtos);
+        FindAllPostResponse result = new FindAllPostResponse(200, true, "모든 투표 공지사항 조회에 성공했습니다.", PostDtos);
         return result;
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/detail/{id}")
     public FindPostResponse findPost(@PathVariable Long id){
         PostEntity postEntity = postService.findPost(id);
         PostDto postDto = PostDto.fromEntity(postEntity);
 
-        FindPostResponse result = new FindPostResponse(200, true, "모든 공지사항 조회에 성공했습니다.", postDto);
+        FindPostResponse result = new FindPostResponse(200, true, "공지사항 조회에 성공했습니다.", postDto);
         return result;
     }
 
@@ -61,8 +61,9 @@ public class PostController {
     }
 
 
-    @PostMapping() //ㅇㅇ
-    public CreatePostResponse createPost(@RequestBody CreatePostRequest createPostRequest){
+    @PostMapping("{club}") //ㅇㅇ
+    public CreatePostResponse createPost(@RequestBody CreatePostRequest createPostRequest,@PathVariable Long club){
+        createPostRequest.setClub(club);
         postService.createPost(createPostRequest);
         CreatePostResponse result = new CreatePostResponse(200, true,"공지사항 생성에 성공하였습니다.");
         return result;

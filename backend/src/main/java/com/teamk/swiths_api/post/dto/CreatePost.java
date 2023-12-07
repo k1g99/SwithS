@@ -14,6 +14,7 @@ public class CreatePost {
         private String content;
         private String shortContent;
         private Long vote;
+        private Long club;
     }
 
 

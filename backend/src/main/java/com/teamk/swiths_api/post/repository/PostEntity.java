@@ -1,5 +1,6 @@
 package com.teamk.swiths_api.post.repository;
 
+import com.teamk.swiths_api.club.repository.ClubEntity;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.*;
@@ -56,5 +57,7 @@ public class PostEntity {
     @OneToOne
     @JoinColumn(name = "vote_id")
     private VoteEntity vote;
-
+    @ManyToOne
+    @JoinColumn(name = "club_id")
+    private ClubEntity club;
 }

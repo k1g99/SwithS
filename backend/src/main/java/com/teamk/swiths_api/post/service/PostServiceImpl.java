@@ -1,5 +1,7 @@
 package com.teamk.swiths_api.post.service;
 
+import com.teamk.swiths_api.club.repository.ClubEntity;
+import com.teamk.swiths_api.club.repository.ClubRepository;
 import com.teamk.swiths_api.post.dto.CreatePost.*;
 import com.teamk.swiths_api.post.dto.PatchPost.*;
 import com.teamk.swiths_api.post.repository.PostEntity;
@@ -22,17 +24,20 @@ public class PostServiceImpl implements PostService {
     PostRepository postRepository;
     UserRepository userRepository;
     VoteRepository voteRepository;
+    ClubRepository clubRepository;
     //vote 추가
     @Autowired
-    public PostServiceImpl(VoteRepository voteRepository,PostRepository postRepository,UserRepository userRepository){
+    public PostServiceImpl(ClubRepository clubRepository, VoteRepository voteRepository,PostRepository postRepository,UserRepository userRepository){
         this.postRepository = postRepository;
         this.userRepository = userRepository;
         this.voteRepository = voteRepository;
+        this.clubRepository = clubRepository;
     }
 
     @Override
     public PostEntity createPost(CreatePostRequest createPostRequest) {
         UserEntity userEntity = userRepository.getById(createPostRequest.getUser());
+        ClubEntity clubEntity = clubRepository.getById(createPostRequest.getClub());
         if (userEntity == null){
             throw new RuntimeException("존재하지 않는 유저입니다.");
         }
@@ -56,14 +61,16 @@ public class PostServiceImpl implements PostService {
             .user(userEntity)
             .shortContent(createPostRequest.getShortContent())
             .vote(voteEntity)
+            .club(clubEntity)
             .build();
         postRepository.save(postEntity);
 
         return postEntity;
     }
     @Override
-    public List<PostEntity> findAllPost() {
-        List<PostEntity> PostList = postRepository.findByVoteIsNull();
+    public List<PostEntity> findAllPost(Long club) {
+        ClubEntity clubEntity = clubRepository.getById(club);
+        List<PostEntity> PostList = postRepository.findByClubAndVoteIsNull(clubEntity);
         return PostList;
     }
     @Override
@@ -87,7 +94,8 @@ public class PostServiceImpl implements PostService {
             .content(patchPostRequest.getContent())
             .user(userEntity)
             .shortContent(patchPostRequest.getShortContent())
-            .vote(null)
+            .vote(postRepository.getById(patchPostRequest.getId()).getVote())
+            .club(postRepository.getById(patchPostRequest.getId()).getClub())
             .build();
         postRepository.save(postEntity);
 
@@ -104,8 +112,9 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<PostEntity> findAllVotePost() {
-        List<PostEntity> PostList = postRepository.findByVoteIsNotNull();
+    public List<PostEntity> findAllVotePost(Long club) {
+        ClubEntity clubEntity = clubRepository.getById(club);
+        List<PostEntity> PostList = postRepository.findByClubAndVoteIsNotNull(clubEntity);
         return PostList;
     }
 }

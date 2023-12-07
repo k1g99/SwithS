@@ -14,6 +14,15 @@ public class FindPost {
         private int statusCode;
         private boolean isSuccess;
         private String message;
-        private List<PostEntity> posts;
+        private List<PostDto> posts;
+    }
+
+    @Getter
+    @AllArgsConstructor
+    public static class FindPostResponse{
+        private int statusCode;
+        private boolean isSuccess;
+        private String message;
+        private PostDto post;
     }
 }

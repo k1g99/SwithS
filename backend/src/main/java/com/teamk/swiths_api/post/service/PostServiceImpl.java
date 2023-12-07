@@ -4,6 +4,8 @@ import com.teamk.swiths_api.post.dto.CreatePost.*;
 import com.teamk.swiths_api.post.dto.PatchPost.*;
 import com.teamk.swiths_api.post.repository.PostEntity;
 import com.teamk.swiths_api.post.repository.PostRepository;
+import com.teamk.swiths_api.post.repository.VoteRepository;
+import com.teamk.swiths_api.post.vote.VoteEntity;
 import com.teamk.swiths_api.user.repository.UserRepository;
 import com.teamk.swiths_api.user.repository.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
@@ -19,11 +21,13 @@ import java.util.List;
 public class PostServiceImpl implements PostService {
     PostRepository postRepository;
     UserRepository userRepository;
+    VoteRepository voteRepository;
     //vote 추가
     @Autowired
-    public PostServiceImpl(PostRepository postRepository,UserRepository userRepository){
+    public PostServiceImpl(VoteRepository voteRepository,PostRepository postRepository,UserRepository userRepository){
         this.postRepository = postRepository;
         this.userRepository = userRepository;
+        this.voteRepository = voteRepository;
     }
 
     @Override
@@ -38,6 +42,11 @@ public class PostServiceImpl implements PostService {
         if(createPostRequest.getTitle() == ""){
             throw new RuntimeException("제목을 입력해주시기 바랍니다.");
         }
+        VoteEntity voteEntity = null;
+        if(createPostRequest.getVote() != null){
+            voteEntity = voteRepository.getById(createPostRequest.getVote());
+
+        }
 
         PostEntity postEntity = PostEntity.builder()
             .createdAt(LocalDateTime.now())
@@ -46,25 +55,17 @@ public class PostServiceImpl implements PostService {
             .content(createPostRequest.getContent())
             .user(userEntity)
             .shortContent(createPostRequest.getShortContent())
-            .vote(null)
+            .vote(voteEntity)
             .build();
         postRepository.save(postEntity);
 
         return postEntity;
     }
-
     @Override
     public List<PostEntity> findAllPost() {
         List<PostEntity> PostList = postRepository.findByVoteIsNull();
         return PostList;
     }
-
-    @Override
-    public List<PostEntity> findAllVotePost() {
-        List<PostEntity> PostList = postRepository.findByVoteIsNotNull();
-        return PostList;
-    }
-
     @Override
     public PostEntity patchPost(PatchPostRequest patchPostRequest) {
         UserEntity userEntity = userRepository.getById(patchPostRequest.getUser());
@@ -80,6 +81,7 @@ public class PostServiceImpl implements PostService {
 
         PostEntity postEntity = PostEntity.builder()
             .id(patchPostRequest.getId())
+            .createdAt(postRepository.getById(patchPostRequest.getId()).getCreatedAt())
             .updatedAt(LocalDateTime.now())
             .title(patchPostRequest.getTitle())
             .content(patchPostRequest.getContent())
@@ -93,14 +95,17 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public PostEntity createPostVote(CreatePostVoteRequest createPostVoteRequest) {
-
-        return null;
+    public PostEntity findPost(Long id) {
+        PostEntity postEntity = postRepository.getById(id);
+        if(postEntity == null){
+            throw new RuntimeException("존재하지 않는 게시물 입니다.");
+        }
+        return postEntity;
     }
 
     @Override
-    public PostEntity patchPostVote(PatchPostVoteRequest patchPostVoteRequest) {
-
-        return null;
+    public List<PostEntity> findAllVotePost() {
+        List<PostEntity> PostList = postRepository.findByVoteIsNotNull();
+        return PostList;
     }
 }

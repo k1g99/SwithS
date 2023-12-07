@@ -13,16 +13,9 @@ public class CreatePost {
         private String title;
         private String content;
         private String shortContent;
-    }
-
-    @Data
-    public static class CreatePostVoteRequest{
-        private Long user;
-        private String title;
-        private String shortContent;
-        private String content;
         private Long vote;
     }
+
 
     @Getter
     @AllArgsConstructor

@@ -13,6 +13,7 @@ public class VoteDto {
     private LocalDateTime startAt;
     private LocalDateTime endAt;
     private String title;
+
     public static VoteDto fromEntity(VoteEntity voteEntity) {
         VoteDto voteDto = new VoteDto();
         voteDto.setId(voteEntity.getId());

@@ -11,7 +11,5 @@ public interface PostService {
     List<PostEntity> findAllPost();
     List<PostEntity> findAllVotePost();
     PostEntity patchPost(PatchPost.PatchPostRequest patchPostRequest);
-    PostEntity createPostVote(CreatePost.CreatePostVoteRequest createPostVoteRequest);
-    PostEntity patchPostVote(PatchPost.PatchPostVoteRequest patchPostVoteRequest);
-
+    PostEntity findPost(Long id);
 }

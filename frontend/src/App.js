@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import HomePage from './Pages/HomePage'
 import WritePage from './Pages/WritePage'
@@ -17,11 +17,31 @@ import ResourcePage from './Pages/ResourcePage'
 import ResourcedetailPage from './Pages/ResourcedetailPage'
 import ResourceuploadPage from './Pages/ResourceuploadPage'
 import NoticeuploadPage from './Pages/NoticeuploadPage'
+import { userLogin } from './components/hooks/UserLogin'
 
 function App() {
   // 로그인 상태 LocalStorage에 저장
-  localStorage.setItem('isLogin', false)
-  //   localStorage.setItem('id', 0)
+  //   useEffect(() => {
+  //     if (userLogin()) {
+  //       localStorage.setItem('isLogin', true)
+  //     } else {
+  //       localStorage.setItem('isLogin', false)
+  //     }
+  //   }, [])
+
+  useEffect(() => {
+    const checkLogin = async () => {
+      try {
+        const isLoggedIn = await userLogin()
+        localStorage.setItem('isLogin', isLoggedIn)
+      } catch (error) {
+        console.error('Error checking login status:', error)
+        localStorage.setItem('isLogin', false)
+      }
+    }
+
+    checkLogin()
+  }, [])
 
   return (
     <Routes>

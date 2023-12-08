@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import InputBox from '../components/InputBox1'
 import Container from '../components/global/Container'
 import { api } from '../api'
+import { setCookie } from '../components/global/cookie'
 
 function LoginPage() {
   const navigate = useNavigate()
@@ -35,8 +36,8 @@ function LoginPage() {
       .then((res) => {
         // console.log(res)
         alert('로그인 성공')
-        document.cookie = `accessToken=${res.data.accessToken}`
-        document.cookie = `refreshToken=${res.data.refreshToken}`
+        setCookie('accessToken', res.data.accessToken)
+        setCookie('refreshToken', res.data.refreshToken)
         localStorage.setItem('isLogin', true)
         // localStorage.setItem('id', res.data.id)
         // redirect to main page

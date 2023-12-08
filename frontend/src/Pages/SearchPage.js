@@ -16,7 +16,7 @@ function SearchPage() {
   const location = useLocation()
   const userInfo = { ...location.state }
   const targetWord = userInfo.targetWord
-  const targetMajor = userInfo.targetMajor
+  const [targetMajor, setTargetMajor] = useState(userInfo.targetMajor)
   const [data, setData] = useState(null)
   const [majorList, setMajorList] = useState([])
 
@@ -117,6 +117,7 @@ function SearchPage() {
               css={selectStyle}
               onChange={(e) => {
                 setFilterParam(e.target.value)
+                setTargetMajor(e.target.value)
               }}
             >
               <option key={uuid_v4()} value="All">

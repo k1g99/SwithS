@@ -8,18 +8,15 @@ export function userLogin() {
   // check accessToken
   if (accessToken !== undefined) {
     return api
-      .post(
-        '/user/test',
-        {},
-        {
-          headers: { Authorization: `Bearer ${accessToken}` },
-        }
-      )
+      .get('/user/getUserInfo', {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
       .then((res) => {
-        if (res.data === 'anonymousUser님 환영합니다.') {
+        if (res.data === null) {
           console.log('토큰 오류')
           return false
         }
+        localStorage.setItem('id', res.data.id)
         return true
       })
       .catch((err) => {

@@ -34,6 +34,12 @@ function App() {
       try {
         const isLoggedIn = await userLogin()
         localStorage.setItem('isLogin', isLoggedIn)
+        if (isLoggedIn) {
+          //   console.log('User is logged in')
+        } else {
+          //   console.log('User is not logged in')
+          localStorage.removeItem('id')
+        }
       } catch (error) {
         console.error('Error checking login status:', error)
         localStorage.setItem('isLogin', false)

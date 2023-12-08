@@ -5,6 +5,7 @@ import Header2 from '../components/Home/Header2'
 import Container from '../components/global/Container'
 import Sidebar2 from '../components/Sidebar2'
 import NoticeCard from '../components/NoticeCard'
+import { Link } from 'react-router-dom'
 
 function StudyroomPage() {
   return (
@@ -18,7 +19,9 @@ function StudyroomPage() {
           </div>
           <div css={rightSection}>
             <div css={buttonBox}>
-              <button css={writeBtn}>공지 업로드</button>
+              <Link to="/noticeupload">
+                <button css={writeBtn}>공지 업로드</button>
+              </Link>
             </div>
             <div css={cardBox}>
               <NoticeCard />

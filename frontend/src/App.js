@@ -7,9 +7,7 @@ import LoginPage from './Pages/LoginPage'
 import RegisterPage from './Pages/RegisterPage'
 import { useEffect } from 'react'
 import { api } from './api'
-import MystudyPage from './Pages/MystudyPage'
 import SearchPage from './Pages/SearchPage'
-import MyPage from './Pages/MyPage'
 import ScheduleuploadPage from './Pages/ScheduleuploadPage'
 import StudydetailPage from './Pages/StudydetailPage'
 import CategoryPage from './Pages/CategoryPage'
@@ -18,6 +16,7 @@ import NoticedetailPage from './Pages/NoticedetailPage'
 import ResourcePage from './Pages/ResourcePage'
 import ResourcedetailPage from './Pages/ResourcedetailPage'
 import ResourceuploadPage from './Pages/ResourceuploadPage'
+import NoticeuploadPage from './Pages/NoticeuploadPage'
 
 function App() {
   useEffect(() => {
@@ -38,9 +37,7 @@ function App() {
       <Route path="/write" element={<WritePage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
-      <Route path="/mystudy" element={<MystudyPage />} />
       <Route path="/search" element={<SearchPage />} />
-      <Route path="/mypage" element={<MyPage />} />
       <Route path="/scheduleupload" element={<ScheduleuploadPage />} />
       <Route path="/studydetail/:item_id" element={<StudydetailPage />} />
       <Route path="/category" element={<CategoryPage />} />
@@ -49,6 +46,7 @@ function App() {
       <Route path="/resource" element={<ResourcePage />} />
       <Route path="/resourcedetail" element={<ResourcedetailPage />} />
       <Route path="/resourceupload" element={<ResourceuploadPage />} />
+      <Route path="/noticeupload" element={<NoticeuploadPage />} />
     </Routes>
   )
 }

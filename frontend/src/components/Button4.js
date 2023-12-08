@@ -12,7 +12,7 @@ const Button4 = ({ id, text }) => {
   }
 
   const redirectToCategoryPage = (targetCat) => {
-    navigate('/search', {
+    navigate('/category', {
       state: { targetWord: '', targetMajor: targetCat },
     })
   }

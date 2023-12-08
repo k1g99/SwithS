@@ -1,0 +1,48 @@
+.time-table {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+
+.time-slots {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.time-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 12px;
+  width: 70px;
+  border: 1px solid #ccc;
+}
+.time {
+  border: 1px solid white;
+}
+
+.time-slot-time {
+  font-weight: bold;
+}
+
+.selected {
+  background-color: #4caf50; /* Green */
+  color: white;
+}
+
+.unavailable {
+  pointer-events: none;
+  position: relative;
+}
+
+.unavailable:before {
+  content: '\00D7'; /* Times symbol */
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #d9534f; /* Red */
+}

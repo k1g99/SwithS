@@ -1,17 +1,46 @@
 /** @jsxImportSource @emotion/react */
-import React, { useRef } from 'react'
+import React, { useState } from 'react'
 import { css } from '@emotion/react'
 import Header2 from '../components/Home/Header2'
 import Container from '../components/global/Container'
 import Sidebar2 from '../components/Sidebar2'
-import upload from '../images/upload.svg'
 import Button3 from '../components/Button3'
+import { api } from '../api'
+import { Link } from 'react-router-dom'
 
 function NoticeuploadPage() {
-  const imageInput = useRef()
+  const [noticeName, setNoticeName] = useState('')
+  const [noticeDesc, setNoticeDesc] = useState('')
 
-  const onClickImageUpload = () => {
-    imageInput.current.click()
+  const submitHandler = (e) => {
+    console.log(e)
+
+    if (noticeName === '') {
+      alert('공지명을 입력해주세요')
+      return
+    } else if (noticeDesc === '') {
+      alert('공지 내용을 입력해주세요')
+      return
+    }
+
+    api
+      .post('/post/1', {
+        user: 1,
+        title: noticeName,
+        content: noticeDesc,
+        shortContent:
+          noticeDesc.length > 10
+            ? noticeDesc.substring(0, 10) + '...'
+            : noticeDesc,
+        vote: null,
+      })
+      .then((res) => {
+        console.log(res)
+        alert('공지 등록이 완료되었습니다.')
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   return (
@@ -24,17 +53,19 @@ function NoticeuploadPage() {
             <Sidebar2 />
           </div>
           <div css={rightSection}>
-            <input css={uploadText} placeholder="공지명을 입력해주세요." />
-            <input type="file" style={{ display: 'none' }} ref={imageInput} />
-            <button onClick={onClickImageUpload} css={uploadButton}>
-              <img src={upload} css={img} />
-            </button>
-            <div css={fixSection}>
-              <button css={fixText}>수정</button>
-            </div>
-            <textarea css={uploadBox}></textarea>
+            <input
+              css={uploadText}
+              placeholder="공지명을 입력해주세요."
+              onChange={(e) => setNoticeName(e.target.value)}
+            />
+            <textarea
+              css={uploadBox}
+              onChange={(e) => setNoticeDesc(e.target.value)}
+            ></textarea>
             <div css={buttonBox}>
-              <Button3 text={'등록'} />
+              <Link to="/studyroom">
+                <Button3 text={'등록'} onClick={submitHandler} />
+              </Link>
             </div>
           </div>
         </div>
@@ -73,39 +104,16 @@ const uploadText = css`
   font-style: normal;
   font-weight: 400;
   line-height: 150%; /* 36px */
-  border: none;
-`
-
-const uploadButton = css`
-  margin-top: 8px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--gray-gray-2, #ccc);
+  border-bottom: 1px solid var(--gray-gray-3, #999);
   border-top: none;
   border-left: none;
   border-right: none;
-  background: none;
-`
-const img = css`
-  float: right;
+  padding-bottom: 10px;
 `
 
-const fixSection = css`
-  margin-top: 8px;
-`
-const fixText = css`
-  float: right;
-  color: var(--gray-gray-3, #999);
-  border: none;
-  background: none;
-  font-family: Pretendard-Regular;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%; /* 21px */
-`
 const uploadBox = css`
   padding: 16px;
-  margin-top: 10px;
+  margin-top: 30px;
   display: flex;
   align-items: flex-start;
   border-radius: 8px;

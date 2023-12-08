@@ -173,6 +173,7 @@ const cardSection = css`
   display: flex;
   flex-wrap: wrap;
   gap: 70px;
+  margin-bottom: 60px;
 `
 
 const selectStyle = css`

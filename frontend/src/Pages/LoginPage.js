@@ -23,6 +23,17 @@ function LoginPage() {
     setPassword(e.target.value)
   }
 
+  const loadUserId = (at) => {
+    api
+      .get('/user/getUserInfo', {
+        headers: { Authorization: `Bearer ${at}` },
+      })
+      .then((res) => {
+        console.log(res)
+        localStorage.setItem('id', res.data.id)
+      })
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
 
@@ -35,10 +46,12 @@ function LoginPage() {
       .post('/user/signin', data)
       .then((res) => {
         // console.log(res)
-        alert('로그인 성공')
-        setCookie('accessToken', res.data.accessToken)
+        const at = res.data.accessToken
+        setCookie('accessToken', at)
         setCookie('refreshToken', res.data.refreshToken)
+        loadUserId(at)
         localStorage.setItem('isLogin', true)
+        alert('로그인 성공')
         // localStorage.setItem('id', res.data.id)
         // redirect to main page
         navigate('/')

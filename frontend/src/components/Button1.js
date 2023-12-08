@@ -2,8 +2,8 @@
 import React from 'react'
 import { css } from '@emotion/react'
 
-function Button1() {
-  return <button css={button1Style}>새글쓰기</button>
+function Button1({ text }) {
+  return <button css={button1Style}>{text}</button>
 }
 
 const button1Style = css`

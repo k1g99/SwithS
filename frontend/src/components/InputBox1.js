@@ -3,9 +3,14 @@ import React from 'react'
 import { css } from '@emotion/react'
 import PropTypes from 'prop-types'
 
-const InputBox1 = ({ placeholder, type }) => {
+const InputBox1 = ({ placeholder, type, onChange }) => {
   return (
-    <input css={inputbox1Style} placeholder={placeholder} type={type}></input>
+    <input
+      css={inputbox1Style}
+      placeholder={placeholder}
+      type={type}
+      onChange={onChange}
+    ></input>
   )
 }
 
@@ -13,6 +18,7 @@ InputBox1.propTypes = {
   placeholder: PropTypes.node,
   type: PropTypes.string,
 }
+
 const inputbox1Style = css`
   margin-top: 16px;
   display: flex;

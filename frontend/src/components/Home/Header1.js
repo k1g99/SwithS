@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { css } from '@emotion/react'
 import Search from './Search'
 import Button1 from '../Button1'
@@ -10,6 +10,14 @@ import Dropdown from '../Dropdown'
 
 function Header1() {
   const [view, setView] = useState(false)
+  const [isLoginStorage, setIsLoginStorage] = useState(
+    localStorage.getItem('isLogin')
+  )
+
+  useEffect(() => {
+    setIsLoginStorage(localStorage.getItem('isLogin'))
+    console.log(isLoginStorage)
+  }, [])
 
   const handleClickView = () => {
     setView(!view)
@@ -30,21 +38,31 @@ function Header1() {
         <li>
           <Search />
         </li>
-        <li>
-          <Link to="/write">
-            <Button1 />
-          </Link>
-        </li>
-        <li>
-          <button
-            onBlur={handleBlur}
-            onClick={handleClickView}
-            css={myBtnStyle}
-          >
-            <img src={my} alt="사람이미지" />
-            {view && <Dropdown />}
-          </button>
-        </li>
+        {isLoginStorage === 'true' ? (
+          <>
+            <li>
+              <Link to="/write">
+                <Button1 text="새 글쓰기" />
+              </Link>
+            </li>
+            <li>
+              <button
+                onBlur={handleBlur}
+                onClick={handleClickView}
+                css={myBtnStyle}
+              >
+                <img src={my} alt="사람이미지" />
+                {view && <Dropdown />}
+              </button>
+            </li>
+          </>
+        ) : (
+          <li>
+            <Link to="login">
+              <Button1 text="로그인" />
+            </Link>
+          </li>
+        )}
       </ul>
     </header>
   )

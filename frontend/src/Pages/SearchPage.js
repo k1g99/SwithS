@@ -68,7 +68,7 @@ function SearchPage() {
       return '검색 결과가 없습니다.'
     } else if (filterParam == 'All') {
       return data.clubs.map((item) => (
-        <Link key={item.id} to={`/detail/${item.id}`}>
+        <Link key={item.id} to={`/studydetail/${item.id}`}>
           <StudyCard
             key={item.id}
             studyName={item.name}
@@ -86,7 +86,7 @@ function SearchPage() {
       return data.clubs
         .filter((item) => item.major.id == filterParam)
         .map((item) => (
-          <Link key={item.id} to={`/detail/${item.id}`}>
+          <Link key={item.id} to={`/studydetail/${item.id}`}>
             <StudyCard
               key={item.id}
               studyName={item.name}

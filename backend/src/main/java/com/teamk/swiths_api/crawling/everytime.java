@@ -40,7 +40,7 @@ public class everytime {
     public List<everytimeComponent> run() {
         System.setProperty("webdriver.gecko.driver", "C:\\crawling\\geckodriver.exe");
         FirefoxOptions options = new FirefoxOptions();
-
+        options.setHeadless(true);
         driver = new FirefoxDriver(options);
 
         try {

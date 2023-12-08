@@ -1,7 +1,9 @@
 package com.teamk.swiths_api.post.repository;
 
+import com.teamk.swiths_api.club.repository.ClubEntity;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -12,8 +14,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.teamk.swiths_api.post.vote.VoteEntity;
@@ -22,6 +22,9 @@ import com.teamk.swiths_api.user.repository.entity.UserEntity;
 @Entity
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "post")
 public class PostEntity {
 
@@ -49,10 +52,12 @@ public class PostEntity {
 
     @UpdateTimestamp
     @Column(name = "updated_at")
-    private LocalDateTime updated_at = LocalDateTime.now();
+    private LocalDateTime updatedAt = LocalDateTime.now();
 
     @OneToOne
     @JoinColumn(name = "vote_id")
     private VoteEntity vote;
-
+    @ManyToOne
+    @JoinColumn(name = "club_id")
+    private ClubEntity club;
 }

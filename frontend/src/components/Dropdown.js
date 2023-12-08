@@ -8,7 +8,7 @@ function Dropdown() {
     <div css={dropdownStyle}>
       <div css={dropdownContainer}>
         <div css={dropdownTop}>
-          <Link to="/mystudy">My 스터디룸</Link>
+          <Link to="/studyroom">My 스터디룸</Link>
           <div css={stroke1} />
         </div>
         <div css={dropdownBottom}>

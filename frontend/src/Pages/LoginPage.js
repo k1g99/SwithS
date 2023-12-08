@@ -17,7 +17,7 @@ function LoginPage() {
           <form css={loginBox}>
             <div>
               <InputBox placeholder={'이메일'} />
-              <InputBox placeholder={'비밀번호'} />
+              <InputBox placeholder={'비밀번호'} type={'password'} />
             </div>
             <div css={buttonBox}>
               <Button2 text={'로그인'} />

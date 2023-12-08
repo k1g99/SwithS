@@ -3,12 +3,15 @@ import React from 'react'
 import { css } from '@emotion/react'
 import PropTypes from 'prop-types'
 
-const InputBox1 = ({ placeholder }) => {
-  return <input css={inputbox1Style} placeholder={placeholder}></input>
+const InputBox1 = ({ placeholder, type }) => {
+  return (
+    <input css={inputbox1Style} placeholder={placeholder} type={type}></input>
+  )
 }
 
 InputBox1.propTypes = {
   placeholder: PropTypes.node,
+  type: PropTypes.string,
 }
 const inputbox1Style = css`
   margin-top: 16px;

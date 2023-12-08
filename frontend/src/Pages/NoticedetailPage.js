@@ -1,12 +1,28 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react'
+import { useState } from 'react'
 import Header2 from '../components/Home/Header2'
 import Sidebar2 from '../components/Sidebar2'
 import Container from '../components/global/Container'
 import { css } from '@emotion/react'
 import Comment from '../components/Comment'
+import { api } from '../api'
 
 function NoticedetailPage() {
+  const [data, setData] = useState([])
+
+  React.useEffect(() => {
+    api
+      .get('/post/detail/1')
+      .then((res) => {
+        setData(res.data.post)
+        console.log(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
+
   return (
     <div>
       <Header2 />
@@ -17,14 +33,12 @@ function NoticedetailPage() {
             <Sidebar2 />
           </div>
           <div css={rightSection}>
-            <div css={title}>공지사항 타이틀</div>
+            <div css={title}>{data.title}</div>
             <div css={writerBox}>
-              <div css={writer}>김이지</div>
+              <div css={writer}>{data.username}</div>
             </div>
             <div css={textBox}>
-              <div css={headerText}>
-                어쩌저쩌어쩌저쩌어쩌저쩌어쩌저쩌어쩌저쩌
-              </div>
+              <div css={headerText}>{data.content}</div>
             </div>
             <div>
               <Comment />
@@ -32,7 +46,7 @@ function NoticedetailPage() {
               <Comment />
             </div>
             <div css={writeBox}>
-              <textarea css={writeText}>아아</textarea>
+              <textarea css={writeText}></textarea>
               <button css={writeBtn}>작성하기</button>
             </div>
           </div>
@@ -82,6 +96,7 @@ const writerBox = css`
   border-left: none;
   border-right: none;
   background: none;
+  padding-bottom: 10px;
 `
 
 const writer = css`
@@ -104,7 +119,6 @@ const textBox = css`
   flex-direction: column;
   height: 534px;
   border-bottom: 1px solid var(--gray-gray-3, #999);
-  margin-bottom: 20px;
 `
 const headerText = css`
   color: var(--gray-gray-5, #262626);

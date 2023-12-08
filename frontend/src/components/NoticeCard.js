@@ -3,17 +3,17 @@ import React from 'react'
 import { css } from '@emotion/react'
 import { Link } from 'react-router-dom'
 
-function NoticeCard() {
+function NoticeCard(props) {
   return (
     <div css={container}>
       <Link to="/noticedetail">
-        <div css={title}>공지사항 타이틀</div>
+        <div css={title}>{props.title}</div>
       </Link>
       <div css={bottomSection}>
-        <div css={describe}>간단설명 어쩌구</div>
+        <div css={describe}>{props.describe}</div>
         <div css={detailbox}>
-          <div>김이지</div>
-          <div>2023.12.01</div>
+          <div>{props.name}</div>
+          <div>{props.date}</div>
         </div>
       </div>
     </div>

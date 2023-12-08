@@ -1,13 +1,30 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react'
+import React, { useState } from 'react'
 import { css } from '@emotion/react'
 import Header2 from '../components/Home/Header2'
 import Container from '../components/global/Container'
 import Sidebar2 from '../components/Sidebar2'
 import ResourceCard from '../components/ResourceCard'
 import { Link } from 'react-router-dom'
+import { api } from '../api'
 
 function ResourcePage() {
+  const [resourceList, setResourceList] = useState([])
+
+  React.useEffect(() => {
+    api
+      .get('/file/list')
+      .then((res) => {
+        setResourceList(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
+
+  const displayResource = resourceList.map((resource, index) => {
+    return <ResourceCard key={index} resourceTitle={resource} />
+  })
   return (
     <div>
       <Header2 />
@@ -23,9 +40,7 @@ function ResourcePage() {
                 <button css={writeBtn}>자료 업로드</button>
               </Link>
             </div>
-            <div css={cardBox}>
-              <ResourceCard />
-            </div>
+            <div css={cardBox}>{displayResource}</div>
           </div>
         </div>
       </Container>

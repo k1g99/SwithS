@@ -1,17 +1,32 @@
 /** @jsxImportSource @emotion/react */
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { css } from '@emotion/react'
 import Header2 from '../components/Home/Header2'
 import Container from '../components/global/Container'
 import Sidebar2 from '../components/Sidebar2'
 import upload from '../images/upload.svg'
 import Button3 from '../components/Button3'
+import { api } from '../api'
 
 function ResourceuploadPage() {
-  const imageInput = useRef()
+  const fileInput = useRef(null)
 
-  const onClickImageUpload = () => {
-    imageInput.current.click()
+  const onClickFileUpload = () => {
+    fileInput.current.click()
+  }
+  const [file, setFile] = useState(null)
+
+  const onClickFileSubmit = () => {
+    const formData = new FormData()
+    formData.append('file', fileInput.current.files[0])
+
+    api.post('/file/upload', formData).then((res) => {
+      if (res.status === 200) {
+        alert('업로드 성공')
+      } else {
+        alert('업로드 실패')
+      }
+    }, [])
   }
 
   return (
@@ -24,17 +39,20 @@ function ResourceuploadPage() {
             <Sidebar2 />
           </div>
           <div css={rightSection}>
-            <input css={uploadText} placeholder="자료명을 입력해주세요." />
-            <input type="file" style={{ display: 'none' }} ref={imageInput} />
-            <button onClick={onClickImageUpload} css={uploadButton}>
-              <img src={upload} css={img} />
-            </button>
-            <div css={fixSection}>
-              <button css={fixText}>수정</button>
+            <div css={uploadBox}>
+              <input
+                type="file"
+                style={{ display: 'none' }}
+                ref={fileInput}
+                onChange={(e) => setFile(e.target.value)}
+              />
+              <button onClick={onClickFileUpload} css={uploadButton}>
+                <img src={upload} css={img} />
+              </button>
+              <div css={filetitle}>{file}</div>
             </div>
-            <textarea css={uploadBox}></textarea>
             <div css={buttonBox}>
-              <Button3 text={'등록'} />
+              <Button3 text={'등록'} onClick={onClickFileSubmit} />
             </div>
           </div>
         </div>
@@ -66,54 +84,25 @@ const rightSection = css`
   flex-direction: column;
   width: 67%;
 `
-const uploadText = css`
-  color: var(--gray-gray-5, #262626);
-  font-family: Pretendard-Regular;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%; /* 36px */
-  border: none;
+
+const uploadBox = css`
+  display: flex;
+  flex-direction: row-reverse;
+  border-bottom: 1px solid var(--gray-gray-2, #ccc);
+  gap: 50px;
+  padding-right: 20px;
+  padding-bottom: 10px;
 `
 
 const uploadButton = css`
-  margin-top: 8px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--gray-gray-2, #ccc);
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  background: none;
-`
-const img = css`
-  float: right;
-`
-
-const fixSection = css`
-  margin-top: 8px;
-`
-const fixText = css`
-  float: right;
-  color: var(--gray-gray-3, #999);
   border: none;
   background: none;
-  font-family: Pretendard-Regular;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%; /* 21px */
 `
-const uploadBox = css`
-  padding: 16px;
-  margin-top: 10px;
-  display: flex;
-  align-items: flex-start;
-  border-radius: 8px;
-  border: 1px solid var(--gray-gray-3, #999);
-  justify-content: center;
-  flex-direction: column;
-  height: 534px;
+const img = css``
+const filetitle = css`
+  margin: 0px;
 `
+
 const buttonBox = css`
   margin-top: 40px;
   margin-left: 92.5%;

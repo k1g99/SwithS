@@ -1,13 +1,40 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react'
+import React, { useState } from 'react'
 import { css } from '@emotion/react'
 import Header2 from '../components/Home/Header2'
 import Container from '../components/global/Container'
 import Sidebar2 from '../components/Sidebar2'
 import NoticeCard from '../components/NoticeCard'
 import { Link } from 'react-router-dom'
+import { api } from '../api'
 
 function StudyroomPage() {
+  const [noticeList, setNoticeList] = useState([])
+  React.useEffect(() => {
+    api
+      .get('/post/1')
+      .then((res) => {
+        console.log(res.data.posts)
+        //console.log(noticeList)
+        setNoticeList(res.data.posts)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
+
+  const displayData = noticeList.map((item, index) => {
+    return (
+      <NoticeCard
+        key={index}
+        title={item.title}
+        describe={item.shortContent}
+        name={item.username}
+        date={item.createAt}
+      />
+    )
+  })
+
   return (
     <div>
       <Header2 />
@@ -23,17 +50,7 @@ function StudyroomPage() {
                 <button css={writeBtn}>공지 업로드</button>
               </Link>
             </div>
-            <div css={cardBox}>
-              <NoticeCard />
-              <NoticeCard />
-              <NoticeCard />
-              <NoticeCard />
-              <NoticeCard />
-              <NoticeCard />
-              <NoticeCard />
-              <NoticeCard />
-              <NoticeCard />
-            </div>
+            <div css={cardBox}>{displayData}</div>
           </div>
         </div>
       </Container>

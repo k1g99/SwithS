@@ -1,20 +1,36 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react'
 import { css } from '@emotion/react'
-import { Link } from 'react-router-dom'
+import { api } from '../api'
 
-function ResourceCard() {
+function ResourceCard(props) {
+  const handleResourceClick = (clickedResource) => {
+    console.log('Clicked resource:', clickedResource)
+    // 클릭한 리소스에 대한 작업 수행
+
+    api
+      .get('/file/download', {
+        params: {
+          fileName: clickedResource,
+        },
+        responseType: 'blob',
+      })
+      .then((res) => {
+        const url = window.URL.createObjectURL(new Blob([res.data]))
+        const link = document.createElement('a')
+        link.href = url
+        link.setAttribute('download', clickedResource)
+        document.body.appendChild(link)
+        link.click()
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
   return (
     <div css={container}>
-      <Link to="/resourcedetail">
-        <div css={title}>자료 타이틀</div>
-      </Link>
-      <div css={bottomSection}>
-        <div css={describe}>간단설명 어쩌구</div>
-        <div css={detailbox}>
-          <div>김이지</div>
-          <div>2023.12.01</div>
-        </div>
+      <div css={title} onClick={() => handleResourceClick(props.resourceTitle)}>
+        {props.resourceTitle}
       </div>
     </div>
   )
@@ -36,32 +52,6 @@ const title = css`
   font-weight: 400;
   line-height: 150%; /* 36px */
   margin-bottom: 24px;
-`
-
-const bottomSection = css`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-`
-const describe = css`
-  color: var(--gray-gray-5, #262626);
-  /* Subheading/Subheading */
-  font-family: Pretendard;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%; /* 24px */
-`
-const detailbox = css`
-  float: right;
-  color: var(--gray-gray-3, #999);
-  text-align: right;
-  /* Body/Body 1 */
-  font-family: Pretendard;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%; /* 21px */
 `
 
 export default ResourceCard

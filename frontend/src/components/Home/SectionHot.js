@@ -2,38 +2,19 @@
 import React from 'react'
 import { css } from '@emotion/react'
 
-function SectionHot() {
+function SectionHot(props) {
   return (
-    <section css={hotStyle}>
-      <div css={hotTitle}>이번주 인기글</div>
-      <div css={hotBox}>
-        <div css={hotContent1}>
-          <div css={contentTitle}>카테고리</div>
-          <div css={contentDead}>마감일 | 어쩌구저쩌구</div>
-        </div>
-        <div css={hotContent2}>
-          <div css={contentInfo}>
-            솰라솰라솰라솰라솰라솰라솰라솰라솰라솰라솰라솰라솰라솰라솰라솰라솰라솰라솰라솰라
-          </div>
-        </div>
+    <div css={hotBox}>
+      <div css={hotContent1}>
+        <div css={contentTitle}>{props.title}</div>
+        <div css={contentDead}>마감일 | {props.date}</div>
       </div>
-    </section>
+      <div css={hotContent2}>
+        <div css={contentInfo}>{props.describe}</div>
+      </div>
+    </div>
   )
 }
-
-const hotStyle = css`
-  width: 80%;
-  margin: 20px 7%;
-`
-
-const hotTitle = css`
-  margin: 0 0 24px;
-  color: var(--green-green, #1d482e);
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 150%; /* 36px */
-`
 
 const hotBox = css`
   padding: 29px 22px;

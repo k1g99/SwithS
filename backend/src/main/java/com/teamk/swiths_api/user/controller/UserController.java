@@ -1,5 +1,6 @@
 package com.teamk.swiths_api.user.controller;
 
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,8 @@ import com.teamk.swiths_api.user.controller.dto.Email.EmailResponse;
 import com.teamk.swiths_api.user.controller.dto.SignInDto;
 import com.teamk.swiths_api.user.jwt.SecurityUtil;
 import com.teamk.swiths_api.user.jwt.dto.JwtToken;
+import com.teamk.swiths_api.user.repository.UserRepository;
+import com.teamk.swiths_api.user.repository.entity.UserEntity;
 import com.teamk.swiths_api.user.service.UserService;
 
 import jakarta.validation.Valid;
@@ -31,15 +34,15 @@ import lombok.extern.slf4j.Slf4j;
 public class UserController {
 
     private final UserService userService;
+    private final UserRepository userRepository;
 
-
-    @Value("${jwt.secret}") 
+    @Value("${jwt.secret}")
     private String secretKey;
 
     // TODO: 차후, user 정보 필요할 시 만들기
     // @GetMapping("")
     // public UserEntity getUserById() {
-    //     return userService.getUserById();
+    // return userService.getUserById();
     // }
 
     @PostMapping()
@@ -67,7 +70,6 @@ public class UserController {
 
         EmailResponse result = new EmailResponse(200, true, "인증에 성공하셨습니다.");
 
-
         return result;
     }
 
@@ -82,19 +84,23 @@ public class UserController {
         return jwtToken;
     }
 
-    @PostMapping("/test")
-    public String test() {
-        String name = SecurityUtil.getNowUserName();
+    // @PostMapping("/test")
+    // public String test() {
+    // String name = SecurityUtil.getNowUserName();
 
-        return name + "님 환영합니다.";
+    // return name + "님 환영합니다.";
+    // }
+
+    @GetMapping("/getUserInfo")
+    public Optional<UserEntity> getUserInfo() {
+        Optional<UserEntity> userInfo = userRepository.findByUsername(SecurityUtil.getNowUserName());
+
+        return userInfo;
     }
 
     @GetMapping("/hikj")
     public String hikj() {
 
-
-
         return secretKey;
     }
 }
-

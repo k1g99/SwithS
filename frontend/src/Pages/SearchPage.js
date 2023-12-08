@@ -44,7 +44,7 @@ function SearchPage() {
       })
       .then((response) => {
         setData(response.data)
-        console.log(response.data)
+        // console.log(response.data)
       })
   }, [targetWord])
 

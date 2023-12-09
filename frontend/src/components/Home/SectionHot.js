@@ -10,7 +10,11 @@ function SectionHot(props) {
         <div css={contentDead}>마감일 | {props.date}</div>
       </div>
       <div css={hotContent2}>
-        <div css={contentInfo}>{props.describe}</div>
+        <div css={contentInfo}>
+          {props.describe.length > 20
+            ? props.describe.substring(0, 20) + '...'
+            : props.describe}
+        </div>
       </div>
     </div>
   )
@@ -18,8 +22,8 @@ function SectionHot(props) {
 
 const hotBox = css`
   padding: 29px 22px;
-  width: 250px;
-  height: 100px;
+  width: 300px;
+  height: 130px;
   flex-shrink: 0;
   border-radius: 30px;
   border: 3px solid var(--gray-gray-2, #ccc);

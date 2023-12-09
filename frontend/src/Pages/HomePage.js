@@ -7,6 +7,7 @@ import SectionCat from '../components/Home/SectionCat'
 import Container from '../components/global/Container'
 import banner from '../images/banner.png'
 import { api } from '../api'
+import { Link } from 'react-router-dom'
 
 function HomePage() {
   const [cardList, setCardList] = useState([])
@@ -24,12 +25,14 @@ function HomePage() {
 
   const displayData = cardList.slice(0, 4).map((item, index) => {
     return (
-      <SectionHot
-        key={index}
-        title={item.name}
-        describe={item.description}
-        date={item.endAt}
-      />
+      <Link key={index} to={`/studydetail/${item.id}`}>
+        <SectionHot
+          key={index}
+          title={item.name}
+          describe={item.description}
+          date={item.endAt}
+        />
+      </Link>
     )
   })
 
@@ -41,7 +44,7 @@ function HomePage() {
           <img src={banner} css={imageBox}></img>
         </div>
         <div css={hotStyle}>
-          <div css={hotTitle}>최신글</div>
+          <div css={hotTitle}>최신 스터디</div>
           <div css={displayBox}>{displayData}</div>
         </div>
         <SectionCat />

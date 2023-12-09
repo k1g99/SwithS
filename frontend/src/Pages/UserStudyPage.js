@@ -5,58 +5,30 @@ import Header2 from '../components/Home/Header2'
 import Container from '../components/global/Container'
 import { api } from '../api'
 import { Link } from 'react-router-dom'
-import StudyCard from '../components/StudyCard'
+import MyStudyCard from '../components/MyStudyCard'
 
 function UserStudyPage() {
   const user_id = localStorage.getItem('id')
   const [clubList, setClubList] = useState([])
 
-  // 테스트 용 --> 지워라!!!!
   useEffect(() => {
     api
-      .get('/clubs/searchs', {
-        params: {
-          keyword: '',
-          major: 1,
-        },
+      .get(`user/${user_id}/club`)
+      .then((res) => {
+        if (res.data.success === false) {
+          throw new Error('user has no club')
+        }
+        setClubList(res.data.clubs)
       })
-      .then((response) => {
-        setClubList(response.data.clubs)
-        // console.log(response.data)
+      .catch(() => {
+        // console.log(err)
       })
-
-    console.log(user_id)
   }, [])
-
-  // useEffect(() => {
-  //   api
-  //     .get(`user/${user_id}/club`)
-  //     .then((res) => {
-  //       setClubList(res.data.clubs)
-  //     })
-  //     .catch((err) => {
-  //       console.log(err)
-  //     })
-  // }, [])
 
   const displayData = () => {
     return clubList.map((item) => (
-      <Link key={item.id} to={`/studyroom/${item.id}`}>
-        <StudyCard
-          key={item.id}
-          studyName={item.name}
-          studyCategory={item.category}
-          studyPeriod={
-            new Date(item.startAt).toLocaleDateString() +
-            ' ~ ' +
-            new Date(item.endAt).toLocaleDateString()
-          }
-          studyDescription={
-            item.description.length > 20
-              ? item.description.substring(0, 20) + '...'
-              : item.description
-          }
-        />
+      <Link key={item.clubId} to={`/studyroom/${item.clubId}`}>
+        <MyStudyCard key={item.clubId} studyName={item.clubName} />
       </Link>
     ))
   }

@@ -12,10 +12,6 @@ export function userLogin() {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
       .then((res) => {
-        if (res.data === null) {
-          console.log('토큰 오류')
-          return false
-        }
         localStorage.setItem('id', res.data.id)
         return true
       })

@@ -94,5 +94,5 @@ jobs:
       - name: Run DevServer
         run: |
           chmod +x dev-run.sh
-          ./dev-run.sh
+          sudo ./dev-run.sh
         working-directory: ${{ secrets.DEV_RUN_DIR }}/build/libs

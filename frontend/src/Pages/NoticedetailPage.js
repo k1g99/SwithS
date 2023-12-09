@@ -7,8 +7,11 @@ import Container from '../components/global/Container'
 import { css } from '@emotion/react'
 import Comment from '../components/Comment'
 import { api } from '../api'
+import { useParams } from 'react-router-dom'
 
 function NoticedetailPage() {
+  const params = useParams()
+  const clubId = params.study_id
   const [data, setData] = useState([])
 
   React.useEffect(() => {
@@ -30,7 +33,7 @@ function NoticedetailPage() {
         <div css={studyName}>스터디명</div>
         <div css={roomSection}>
           <div css={leftSection}>
-            <Sidebar2 />
+            <Sidebar2 clubId={clubId} />
           </div>
           <div css={rightSection}>
             <div css={title}>{data.title}</div>

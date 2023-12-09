@@ -3,13 +3,13 @@ import React from 'react'
 import { css } from '@emotion/react'
 import { Link } from 'react-router-dom'
 
-function Sidebar2() {
+function Sidebar2({ clubId }) {
   return (
     <div css={sidebarStyle}>
-      <Link to="/studyroom">
+      <Link to={`/studyroom/${clubId}`}>
         <button css={menu}>홈 / 공지</button>
       </Link>
-      <Link to="/resource">
+      <Link to={`/resource/${clubId}`}>
         <button css={menu}>자료실</button>
       </Link>
     </div>

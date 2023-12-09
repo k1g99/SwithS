@@ -60,13 +60,19 @@ function App() {
       <Route path="/scheduleupload" element={<ScheduleuploadPage />} />
       <Route path="/studydetail/:item_id" element={<StudydetailPage />} />
       <Route path="/category" element={<CategoryPage />} />
-      <Route path="/studyroom" element={<StudyroomPage />} />
+      <Route path="/studyroom/:study_id" element={<StudyroomPage />} />
       <Route path="/mystudy" element={<UserStudyPage />} />
       <Route path="/noticedetail" element={<NoticedetailPage />} />
-      <Route path="/resource" element={<ResourcePage />} />
-      <Route path="/resourcedetail" element={<ResourcedetailPage />} />
-      <Route path="/resourceupload" element={<ResourceuploadPage />} />
-      <Route path="/noticeupload" element={<NoticeuploadPage />} />
+      <Route path="/resource/:study_id" element={<ResourcePage />} />
+      <Route
+        path="/resourcedetail/:study_id"
+        element={<ResourcedetailPage />}
+      />
+      <Route
+        path="/resourceupload/:study_id"
+        element={<ResourceuploadPage />}
+      />
+      <Route path="/noticeupload/:study_id" element={<NoticeuploadPage />} />
     </Routes>
   )
 }

@@ -7,8 +7,12 @@ import Sidebar2 from '../components/Sidebar2'
 import upload from '../images/upload.svg'
 import Button3 from '../components/Button3'
 import { api } from '../api'
+import { useParams } from 'react-router-dom'
 
 function ResourceuploadPage() {
+  const params = useParams()
+  const clubId = params.study_id
+
   const fileInput = useRef(null)
 
   const onClickFileUpload = () => {
@@ -36,7 +40,7 @@ function ResourceuploadPage() {
         <div css={studyName}>스터디명</div>
         <div css={uploadSection}>
           <div css={leftSection}>
-            <Sidebar2 />
+            <Sidebar2 clubId={clubId} />
           </div>
           <div css={rightSection}>
             <div css={uploadText}>자료를 업로드하세요.</div>

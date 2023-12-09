@@ -6,9 +6,11 @@ import Container from '../components/global/Container'
 import Sidebar2 from '../components/Sidebar2'
 import Button3 from '../components/Button3'
 import { api } from '../api'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 function NoticeuploadPage() {
+  const params = useParams()
+  const clubId = params.study_id
   const [noticeName, setNoticeName] = useState('')
   const [noticeDesc, setNoticeDesc] = useState('')
 
@@ -24,8 +26,8 @@ function NoticeuploadPage() {
     }
 
     api
-      .post('/post/1', {
-        user: 1,
+      .post(`/post/${clubId}`, {
+        user: localStorage.getItem('id'),
         title: noticeName,
         content: noticeDesc,
         shortContent:
@@ -50,7 +52,7 @@ function NoticeuploadPage() {
         <div css={studyName}>스터디명</div>
         <div css={uploadSection}>
           <div css={leftSection}>
-            <Sidebar2 />
+            <Sidebar2 clubId={clubId} />
           </div>
           <div css={rightSection}>
             <input
@@ -63,7 +65,7 @@ function NoticeuploadPage() {
               onChange={(e) => setNoticeDesc(e.target.value)}
             ></textarea>
             <div css={buttonBox}>
-              <Link to="/studyroom">
+              <Link to={`/studyroom/${clubId}`}>
                 <Button3 text={'등록'} onClick={submitHandler} />
               </Link>
             </div>

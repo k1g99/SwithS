@@ -2,8 +2,23 @@
 import React from 'react'
 import { css } from '@emotion/react'
 import { Link } from 'react-router-dom'
+import { deleteCookie } from './global/cookie'
 
 function Dropdown() {
+  const actionLogout = () => {
+    // delete token from cookie
+    deleteCookie('refreshToken')
+    deleteCookie('accessToken')
+
+    // delete user
+    localStorage.removeItem('id')
+    localStorage.setItem('isLogin', false)
+
+    // refresh page
+    alert('로그아웃 되었습니다.')
+    window.location.reload()
+  }
+
   return (
     <div css={dropdownStyle}>
       <div css={dropdownContainer}>
@@ -17,7 +32,9 @@ function Dropdown() {
         </div>
       </div>
       <div css={logout}>
-        <div css={logoutText}>로그아웃</div>
+        <button css={logoutButton} onClick={actionLogout}>
+          로그아웃
+        </button>
       </div>
     </div>
   )
@@ -34,6 +51,7 @@ const dropdownStyle = css`
   width: 230px;
   height: 205px;
   flex-shrink: 0;
+  background-color: white;
 `
 
 const dropdownContainer = css`
@@ -62,14 +80,28 @@ const logout = css`
   border-top: 1px solid var(--green-green, #1d482e);
   padding: 15px;
 `
-
-const logoutText = css`
+const logoutButton = css`
   color: var(--gray-gray-3, #999);
   /* Caption/Caption */
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
+
   line-height: 150%; /* 18px */
+  border: none;
+  background-color: white;
+  cursor: pointer;
 `
+
+// const logoutText = css`
+//   color: var(--gray-gray-3, #999);
+//   /* Caption/Caption */
+//   font-size: 14px;
+//   font-style: normal;
+//   font-weight: 400;
+//   line-height: 150%; /* 18px */
+//   border: none;
+//   background-color: white;
+// `
 
 export default Dropdown

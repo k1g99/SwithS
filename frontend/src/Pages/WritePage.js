@@ -77,7 +77,7 @@ function WritePage() {
           description: clubDescription,
           category: CLUB_TYPE[clubType],
           major: clubCategory,
-          leaderId: 1, // TODO: 로그인한 유저의 id로 변경
+          leaderId: localStorage.getItem('id'),
           numRecruit: clubRecruitMember,
           registerStartAt: clubRecruitStartDate,
           registerEndAt: clubRecruitEndDate,

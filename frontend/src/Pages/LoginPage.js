@@ -3,11 +3,65 @@ import React from 'react'
 import { css } from '@emotion/react'
 import Header2 from '../components/Home/Header2'
 import Button2 from '../components/Button2'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import InputBox from '../components/InputBox1'
 import Container from '../components/global/Container'
+import { api } from '../api'
+import { setCookie } from '../components/global/cookie'
 
 function LoginPage() {
+  const navigate = useNavigate()
+
+  const [username, setUsername] = React.useState('')
+  const [password, setPassword] = React.useState('')
+
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value)
+  }
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value)
+  }
+
+  const loadUserId = (at) => {
+    api
+      .get('/user/getUserInfo', {
+        headers: { Authorization: `Bearer ${at}` },
+      })
+      .then((res) => {
+        console.log(res)
+        localStorage.setItem('id', res.data.id)
+      })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    const data = {
+      username: username,
+      password: password,
+    }
+
+    api
+      .post('/user/signin', data)
+      .then((res) => {
+        // console.log(res)
+        const at = res.data.accessToken
+        setCookie('accessToken', at)
+        setCookie('refreshToken', res.data.refreshToken)
+        loadUserId(at)
+        localStorage.setItem('isLogin', true)
+        alert('로그인 성공')
+        // localStorage.setItem('id', res.data.id)
+        // redirect to main page
+        navigate('/')
+      })
+      .catch(() => {
+        // console.log(err)
+        alert('로그인 실패')
+      })
+  }
+
   return (
     <div>
       <Header2 />
@@ -16,11 +70,18 @@ function LoginPage() {
         <div css={loginSection}>
           <form css={loginBox}>
             <div>
-              <InputBox placeholder={'이메일'} />
-              <InputBox placeholder={'비밀번호'} type={'password'} />
+              <InputBox
+                placeholder={'username'}
+                onChange={handleUsernameChange}
+              />
+              <InputBox
+                placeholder={'password'}
+                type={'password'}
+                onChange={handlePasswordChange}
+              />
             </div>
             <div css={buttonBox}>
-              <Button2 text={'로그인'} />
+              <Button2 text={'로그인'} onClick={handleSubmit} />
               <Link to="/register">
                 <div css={registerText}>회원가입</div>
               </Link>
@@ -49,7 +110,7 @@ const loginBox = css`
   margin-top: 174px;
 `
 
-// const emailInput = css`
+// const usernameInput = css`
 //   margin-bottom: 16px;
 //   display: flex;
 //   width: 600px;

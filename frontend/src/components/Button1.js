@@ -2,8 +2,8 @@
 import React from 'react'
 import { css } from '@emotion/react'
 
-function Button1() {
-  return <button css={button1Style}>새글쓰기</button>
+function Button1({ text }) {
+  return <button css={button1Style}>{text}</button>
 }
 
 const button1Style = css`
@@ -16,6 +16,7 @@ const button1Style = css`
   border-radius: 999px;
   border: 1.5px solid var(--gray-gray-2, #ccc);
   background: var(--gray-white, #fff);
+  cursor: pointer;
 `
 
 export default Button1

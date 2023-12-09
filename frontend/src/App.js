@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import HomePage from './Pages/HomePage'
 import WritePage from './Pages/WritePage'
 import LoginPage from './Pages/LoginPage'
 import RegisterPage from './Pages/RegisterPage'
-import { useEffect } from 'react'
-import { api } from './api'
+// import { useEffect } from 'react'
+// import { api } from './api'
 import SearchPage from './Pages/SearchPage'
 import ScheduleuploadPage from './Pages/ScheduleuploadPage'
 import StudydetailPage from './Pages/StudydetailPage'
@@ -17,18 +17,36 @@ import ResourcePage from './Pages/ResourcePage'
 import ResourcedetailPage from './Pages/ResourcedetailPage'
 import ResourceuploadPage from './Pages/ResourceuploadPage'
 import NoticeuploadPage from './Pages/NoticeuploadPage'
+import { userLogin } from './components/hooks/UserLogin'
 
 function App() {
+  // 로그인 상태 LocalStorage에 저장
+  //   useEffect(() => {
+  //     if (userLogin()) {
+  //       localStorage.setItem('isLogin', true)
+  //     } else {
+  //       localStorage.setItem('isLogin', false)
+  //     }
+  //   }, [])
+
   useEffect(() => {
-    // Axios 테스트
-    api
-      .get('/')
-      .then((response) => {
-        console.log(response.data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    const checkLogin = async () => {
+      try {
+        const isLoggedIn = await userLogin()
+        localStorage.setItem('isLogin', isLoggedIn)
+        if (isLoggedIn) {
+          //   console.log('User is logged in')
+        } else {
+          //   console.log('User is not logged in')
+          localStorage.removeItem('id')
+        }
+      } catch (error) {
+        console.error('Error checking login status:', error)
+        localStorage.setItem('isLogin', false)
+      }
+    }
+
+    checkLogin()
   }, [])
 
   return (

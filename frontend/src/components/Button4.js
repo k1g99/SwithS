@@ -40,6 +40,7 @@ const button4Style = css`
   font-style: normal;
   font-weight: 500;
   line-height: 150%; /* 30px */
+  cursor: pointer;
 `
 
 export default Button4

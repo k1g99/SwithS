@@ -81,6 +81,11 @@ function SearchPage() {
               ' ~ ' +
               new Date(item.endAt).toLocaleDateString()
             }
+            studyDescription={
+              item.description.length > 20
+                ? item.description.substring(0, 20) + '...'
+                : item.description
+            }
           />
         </Link>
       ))
@@ -98,6 +103,11 @@ function SearchPage() {
                 new Date(item.startAt).toLocaleDateString() +
                 ' ~ ' +
                 new Date(item.endAt).toLocaleDateString()
+              }
+              studyDescription={
+                item.description.length > 20
+                  ? item.description.substring(0, 20) + '...'
+                  : item.description
               }
             />
           </Link>

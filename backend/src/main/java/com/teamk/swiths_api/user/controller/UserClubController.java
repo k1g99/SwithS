@@ -17,11 +17,12 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("")
+@RequestMapping("userclub")
 public class UserClubController {
     private final UserClubService userClubService;
+
     @GetMapping("/clubs/{club}/user")
-    public FindUserByClubResponse findUser(@PathVariable Long club){
+    public FindUserByClubResponse findUser(@PathVariable Long club) {
         try {
             List<UserClubEntity> userClubList = userClubService.findByClub(club);
             List<UserDto> userDtos = new ArrayList<>();
@@ -29,10 +30,10 @@ public class UserClubController {
             for (UserClubEntity userClubEntity : userClubList) {
                 UserEntity userEntity = userClubEntity.getUser();
                 UserDto userDto = UserDto.builder()
-                    .userId(userEntity.getId())
-                    .userName(userEntity.getUsername())
-                    // Add other fields as needed
-                    .build();
+                        .userId(userEntity.getId())
+                        .userName(userEntity.getUsername())
+                        // Add other fields as needed
+                        .build();
                 userDtos.add(userDto);
             }
             FindUserByClubResponse result = new FindUserByClubResponse(200, true, "스터디의 유저정보조회에 성공하였습니다.", userDtos);
@@ -44,17 +45,17 @@ public class UserClubController {
     }
 
     @GetMapping("/user/{user}/club")
-    public FindClubByUserResponse findClub(@PathVariable Long user){
+    public FindClubByUserResponse findClub(@PathVariable Long user) {
         try {
             List<UserClubEntity> UserClubList = userClubService.findByUser(user);
             List<ClubDto> clubDtos = new ArrayList<>();
 
-            for(UserClubEntity userClubEntity : UserClubList){
+            for (UserClubEntity userClubEntity : UserClubList) {
                 ClubEntity clubEntity = userClubEntity.getClub();
                 ClubDto clubDto = ClubDto.builder()
-                    .clubId(clubEntity.getId())
-                    .clubName(clubEntity.getName())
-                    .build();
+                        .clubId(clubEntity.getId())
+                        .clubName(clubEntity.getName())
+                        .build();
                 clubDtos.add(clubDto);
             }
             FindClubByUserResponse result = new FindClubByUserResponse(200, true, "스터디의 유저정보조회에 성공하였습니다.", clubDtos);
@@ -66,21 +67,23 @@ public class UserClubController {
     }
 
     @GetMapping("/clubs/{club}/user/{user}")
-    public CompareClubTimetableBetweenUserResponse CompareClubTimetableBetweenUser(@PathVariable Long club,@PathVariable Long user){
-        CreateUserClubRequest createUserClubRequest = new CreateUserClubRequest(user,club);
+    public CompareClubTimetableBetweenUserResponse CompareClubTimetableBetweenUser(@PathVariable Long club,
+            @PathVariable Long user) {
+        CreateUserClubRequest createUserClubRequest = new CreateUserClubRequest(user, club);
         List<Long> Timetables = userClubService.CompareClubTimetableBetweenUser(createUserClubRequest);
 
-        CompareClubTimetableBetweenUserResponse result = new CompareClubTimetableBetweenUserResponse(200,true,"스터디와 유저의 시간표 차이 조회에 성공하였습니다.", Timetables);
+        CompareClubTimetableBetweenUserResponse result = new CompareClubTimetableBetweenUserResponse(200, true,
+                "스터디와 유저의 시간표 차이 조회에 성공하였습니다.", Timetables);
 
         return result;
     }
 
     @PostMapping("/clubs/{club}/user/{user}")
-    public CreateUserClubResponse createUserClub (@PathVariable Long club,@PathVariable Long user){
-        CreateUserClubRequest createUserClubRequest = new CreateUserClubRequest(user,club);
+    public CreateUserClubResponse createUserClub(@PathVariable Long club, @PathVariable Long user) {
+        CreateUserClubRequest createUserClubRequest = new CreateUserClubRequest(user, club);
         userClubService.createUserClub(createUserClubRequest);
 
-        CreateUserClubResponse result = new CreateUserClubResponse(200, true,"유저가 스터디가입에 성공했습니다.");
+        CreateUserClubResponse result = new CreateUserClubResponse(200, true, "유저가 스터디가입에 성공했습니다.");
 
         return result;
     }

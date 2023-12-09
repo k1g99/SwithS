@@ -34,5 +34,7 @@ public class CreateClub {
         private int statusCode;
         private boolean isSuccess;
         private String message;
+        private Long clubId;
+
     }
 }

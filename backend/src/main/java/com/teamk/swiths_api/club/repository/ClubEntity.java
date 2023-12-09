@@ -17,6 +17,7 @@ import lombok.*;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.teamk.swiths_api.major.repository.MajorEntity;
@@ -28,8 +29,9 @@ import com.teamk.swiths_api.user.repository.entity.UserEntity;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@JsonIgnoreProperties({"leader"})
+@JsonIgnoreProperties({ "leader" })
 @Table(name = "club")
+@DynamicInsert
 public class ClubEntity {
 
     @Id
@@ -84,19 +86,22 @@ public class ClubEntity {
     @Column(name = "timetable_wed")
     @ColumnDefault("0")
     private Long timetableWed;
+
     @Column(name = "timetable_thu")
     @ColumnDefault("0")
     private Long timetableThu;
+
     @Column(name = "timetable_fri")
     @ColumnDefault("0")
     private Long timetableFri;
+
     @Column(name = "timetable_sat")
     @ColumnDefault("0")
     private Long timetableSat;
+
     @Column(name = "timetable_sun")
     @ColumnDefault("0")
     private Long timetableSun;
-
 
     @CreationTimestamp
     @Column(name = "created_at")

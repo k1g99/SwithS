@@ -8,8 +8,8 @@ else
     JAVAPID=$(pgrep java | awk '{print $1}')
     kill -9 $JAVAPID
     echo "Java process has been killed"
-    sleep 5
+    sleep 10 # wait for 10 seconds
 fi
 
 # deploy new java package
-nohup java -jar swiths_api-0.0.1-SNAPSHOT.jar &
+nohup java -jar swiths_api-0.0.1-SNAPSHOT.jar > output.log 2>&1 &

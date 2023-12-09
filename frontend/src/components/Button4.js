@@ -19,7 +19,7 @@ const Button4 = ({ id, text }) => {
 
   return (
     <button id={id} css={button4Style} onClick={clickCategoryBtn}>
-      {text}
+      {'# ' + text}
     </button>
   )
 }
@@ -33,10 +33,10 @@ const button4Style = css`
   width: auto;
   padding: 0 20px;
   height: 38px;
-  border-radius: 999px;
-  border: 1.5px solid var(--gray-gray-2, #ccc);
-  background: var(--gray-white, #fff);
-  color: var(--gray-gray-5, #262626);
+  border-radius: 15px;
+  border: none;
+  background: #356b37c4;
+  color: white;
   font-size: 15px;
   font-style: normal;
   font-weight: 500;

@@ -7,7 +7,7 @@ function SectionHot(props) {
     <div css={hotBox}>
       <div css={hotContent1}>
         <div css={contentTitle}>{props.title}</div>
-        <div css={contentDead}>마감일 | {props.date}</div>
+        <div css={contentDead}>마감일 | {props.date.substring(0, 10)}</div>
       </div>
       <div css={hotContent2}>
         <div css={contentInfo}>

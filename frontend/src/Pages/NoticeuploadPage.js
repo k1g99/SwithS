@@ -49,7 +49,7 @@ function NoticeuploadPage() {
     <div>
       <Header2 />
       <Container>
-        <div css={studyName}>스터디명</div>
+        <div css={studyName}>새 공지사항 입력</div>
         <div css={uploadSection}>
           <div css={leftSection}>
             <Sidebar2 clubId={clubId} />

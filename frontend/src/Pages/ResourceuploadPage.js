@@ -37,7 +37,7 @@ function ResourceuploadPage() {
     <div>
       <Header2 />
       <Container>
-        <div css={studyName}>스터디명</div>
+        <div css={studyName}>자료 업로드</div>
         <div css={uploadSection}>
           <div css={leftSection}>
             <Sidebar2 clubId={clubId} />
@@ -103,7 +103,9 @@ const uploadButton = css`
   border: none;
   background: none;
 `
-const img = css``
+const img = css`
+  cursor: pointer;
+`
 const filetitle = css`
   margin: 0px;
 `

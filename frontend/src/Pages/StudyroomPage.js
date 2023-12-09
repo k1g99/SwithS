@@ -44,6 +44,8 @@ function StudyroomPage() {
     return (
       <NoticeCard
         key={index}
+        club_id={clubId}
+        post_id={item.id}
         title={item.title}
         describe={item.shortContent}
         name={item.username}

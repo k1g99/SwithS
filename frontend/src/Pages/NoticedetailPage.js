@@ -11,12 +11,13 @@ import { useParams } from 'react-router-dom'
 
 function NoticedetailPage() {
   const params = useParams()
-  const clubId = params.study_id
+  const clubId = params.club_id
+  const postId = params.post_id
   const [data, setData] = useState([])
 
   React.useEffect(() => {
     api
-      .get('/post/detail/1')
+      .get(`/post/detail/${postId}`)
       .then((res) => {
         setData(res.data.post)
         console.log(res.data)
@@ -30,7 +31,7 @@ function NoticedetailPage() {
     <div>
       <Header2 />
       <Container>
-        <div css={studyName}>스터디명</div>
+        <div css={studyName}>게시글</div>
         <div css={roomSection}>
           <div css={leftSection}>
             <Sidebar2 clubId={clubId} />

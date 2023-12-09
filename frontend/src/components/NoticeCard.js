@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 function NoticeCard(props) {
   return (
     <div css={container}>
-      <Link to="/noticedetail">
+      <Link to={`/noticedetail/${props.club_id}/${props.post_id}`}>
         <div css={title}>{props.title}</div>
       </Link>
       <div css={bottomSection}>

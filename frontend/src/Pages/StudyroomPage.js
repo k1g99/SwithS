@@ -31,7 +31,7 @@ function StudyroomPage() {
     api
       .get(`/post/${clubId}`)
       .then((res) => {
-        console.log(res.data.posts)
+        // console.log(res.data.posts)
         //console.log(noticeList)
         setNoticeList(res.data.posts)
       })

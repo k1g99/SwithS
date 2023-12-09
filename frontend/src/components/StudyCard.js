@@ -13,7 +13,7 @@ function StudyCard(props) {
           {props.studyName}
           <div css={studyCategory}>{props.studyCategory}</div>
         </div>
-        <div css={studyPeriod}>{props.studyPeriod}</div>
+        <div css={studyPeriod}>{'진행 기간 :  ' + props.studyPeriod}</div>
         <div css={studyDescription}> {props.studyDescription}</div>
       </div>
     </div>
@@ -58,7 +58,7 @@ const studyPeriod = css`
   margin-top: 13px;
   color: var(--gray-gray-5, #262626);
   /* Body/Body 2 */
-  font-size: 14px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 500;
   line-height: 150%; /* 21px */
@@ -95,6 +95,7 @@ const studyDescription = css`
   font-style: normal;
   font-weight: 400;
   line-height: 150%; /* 21px */
+  padding-top: 20px;
 `
 
 export default StudyCard

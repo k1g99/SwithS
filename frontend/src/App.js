@@ -14,7 +14,6 @@ import CategoryPage from './Pages/CategoryPage'
 import StudyroomPage from './Pages/StudyroomPage'
 import NoticedetailPage from './Pages/NoticedetailPage'
 import ResourcePage from './Pages/ResourcePage'
-import ResourcedetailPage from './Pages/ResourcedetailPage'
 import ResourceuploadPage from './Pages/ResourceuploadPage'
 import NoticeuploadPage from './Pages/NoticeuploadPage'
 import { userLogin } from './components/hooks/UserLogin'
@@ -62,12 +61,11 @@ function App() {
       <Route path="/category" element={<CategoryPage />} />
       <Route path="/studyroom/:study_id" element={<StudyroomPage />} />
       <Route path="/mystudy" element={<UserStudyPage />} />
-      <Route path="/noticedetail" element={<NoticedetailPage />} />
-      <Route path="/resource/:study_id" element={<ResourcePage />} />
       <Route
-        path="/resourcedetail/:study_id"
-        element={<ResourcedetailPage />}
+        path="/noticedetail/:study_id/:post_id"
+        element={<NoticedetailPage />}
       />
+      <Route path="/resource/:study_id" element={<ResourcePage />} />
       <Route
         path="/resourceupload/:study_id"
         element={<ResourceuploadPage />}

@@ -33,7 +33,8 @@ function StudydetailPage() {
           <div css={titleContainer}>
             <div css={studytitle}>{data.name}</div>
             <div css={studyDate}>
-              {new Date(data.startAt).toLocaleDateString() +
+              {'스터디 진행 기간 :  ' +
+                new Date(data.startAt).toLocaleDateString() +
                 ' ~ ' +
                 new Date(data.endAt).toLocaleDateString()}
             </div>
@@ -45,7 +46,10 @@ function StudydetailPage() {
             </div>
             <div css={detailBox}>
               <DetailText category={'전공'} text={data.major} />
-              <DetailText category={'모집기간'} text={'추가해야됨'} />
+              <DetailText
+                category={'모집기간'}
+                text={data.register_startAt + ' ~ ' + data.register_endAt}
+              />
             </div>
           </div>
           <div css={bottomContainer}>

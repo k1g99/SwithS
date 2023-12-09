@@ -65,6 +65,7 @@ const searchBox = css`
 const searchBtnStyle = css`
   border: none;
   background: none;
+  cursor: pointer;
 `
 
 export default Search

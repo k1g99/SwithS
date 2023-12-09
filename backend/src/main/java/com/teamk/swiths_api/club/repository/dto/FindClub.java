@@ -3,6 +3,8 @@ package com.teamk.swiths_api.club.repository.dto;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.joda.time.DateTime;
+
 import com.teamk.swiths_api.club.repository.Category;
 import com.teamk.swiths_api.club.repository.ClubEntity;
 
@@ -19,7 +21,7 @@ public class FindClub {
         private List<ClubEntity> clubs;
     }
 
-    @Getter //jackson 오류때문에 entity 바로 반환이 아닌 dto로 변환 후 반환하는 형식으로 코드를 짬.
+    @Getter // jackson 오류때문에 entity 바로 반환이 아닌 dto로 변환 후 반환하는 형식으로 코드를 짬.
     public static class FindClubResponse {
         private int statusCode;
         private boolean isSuccess;
@@ -33,9 +35,10 @@ public class FindClub {
         private LocalDateTime endAt;
         private String description;
         private int numRecruit;
+        private LocalDateTime register_startAt;
+        private LocalDateTime register_endAt;
 
-        public FindClubResponse(int statusCode, boolean isSuccess, String message, ClubEntity entity)
-        {
+        public FindClubResponse(int statusCode, boolean isSuccess, String message, ClubEntity entity) {
             this.statusCode = statusCode;
             this.isSuccess = isSuccess;
             this.id = entity.getId();
@@ -47,6 +50,8 @@ public class FindClub {
             this.endAt = entity.getEndAt();
             this.description = entity.getDescription();
             this.numRecruit = entity.getNumRecruit();
+            this.register_startAt = entity.getRegisterStartAt();
+            this.register_endAt = entity.getRegisterEndAt();
         }
     }
 

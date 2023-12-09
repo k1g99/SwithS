@@ -39,6 +39,7 @@ function ResourceuploadPage() {
             <Sidebar2 />
           </div>
           <div css={rightSection}>
+            <div css={uploadText}>자료를 업로드하세요.</div>
             <div css={uploadBox}>
               <input
                 type="file"
@@ -106,6 +107,15 @@ const filetitle = css`
 const buttonBox = css`
   margin-top: 40px;
   margin-left: 92.5%;
+`
+
+const uploadText = css`
+  color: var(--gray-gray-5, #262626);
+  font-family: Pretendard-Regular;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 36px */
 `
 
 export default ResourceuploadPage

@@ -16,6 +16,7 @@ const button1Style = css`
   border-radius: 999px;
   border: 1.5px solid var(--gray-gray-2, #ccc);
   background: var(--gray-white, #fff);
+  cursor: pointer;
 `
 
 export default Button1

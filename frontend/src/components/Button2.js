@@ -27,6 +27,7 @@ const button2Style = css`
   border-radius: 8px;
   background: var(--green-green, #1d482e);
   color: var(--gray-white, #fff);
+  cursor: pointer;
   /* Headline/Headline */
   font-size: 20px;
   font-style: normal;

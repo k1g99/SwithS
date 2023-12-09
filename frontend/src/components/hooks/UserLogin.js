@@ -12,7 +12,7 @@ export function userLogin() {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
       .then((res) => {
-        localStorage.setItem('id', res.data.id)
+        localStorage.setItem('id', res.data)
         return true
       })
       .catch(() => {

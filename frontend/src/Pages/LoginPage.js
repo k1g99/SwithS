@@ -34,9 +34,9 @@ function LoginPage() {
     api
       .post('/user/signin', data)
       .then((res) => {
-        // console.log(res)
-        setCookie('accessToken', res.data.accessToken)
-        setCookie('refreshToken', res.data.refreshToken)
+        console.log(res)
+        setCookie('accessToken', res.data.jwtToken.accessToken)
+        setCookie('refreshToken', res.data.jwtToken.refreshToken)
         localStorage.setItem('isLogin', true)
         localStorage.setItem('id', res.data.userId)
         alert('로그인 성공')

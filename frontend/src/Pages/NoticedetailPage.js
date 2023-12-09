@@ -5,7 +5,7 @@ import Header2 from '../components/Home/Header2'
 import Sidebar2 from '../components/Sidebar2'
 import Container from '../components/global/Container'
 import { css } from '@emotion/react'
-import Comment from '../components/Comment'
+// import Comment from '../components/Comment'
 import { api } from '../api'
 import { useParams } from 'react-router-dom'
 
@@ -44,15 +44,15 @@ function NoticedetailPage() {
             <div css={textBox}>
               <div css={headerText}>{data.content}</div>
             </div>
-            <div>
+            {/* <div>
               <Comment />
               <Comment />
               <Comment />
-            </div>
-            <div css={writeBox}>
+            </div> */}
+            {/* <div css={writeBox}>
               <textarea css={writeText}></textarea>
               <button css={writeBtn}>작성하기</button>
-            </div>
+            </div> */}
           </div>
         </div>
       </Container>
@@ -133,38 +133,38 @@ const headerText = css`
   line-height: 150%; /* 21px */
 `
 
-const writeBox = css`
-  display: flex;
-  margin-top: 28px;
-  gap: 20px;
-  align-items: flex-start;
-  width: 100%;
-`
+// const writeBox = css`
+//   display: flex;
+//   margin-top: 28px;
+//   gap: 20px;
+//   align-items: flex-start;
+//   width: 100%;
+// `
 
-const writeText = css`
-  width: 90%;
-  height: 160px;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid var(--gray-gray-2, #ccc);
-`
+// const writeText = css`
+//   width: 90%;
+//   height: 160px;
+//   padding: 10px;
+//   border-radius: 8px;
+//   border: 1px solid var(--gray-gray-2, #ccc);
+// `
 
-const writeBtn = css`
-  width: 130px;
-  display: flex;
-  justify-content: center;
-  padding: 18px;
-  align-items: center;
-  align-self: stretch;
-  border-radius: 8px;
-  background: var(--green-green, #1d482e);
-  color: var(--gray-white, #fff);
-  /* Title/Title */
-  font-family: Pretendard;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 150%; /* 30px */
-`
+// const writeBtn = css`
+//   width: 130px;
+//   display: flex;
+//   justify-content: center;
+//   padding: 18px;
+//   align-items: center;
+//   align-self: stretch;
+//   border-radius: 8px;
+//   background: var(--green-green, #1d482e);
+//   color: var(--gray-white, #fff);
+//   /* Title/Title */
+//   font-family: Pretendard;
+//   font-size: 20px;
+//   font-style: normal;
+//   font-weight: 500;
+//   line-height: 150%; /* 30px */
+// `
 
 export default NoticedetailPage

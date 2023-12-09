@@ -48,7 +48,11 @@ function StudydetailPage() {
               <DetailText category={'전공'} text={data.major} />
               <DetailText
                 category={'모집기간'}
-                text={data.register_startAt + ' ~ ' + data.register_endAt}
+                text={
+                  new Date(data.register_startAt).toLocaleDateString() +
+                  ' ~ ' +
+                  new Date(data.register_endAt).toLocaleDateString()
+                }
               />
             </div>
           </div>

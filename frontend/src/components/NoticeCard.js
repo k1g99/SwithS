@@ -13,7 +13,7 @@ function NoticeCard(props) {
         <div css={describe}>{props.describe}</div>
         <div css={detailbox}>
           <div>{props.name}</div>
-          <div>{props.date}</div>
+          <div>{new Date(props.date).toLocaleString()}</div>
         </div>
       </div>
     </div>

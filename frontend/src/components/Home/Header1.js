@@ -42,7 +42,7 @@ function Header1() {
           <>
             <li>
               <Link to="/write">
-                <Button1 text="새 글쓰기" />
+                <Button1 text="새 스터디 생성" />
               </Link>
             </li>
             <li>

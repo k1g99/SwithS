@@ -8,9 +8,11 @@ import Container from '../components/global/Container'
 import SelectBox from '../components/SelectBox'
 import Calender from '../components/Calender'
 import { api } from '../api'
+import { useNavigate } from 'react-router'
 // import { Link } from 'react-router-dom'
 
 function WritePage() {
+  const navigate = useNavigate()
   const [clubName, setClubName] = useState('')
   const [clubDescription, setClubDescription] = useState('')
   const [clubType, setClubType] = useState('스터디') // 스터디 / 프로젝트
@@ -84,9 +86,22 @@ function WritePage() {
           startAt: clubStartDate,
           endAt: clubEndDate,
         })
-        .then(() => {
-          alert('스터디 생성에 성공했습니다.')
-          window.location.href = '/'
+        .then((response) => {
+          if (response.data.success === true) {
+            const clubId = response.data.clubId
+
+            api
+              .post(
+                `/userclub/clubs/${clubId}/user/${localStorage.getItem('id')}`
+              )
+              .then(() => {
+                alert('스터디 생성에 성공했습니다.')
+                navigate('/')
+              })
+              .catch(() => {
+                // console.log(err)
+              })
+          }
         })
         .catch((err) => {
           console.log(err)

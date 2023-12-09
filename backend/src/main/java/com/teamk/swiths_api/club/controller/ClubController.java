@@ -48,9 +48,11 @@ public class ClubController {
     // 스터디 생성
     @PostMapping()
     public CreateClubResponse createClub(@RequestBody CreateClubRequest createClubRequest) {
-        clubService.createClub(createClubRequest);
+        ClubEntity createdClub = clubService.createClub(createClubRequest);
 
-        CreateClubResponse result = new CreateClubResponse(200, true, "동아리 생성에 성공하셨습니다.");
+        Long clubId = createdClub.getId();
+
+        CreateClubResponse result = new CreateClubResponse(200, true, "동아리 생성에 성공하셨습니다.", clubId);
 
         return result;
     }

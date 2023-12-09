@@ -13,7 +13,7 @@ function UserStudyPage() {
 
   useEffect(() => {
     api
-      .get(`user/${user_id}/club`)
+      .get(`userclub/user/${user_id}/club`)
       .then((res) => {
         if (res.data.success === false) {
           throw new Error('user has no club')

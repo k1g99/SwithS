@@ -1,18 +1,35 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { css } from '@emotion/react'
 import Header2 from '../components/Home/Header2'
 import Container from '../components/global/Container'
 import Sidebar2 from '../components/Sidebar2'
 import NoticeCard from '../components/NoticeCard'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { api } from '../api'
 
 function StudyroomPage() {
+  const params = useParams()
+  const clubId = params.study_id
+
+  const [clubDetail, setClubDetail] = useState([])
   const [noticeList, setNoticeList] = useState([])
-  React.useEffect(() => {
+
+  useEffect(() => {
     api
-      .get('/post/1')
+      .get(`/clubs/${clubId}`)
+      .then((res) => {
+        setClubDetail(res.data)
+        // console.log(clubDetail)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
+
+  useEffect(() => {
+    api
+      .get(`/post/${clubId}`)
       .then((res) => {
         console.log(res.data.posts)
         //console.log(noticeList)
@@ -39,14 +56,14 @@ function StudyroomPage() {
     <div>
       <Header2 />
       <Container>
-        <div css={studyName}>스터디명</div>
+        <div css={studyName}>{clubDetail.name}</div>
         <div css={roomSection}>
           <div css={leftSection}>
-            <Sidebar2 />
+            <Sidebar2 clubId={clubId} />
           </div>
           <div css={rightSection}>
             <div css={buttonBox}>
-              <Link to="/noticeupload">
+              <Link to={{ pathname: `/noticeupload/${clubId}` }}>
                 <button css={writeBtn}>공지 업로드</button>
               </Link>
             </div>

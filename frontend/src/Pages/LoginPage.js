@@ -12,45 +12,33 @@ import { setCookie } from '../components/global/cookie'
 function LoginPage() {
   const navigate = useNavigate()
 
-  const [username, setUsername] = React.useState('')
+  const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value)
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value)
   }
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value)
   }
 
-  const loadUserId = (at) => {
-    api
-      .get('/user/getUserInfo', {
-        headers: { Authorization: `Bearer ${at}` },
-      })
-      .then((res) => {
-        console.log(res)
-        localStorage.setItem('id', res.data.id)
-      })
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault()
 
     const data = {
-      username: username,
+      email: email,
       password: password,
     }
 
     api
       .post('/user/signin', data)
       .then((res) => {
-        // console.log(res)
-        const at = res.data.accessToken
-        setCookie('accessToken', at)
-        setCookie('refreshToken', res.data.refreshToken)
-        loadUserId(at)
+        console.log(res)
+        setCookie('accessToken', res.data.jwtToken.accessToken)
+        setCookie('refreshToken', res.data.jwtToken.refreshToken)
         localStorage.setItem('isLogin', true)
+        localStorage.setItem('id', res.data.userId)
         alert('로그인 성공')
         // localStorage.setItem('id', res.data.id)
         // redirect to main page
@@ -70,10 +58,7 @@ function LoginPage() {
         <div css={loginSection}>
           <form css={loginBox}>
             <div>
-              <InputBox
-                placeholder={'username'}
-                onChange={handleUsernameChange}
-              />
+              <InputBox placeholder={'email'} onChange={handleEmailChange} />
               <InputBox
                 placeholder={'password'}
                 type={'password'}

@@ -6,8 +6,11 @@ import Container from '../components/global/Container'
 import { css } from '@emotion/react'
 import Comment from '../components/Comment'
 import upload from '../images/upload.svg'
+import { useParams } from 'react-router-dom'
 
 function ResourcedetailPage() {
+  const params = useParams()
+  const clubId = params.study_id
   return (
     <div>
       <Header2 />
@@ -15,7 +18,7 @@ function ResourcedetailPage() {
         <div css={studyName}>스터디명</div>
         <div css={roomSection}>
           <div css={leftSection}>
-            <Sidebar2 />
+            <Sidebar2 clubId={clubId} />
           </div>
           <div css={rightSection}>
             <div css={title}>자료 타이틀</div>

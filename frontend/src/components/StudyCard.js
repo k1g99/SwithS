@@ -14,6 +14,7 @@ function StudyCard(props) {
           <div css={studyCategory}>{props.studyCategory}</div>
         </div>
         <div css={studyPeriod}>{props.studyPeriod}</div>
+        <div css={studyDescription}> {props.studyDescription}</div>
       </div>
     </div>
   )
@@ -84,6 +85,16 @@ const studyState = css`
   font-style: normal;
   font-weight: 400;
   line-height: 170%; /* 18px */
+`
+
+const studyDescription = css`
+  margin-top: 13px;
+  color: var(--gray-gray-5, #262626);
+  /* Body/Body 2 */
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 21px */
 `
 
 export default StudyCard

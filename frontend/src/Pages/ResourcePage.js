@@ -1,21 +1,35 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { css } from '@emotion/react'
 import Header2 from '../components/Home/Header2'
 import Container from '../components/global/Container'
 import Sidebar2 from '../components/Sidebar2'
 import ResourceCard from '../components/ResourceCard'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { api } from '../api'
 
 function ResourcePage() {
+  const params = useParams()
+  const clubId = params.study_id
+
+  const [clubDetail, setClubDetail] = useState([])
   const [resourceList, setResourceList] = useState([])
 
-  React.useEffect(() => {
+  useEffect(() => {
     api
       .get('/file/list')
       .then((res) => {
         setResourceList(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+
+    api
+      .get(`/clubs/${clubId}`)
+      .then((res) => {
+        setClubDetail(res.data)
+        // console.log(clubDetail)
       })
       .catch((err) => {
         console.log(err)
@@ -29,14 +43,14 @@ function ResourcePage() {
     <div>
       <Header2 />
       <Container>
-        <div css={studyName}>스터디명</div>
+        <div css={studyName}>{clubDetail.name}</div>
         <div css={roomSection}>
           <div css={leftSection}>
-            <Sidebar2 />
+            <Sidebar2 clubId={clubId} />
           </div>
           <div css={rightSection}>
             <div css={buttonBox}>
-              <Link to="/resourceupload">
+              <Link to={`/resourceupload/${clubId}`}>
                 <button css={writeBtn}>자료 업로드</button>
               </Link>
             </div>

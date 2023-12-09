@@ -18,8 +18,8 @@ function SectionHot(props) {
 
 const hotBox = css`
   padding: 29px 22px;
-  width: 415px;
-  height: 191px;
+  width: 250px;
+  height: 100px;
   flex-shrink: 0;
   border-radius: 30px;
   border: 3px solid var(--gray-gray-2, #ccc);
@@ -41,7 +41,7 @@ const contentTitle = css`
   border-radius: 99px;
   background: var(--gray-gray-1, #f7f7f7);
   color: var(--gray-gray-5, #262626);
-  font-size: 14px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 500;
   line-height: 150%; /* 21px */

@@ -8,8 +8,11 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import Button2 from '../components/Button2'
+import { api } from '../api'
+import { useNavigate } from 'react-router'
 
 function StudydetailPage() {
+  const navigate = useNavigate()
   const params = useParams()
   const clubId = params.item_id
   const [data, setData] = useState({})
@@ -24,6 +27,24 @@ function StudydetailPage() {
         console.log(err)
       })
   }, [clubId])
+
+  const joinStudy = (e) => {
+    e.preventDefault()
+
+    const userId = localStorage.getItem('id')
+
+    api
+      .post(`/userclub/clubs/${clubId}/user/${userId}`)
+      .then((res) => {
+        alert('스터디에 참여했습니다.')
+        console.log(res)
+        navigate('/mystudy')
+      })
+      .catch((err) => {
+        alert('스터디 참여에 실패했습니다.')
+        console.log(err)
+      })
+  }
 
   return (
     <div>
@@ -61,7 +82,7 @@ function StudydetailPage() {
             <div css={infoText}>{data.description}</div>
           </div>
           <div css={buttonBox}>
-            <Button2 text={'참여하기'} />
+            <Button2 text={'참여하기'} onClick={joinStudy} />
           </div>
         </div>
       </Container>

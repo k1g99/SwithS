@@ -75,8 +75,14 @@ public class UserController {
 
     @PostMapping("/signin")
     public JwtToken signIn(@RequestBody SignInDto signInDto) {
-        String username = signInDto.getUsername();
+        String email = signInDto.getEmail();
         String password = signInDto.getPassword();
+
+        //email로 username 찾아주기
+        Optional<UserEntity> user = userRepository.findByEmail(email);
+
+        String username = user.get().getUsername();
+
         JwtToken jwtToken = userService.signIn(username, password);
 
         log.info("jwtToken: {}", jwtToken);

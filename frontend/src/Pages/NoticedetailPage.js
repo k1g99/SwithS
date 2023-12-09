@@ -11,8 +11,9 @@ import { useParams } from 'react-router-dom'
 
 function NoticedetailPage() {
   const params = useParams()
-  const clubId = params.club_id
+  const clubId = params.study_id
   const postId = params.post_id
+
   const [data, setData] = useState([])
 
   React.useEffect(() => {

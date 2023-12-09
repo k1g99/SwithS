@@ -27,7 +27,7 @@ function Dropdown() {
           <div css={stroke1} />
         </div>
         <div css={dropdownBottom}>
-          <Link to="/mypage">My Page</Link>
+          {/* <Link to="/mypage">My Page</Link> */}
           <Link to="/scheduleupload">시간표 업로드</Link>
         </div>
       </div>

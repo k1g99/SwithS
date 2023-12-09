@@ -44,7 +44,7 @@ function UploadPage() {
             <Sidebar1 />
           </div>
           <div css={rightSection}>
-            <div css={uploadText}>에브리타임 URL을 업로드하세요.</div>
+            <div css={uploadText}>에브리타임 URL을 입력하세요.</div>
             <input
               css={urlInput}
               onChange={(e) => settimetableUrl(e.target.value)}
@@ -101,6 +101,8 @@ const urlInput = css`
   border-top: none;
   border-left: none;
   border-right: none;
+  font-size: 30px;
+  border: 1px solid var(--gray-gray-2, #ccc);
 `
 
 export default UploadPage

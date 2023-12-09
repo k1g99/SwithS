@@ -79,7 +79,7 @@ public class UserController {
         String email = signInRequest.getEmail();
         String password = signInRequest.getPassword();
 
-        //email로 username 찾아주기
+        // email로 username 찾아주기
         Optional<UserEntity> user = userRepository.findByEmail(email);
 
         String username = user.get().getUsername();
@@ -100,11 +100,14 @@ public class UserController {
     // return name + "님 환영합니다.";
     // }
 
-    @GetMapping("/getUserInfo")
-    public Optional<UserEntity> getUserInfo() {
+    @GetMapping("/getUserInfo") // user의 ID 반환
+    public Long getUserInfo() {
+
         Optional<UserEntity> userInfo = userRepository.findByUsername(SecurityUtil.getNowUserName());
 
-        return userInfo;
+        Long userId = userInfo.get().getId();
+
+        return userId;
     }
 
     @GetMapping("/hikj")

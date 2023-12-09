@@ -19,8 +19,8 @@ export function userLogin() {
         localStorage.setItem('id', res.data.id)
         return true
       })
-      .catch((err) => {
-        console.log(err)
+      .catch(() => {
+        // console.log(err)
         return false
       })
   } else {

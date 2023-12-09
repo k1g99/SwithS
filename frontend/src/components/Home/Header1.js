@@ -16,7 +16,7 @@ function Header1() {
 
   useEffect(() => {
     setIsLoginStorage(localStorage.getItem('isLogin'))
-    console.log(isLoginStorage)
+    // console.log(isLoginStorage)
   }, [])
 
   const handleClickView = () => {
@@ -51,7 +51,7 @@ function Header1() {
                 onClick={handleClickView}
                 css={myBtnStyle}
               >
-                <img src={my} alt="사람이미지" />
+                <img src={my} alt="사람이미지" css={imgStyle} />
                 {view && <Dropdown />}
               </button>
             </li>
@@ -67,6 +67,10 @@ function Header1() {
     </header>
   )
 }
+
+const imgStyle = css`
+  cursor: pointer;
+`
 
 const headerStyle = css`
   display: flex;

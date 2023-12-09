@@ -16,7 +16,8 @@ import com.teamk.swiths_api.user.controller.dto.CreateUser.CreateUserRequest;
 import com.teamk.swiths_api.user.controller.dto.CreateUser.CreateUserResponse;
 import com.teamk.swiths_api.user.controller.dto.Email.EmailRequest;
 import com.teamk.swiths_api.user.controller.dto.Email.EmailResponse;
-import com.teamk.swiths_api.user.controller.dto.SignInDto;
+import com.teamk.swiths_api.user.controller.dto.SignInDto.SignInRequest;
+import com.teamk.swiths_api.user.controller.dto.SignInDto.SignInResponse;
 import com.teamk.swiths_api.user.jwt.SecurityUtil;
 import com.teamk.swiths_api.user.jwt.dto.JwtToken;
 import com.teamk.swiths_api.user.repository.UserRepository;
@@ -74,14 +75,22 @@ public class UserController {
     }
 
     @PostMapping("/signin")
-    public JwtToken signIn(@RequestBody SignInDto signInDto) {
-        String username = signInDto.getUsername();
-        String password = signInDto.getPassword();
+    public SignInResponse signIn(@RequestBody SignInRequest signInRequest) {
+        String email = signInRequest.getEmail();
+        String password = signInRequest.getPassword();
+
+        //email로 username 찾아주기
+        Optional<UserEntity> user = userRepository.findByEmail(email);
+
+        String username = user.get().getUsername();
+
         JwtToken jwtToken = userService.signIn(username, password);
+
+        SignInResponse result = new SignInResponse(jwtToken, user.get().getId());
 
         log.info("jwtToken: {}", jwtToken);
         log.info("jwtToken accessToken = {}, refreshToken = {}", jwtToken.getAccessToken(), jwtToken.getRefreshToken());
-        return jwtToken;
+        return result;
     }
 
     // @PostMapping("/test")

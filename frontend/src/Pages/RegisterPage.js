@@ -35,17 +35,24 @@ function RegisterPage() {
   const emailSend = (e) => {
     e.preventDefault()
     // console.log(userEmail)
-    api
-      .post('/user/auth/email', {
-        email: userEmail,
-      })
-      .then(() => {
-        alert('이메일 전송을 완료했습니다. 메일함을 확인해주세요.')
-      })
-      .catch(() => {
-        // console.log(err)
-        alert('메일 전송을 실패했습니다.')
-      })
+
+    const domain = userEmail.substring(userEmail.indexOf('@') + 1)
+
+    if (domain === 'skku.edu' || domain === 'g.skku.edu') {
+      api
+        .post('/user/auth/email', {
+          email: userEmail,
+        })
+        .then(() => {
+          alert('이메일 전송을 완료했습니다. 메일함을 확인해주세요.')
+        })
+        .catch(() => {
+          // console.log(err)
+          alert('메일 전송을 실패했습니다.')
+        })
+    } else {
+      alert('성균관대학교 이메일을 입력해주세요.')
+    }
   }
 
   const verifyEmail = (e) => {

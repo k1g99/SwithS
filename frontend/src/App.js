@@ -18,6 +18,7 @@ import ResourcedetailPage from './Pages/ResourcedetailPage'
 import ResourceuploadPage from './Pages/ResourceuploadPage'
 import NoticeuploadPage from './Pages/NoticeuploadPage'
 import { userLogin } from './components/hooks/UserLogin'
+import UserStudyPage from './Pages/UserStudyPage'
 
 function App() {
   // 로그인 상태 LocalStorage에 저장
@@ -60,6 +61,7 @@ function App() {
       <Route path="/studydetail/:item_id" element={<StudydetailPage />} />
       <Route path="/category" element={<CategoryPage />} />
       <Route path="/studyroom" element={<StudyroomPage />} />
+      <Route path="/mystudy" element={<UserStudyPage />} />
       <Route path="/noticedetail" element={<NoticedetailPage />} />
       <Route path="/resource" element={<ResourcePage />} />
       <Route path="/resourcedetail" element={<ResourcedetailPage />} />

@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.Getter;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.teamk.swiths_api.club.repository.ClubEntity;
+
 public class CreateClub {
 
     @Data
@@ -34,5 +36,6 @@ public class CreateClub {
         private int statusCode;
         private boolean isSuccess;
         private String message;
+        private Long clubId;
     }
 }

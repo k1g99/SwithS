@@ -48,6 +48,8 @@ function WritePage() {
     e.preventDefault()
     console.log(e)
 
+    var clubId = ''
+
     // 변수가 하나라도 비어있으면 alert 후 break
     if (clubName === '') {
       alert('스터디 이름을 입력해주세요')
@@ -84,13 +86,40 @@ function WritePage() {
           startAt: clubStartDate,
           endAt: clubEndDate,
         })
-        .then(() => {
-          alert('스터디 생성에 성공했습니다.')
-          window.location.href = '/'
+        .then((response) => {
+          clubId = response.data.clubId
+          // const userId = localStorage.getItem('id')
+
+          console.log(clubId)
+
+          // //스터디 조인 API 호출
+          // api
+          //   .post(`/userClub/clubs/${clubId}/user/${userId}`)
+          //   .then((response) => {
+          //     // 2번째 POST 요청 성공 시 실행할 코드
+          //     console.log(response)
+          //   })
+          //   .catch((err) => {
+          //     console.log(err)
+          //   })
+
+          // alert('스터디 생성에 성공했습니다.')
+          // window.location.href = '/'
         })
         .catch((err) => {
           console.log(err)
           alert('스터디 생성에 실패했습니다. 다시 시도해 주세요')
+        })
+
+      //스터디 조인 API 호출
+      api
+        .post(`/userClub/clubs/${clubId}/user/${localStorage.getItem('id')}`)
+        .then((response) => {
+          // 2번째 POST 요청 성공 시 실행할 코드
+          console.log(response)
+        })
+        .catch((err) => {
+          console.log(err)
         })
     }
   }

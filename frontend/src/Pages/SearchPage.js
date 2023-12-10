@@ -147,7 +147,7 @@ function SearchPage() {
               <option value="job">취업</option> */}
             </select>
           </div>
-          <div>
+          <div css={cardBox}>
             <div css={cardSection}>{displayData()}</div>
           </div>
         </div>
@@ -199,5 +199,9 @@ const selectStyle = css`
   border-radius: 8px;
   background: var(--gray-gray-1, #f7f7f7);
   border: 1px solid var(--gray-gray-2, #ccc);
+`
+const cardBox = css`
+  display: flex;
+  justify-content: center;
 `
 export default SearchPage

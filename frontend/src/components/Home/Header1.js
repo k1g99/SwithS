@@ -98,7 +98,7 @@ const ulStyle = css`
   align-items: center;
   margin-left: auto;
   margin-right: 5%;
-  gap: 20px;
+  gap: 32px;
 `
 
 const myBtnStyle = css`

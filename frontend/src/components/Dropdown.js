@@ -23,7 +23,7 @@ function Dropdown() {
     <div css={dropdownStyle}>
       <div css={dropdownContainer}>
         <div css={dropdownTop}>
-          <Link to="/mystudy">My 스터디</Link>
+          <Link to="/mystudy">나의 스터디</Link>
           <div css={stroke1} />
         </div>
         <div css={dropdownBottom}>

@@ -115,7 +115,7 @@ const uploadText = css`
 
 const uploadBox = css`
   padding: 16px;
-  margin-top: 30px;
+  margin-top: 24px;
   display: flex;
   align-items: flex-start;
   border-radius: 8px;

@@ -97,12 +97,12 @@ const buttonBox = css`
 `
 
 const urlInput = css`
+  margin-top: 24px;
   border-bottom: 1px solid var(--gray-gray-2, #ccc);
   border-top: none;
   border-left: none;
   border-right: none;
   font-size: 30px;
-  border: 1px solid var(--gray-gray-2, #ccc);
 `
 
 export default UploadPage

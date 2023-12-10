@@ -30,7 +30,7 @@ Button4.propTypes = {
 
 const button4Style = css`
   font-family: Pretendard-Regular;
-  width: auto;
+  width: autopx;
   padding: 0 20px;
   height: 38px;
   border-radius: 15px;

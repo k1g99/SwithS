@@ -1,11 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react'
 import { css } from '@emotion/react'
+import { Link } from 'react-router-dom'
 
 function Sidebar1() {
   return (
     <div css={sidebarStyle}>
-      <div>My page</div>
+      <Link to="/mystudy">
+        <div>나의 스터디</div>
+      </Link>
     </div>
   )
 }

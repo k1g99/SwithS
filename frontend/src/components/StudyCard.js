@@ -31,7 +31,7 @@ const cardContainer = css`
 
 const topSection = css`
   width: 350px;
-  height: 131px;
+  height: 130px;
   border-radius: 30px 30px 0px 0px;
   background: var(--green-green, #1d482e);
 `
@@ -69,8 +69,8 @@ const bottomSection = css`
 `
 
 const studyState = css`
-  margin-top: 82px;
-  margin-left: 265px;
+  margin-top: 85px;
+  margin-left: 258px;
   display: inline-flex;
   padding: 0px 12px;
   justify-content: flex-end;

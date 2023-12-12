@@ -77,7 +77,7 @@ const Timetable = (props) => {
     }
     timeContainers.push(
       <div className="time-container">
-        <h3>시간</h3>
+        <h3 className="h3123">시간</h3>
         <div className="time-slots">{timeSlots}</div>
       </div>
     )
@@ -106,7 +106,7 @@ const Timetable = (props) => {
 
       timeContainers.push(
         <div key={day} className="time-container">
-          <h3>{day}</h3>
+          <h3 className="h3123">{day}</h3>
           <div className="time-slots">{timeSlots}</div>
         </div>
       )

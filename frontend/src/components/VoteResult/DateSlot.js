@@ -60,14 +60,14 @@ const DateSlot = (props) => {
   return (
     <div className="time-table">
       <div className="time-container">
-        <h3>시간</h3>
+        <h3 className="h3123">시간</h3>
         <div className="time-slots">
           <NoticeTime />
         </div>
       </div>
       {setDateList().map((date) => (
         <div className="time-container" key={date}>
-          <h3>
+          <h3 className="h3123">
             {date.toLocaleDateString('en-US', {
               month: '2-digit',
               day: '2-digit',

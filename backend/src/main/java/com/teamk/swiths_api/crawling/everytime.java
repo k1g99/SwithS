@@ -51,7 +51,7 @@ public class everytime {
     }
 
     public List<everytimeComponent> run() {
-        System.setProperty("webdriver.gecko.driver", System.getenv("PATH_GECKO"));
+        System.setProperty("webdriver.gecko.driver", "/home/ubuntu/crawling/geckodriver");
         FirefoxOptions options = new FirefoxOptions();
         options.addArguments("--headless");
         driver = new FirefoxDriver(options);

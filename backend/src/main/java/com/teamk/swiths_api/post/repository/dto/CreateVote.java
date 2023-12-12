@@ -28,10 +28,12 @@ public class CreateVote {
         private int statusCode;
         private Boolean inSuccess;
         private String msg;
-        public CreateVoteResponse(int statusCode, boolean inSuccess, String msg){
+        private Long voteID;
+        public CreateVoteResponse(int statusCode, boolean inSuccess, String msg, Long voteID){
             this.statusCode = statusCode;
             this.inSuccess = inSuccess;
             this.msg = msg;
+            this.voteID = voteID;
         }
     }
 }

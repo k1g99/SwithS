@@ -32,17 +32,6 @@ public class PostController {
     }
 
 
-    @GetMapping("vote/{club}")
-    public FindAllPostResponse findAllPostVote(@PathVariable Long club){
-        List<PostEntity> PostLists = postService.findAllVotePost(club);
-        List<PostDto> PostDtos = PostLists.stream()
-            .map(PostDto::fromEntity)
-            .collect(Collectors.toList());
-
-        FindAllPostResponse result = new FindAllPostResponse(200, true, "모든 투표 공지사항 조회에 성공했습니다.", PostDtos);
-        return result;
-    }
-
     @GetMapping("/detail/{id}")
     public FindPostResponse findPost(@PathVariable Long id){
         PostEntity postEntity = postService.findPost(id);

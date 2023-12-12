@@ -11,7 +11,6 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<PostEntity, Long> {
     PostEntity getById(Long id);
     boolean existsById(Long id);
-    List<PostEntity> findByClubAndVoteIsNull(ClubEntity club);
-    List<PostEntity> findByClubAndVoteIsNotNull(ClubEntity club);
+    List<PostEntity> findByClub(ClubEntity club);
 
 }

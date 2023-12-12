@@ -25,8 +25,8 @@ public class VoteController {
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public CreateVoteResponse createVote(@RequestBody CreateVoteRequest createVoteRequest){
-        voteService.createVote(createVoteRequest);
-        CreateVoteResponse result = new CreateVoteResponse(200, true, "투표 생성에 성공했습니다.");
+        VoteEntity voteEntity = voteService.createVote(createVoteRequest);
+        CreateVoteResponse result = new CreateVoteResponse(200, true, "투표 생성에 성공했습니다.", voteEntity.getId());
         return result;
     }
 

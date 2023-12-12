@@ -20,7 +20,7 @@ public class VoteItemDetailDto {
         VoteItemDetailDto dto = new VoteItemDetailDto();
         dto.setId(voteItemDetailEntity.getId());
         dto.setStartAt(voteItemDetailEntity.getStartTime());
-        dto.setEndAt(voteItemDetailEntity.getStartTime());
+        dto.setEndAt(voteItemDetailEntity.getEndTime());
         dto.setUsername(voteItemDetailEntity.getUser().getUsername()); // 예시로 user 엔터티에서 username을 가져오는 것이라고 가정
 
         return dto;

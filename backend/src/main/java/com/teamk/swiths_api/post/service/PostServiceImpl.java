@@ -70,7 +70,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<PostEntity> findAllPost(Long club) {
         ClubEntity clubEntity = clubRepository.getById(club);
-        List<PostEntity> PostList = postRepository.findByClubAndVoteIsNull(clubEntity);
+        List<PostEntity> PostList = postRepository.findByClub(clubEntity);
         return PostList;
     }
     @Override
@@ -109,12 +109,5 @@ public class PostServiceImpl implements PostService {
             throw new RuntimeException("존재하지 않는 게시물 입니다.");
         }
         return postEntity;
-    }
-
-    @Override
-    public List<PostEntity> findAllVotePost(Long club) {
-        ClubEntity clubEntity = clubRepository.getById(club);
-        List<PostEntity> PostList = postRepository.findByClubAndVoteIsNotNull(clubEntity);
-        return PostList;
     }
 }

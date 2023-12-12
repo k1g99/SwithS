@@ -91,6 +91,7 @@ const rightSection = css`
 `
 
 const uploadBox = css`
+  margin-top: 24px;
   display: flex;
   flex-direction: row-reverse;
   border-bottom: 1px solid var(--gray-gray-2, #ccc);

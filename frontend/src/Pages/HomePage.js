@@ -63,7 +63,7 @@ const bannerStyle = css`
 const imageBox = css`
   display: flex;
   background: var(--gray-gray-1, #f7f7f7);
-  height: 300px;
+  height: 400px;
   flex-shrink: 0;
   //   align center
   justify-content: center;

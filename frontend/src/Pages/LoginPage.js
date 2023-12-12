@@ -58,9 +58,9 @@ function LoginPage() {
         <div css={loginSection}>
           <form css={loginBox}>
             <div>
-              <InputBox placeholder={'email'} onChange={handleEmailChange} />
+              <InputBox placeholder={'이메일'} onChange={handleEmailChange} />
               <InputBox
-                placeholder={'password'}
+                placeholder={'비밀번호'}
                 type={'password'}
                 onChange={handlePasswordChange}
               />

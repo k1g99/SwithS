@@ -27,12 +27,10 @@ public class VoteItemDetailEntity {
     @JoinColumn(name = "vote_id", nullable = false)
     private VoteEntity vote;
 
-    @CreationTimestamp
-    @Column(name = "start_time")
+    @Column(name = "start_time", columnDefinition = "TIMESTAMP")
     private LocalDateTime startTime;
 
-    @CreationTimestamp
-    @Column(name = "end_time")
+    @Column(name = "end_time", columnDefinition = "TIMESTAMP")
     private LocalDateTime endTime;
 
     @ManyToOne

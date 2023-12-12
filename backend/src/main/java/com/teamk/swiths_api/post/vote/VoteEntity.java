@@ -28,12 +28,10 @@ public class VoteEntity {
     @Column(length = 40, nullable = false)
     private String title;
 
-    @CreationTimestamp
-    @Column(name = "start_at")
+    @Column(name = "start_at", columnDefinition = "TIMESTAMP")
     private LocalDateTime startAt;
 
-    @CreationTimestamp
-    @Column(name = "end_at")
+    @Column(name = "end_at", columnDefinition = "TIMESTAMP")
     private LocalDateTime endAt;
 
 }

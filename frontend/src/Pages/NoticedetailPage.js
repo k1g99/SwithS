@@ -8,20 +8,25 @@ import { css } from '@emotion/react'
 // import Comment from '../components/Comment'
 import { api } from '../api'
 import { useParams } from 'react-router-dom'
-
+import Vote from '../components/Vote'
+import VoteResult from '../components/VoteResult'
 function NoticedetailPage() {
   const params = useParams()
   const clubId = params.study_id
   const postId = params.post_id
 
   const [data, setData] = useState([])
+  const [isVoting, setIsVoting] = useState(false)
+  const [tryVoting, setTryVoting] = useState(false)
 
   React.useEffect(() => {
     api
       .get(`/post/detail/${postId}`)
       .then((res) => {
         setData(res.data.post)
-        console.log(res.data)
+        if (res.data.post.vote !== null) {
+          setIsVoting(true)
+        }
       })
       .catch((err) => {
         console.log(err)
@@ -44,16 +49,21 @@ function NoticedetailPage() {
             </div>
             <div css={textBox}>
               <div css={headerText}>{data.content}</div>
+              {isVoting ? (
+                tryVoting ? (
+                  <Vote voteId={data.vote.id} clubId={clubId} postId={postId} />
+                ) : (
+                  <div css={voteBox}>
+                    <VoteResult voteId={data.vote.id} clubId={clubId} />
+                    <button css={buttonk} onClick={() => setTryVoting(true)}>
+                      투표하기
+                    </button>
+                  </div>
+                )
+              ) : (
+                <div></div>
+              )}
             </div>
-            {/* <div>
-              <Comment />
-              <Comment />
-              <Comment />
-            </div> */}
-            {/* <div css={writeBox}>
-              <textarea css={writeText}></textarea>
-              <button css={writeBtn}>작성하기</button>
-            </div> */}
           </div>
         </div>
       </Container>
@@ -122,8 +132,7 @@ const textBox = css`
   align-items: flex-start;
   border-radius: 8px;
   flex-direction: column;
-  height: 534px;
-  border-bottom: 1px solid var(--gray-gray-3, #999);
+  padding-bottom: 10px;
 `
 const headerText = css`
   color: var(--gray-gray-5, #262626);
@@ -134,14 +143,32 @@ const headerText = css`
   line-height: 150%; /* 21px */
 `
 
-// const writeBox = css`
-//   display: flex;
-//   margin-top: 28px;
-//   gap: 20px;
-//   align-items: flex-start;
-//   width: 100%;
-// `
-
+const buttonk = css`
+  margin-top: 10px;
+  font-family: Pretendard-Regular;
+  display: flex;
+  width: 150px;
+  height: 50px;
+  padding: 4px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  background: var(--green-green, #1d482e);
+  color: var(--gray-white, #fff);
+  cursor: pointer;
+  /* Headline/Headline */
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 36px */
+`
+const voteBox = css`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
 // const writeText = css`
 //   width: 90%;
 //   height: 160px;

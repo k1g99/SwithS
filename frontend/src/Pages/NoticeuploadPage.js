@@ -5,18 +5,24 @@ import Header2 from '../components/Home/Header2'
 import Container from '../components/global/Container'
 import Sidebar2 from '../components/Sidebar2'
 import Button3 from '../components/Button3'
+import Calender from '../components/Calender'
 import { api } from '../api'
 import { Link, useParams } from 'react-router-dom'
 
 function NoticeuploadPage() {
   const params = useParams()
   const clubId = params.study_id
+  const [clubRecruitStartDate, setClubRecruitStartDate] = useState(new Date())
+  const [clubRecruitEndDate, setClubRecruitEndDate] = useState(new Date())
   const [noticeName, setNoticeName] = useState('')
   const [noticeDesc, setNoticeDesc] = useState('')
+  const [isVoting, setIsVoting] = useState(false)
 
-  const submitHandler = (e) => {
-    console.log(e)
-
+  const handleVoteClick = () => {
+    // 투표 버튼을 눌렀을 때 실행되는 로직
+    setIsVoting(true)
+  }
+  const submitHandler = async () => {
     if (noticeName === '') {
       alert('공지명을 입력해주세요')
       return
@@ -24,25 +30,57 @@ function NoticeuploadPage() {
       alert('공지 내용을 입력해주세요')
       return
     }
+    const startDate = new Date(clubRecruitStartDate)
+    const endDate = new Date(clubRecruitEndDate)
+    startDate.setDate(startDate.getDate() + 1)
+    endDate.setDate(endDate.getDate() + 1)
+    if (isVoting) {
+      const voteData = {
+        title: '투표',
+        startAt: startDate.toISOString(),
+        endAt: endDate.toISOString(),
+      }
 
-    api
-      .post(`/post/${clubId}`, {
-        user: localStorage.getItem('id'),
-        title: noticeName,
-        content: noticeDesc,
-        shortContent:
-          noticeDesc.length > 10
-            ? noticeDesc.substring(0, 10) + '...'
-            : noticeDesc,
-        vote: null,
+      api.post('http://localhost:8080/api/vote', voteData).then((voteRes) => {
+        console.log('투표가 등록되었습니다.', voteRes.data.voteID)
+        api
+          .post(`/post/${clubId}`, {
+            user: localStorage.getItem('id'),
+            title: noticeName,
+            content: noticeDesc,
+            shortContent:
+              noticeDesc.length > 10
+                ? noticeDesc.substring(0, 10) + '...'
+                : noticeDesc,
+            vote: voteRes.data.voteID,
+          })
+          .then((res) => {
+            console.log(res)
+            alert('공지 등록이 완료되었습니다.')
+          })
+          .catch((err) => {
+            console.log(err)
+          })
       })
-      .then((res) => {
-        console.log(res)
-        alert('공지 등록이 완료되었습니다.')
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    } else {
+      api
+        .post(`/post/${clubId}`, {
+          user: localStorage.getItem('id'),
+          title: noticeName,
+          content: noticeDesc,
+          shortContent:
+            noticeDesc.length > 10
+              ? noticeDesc.substring(0, 10) + '...'
+              : noticeDesc,
+          vote: null,
+        })
+        .then(() => {
+          alert('공지 등록이 완료되었습니다.')
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
   }
 
   return (
@@ -64,10 +102,25 @@ function NoticeuploadPage() {
               css={uploadBox}
               onChange={(e) => setNoticeDesc(e.target.value)}
             ></textarea>
-            <div css={buttonBox}>
-              <Link to={`/studyroom/${clubId}`}>
-                <Button3 text={'등록'} onClick={submitHandler} />
-              </Link>
+            <div css={isVoting ? buttonBoxContainer1 : buttonBoxContainer2}>
+              {isVoting ? (
+                <Calender
+                  text={'투표기간'}
+                  setDate={(e) => {
+                    setClubRecruitStartDate(new Date(e[0]).toISOString())
+                    setClubRecruitEndDate(new Date(e[1]).toISOString())
+                  }}
+                />
+              ) : (
+                <div css={buttonBox}>
+                  <Button3 text={'투표'} onClick={handleVoteClick} />
+                </div>
+              )}
+              <div css={buttonBox}>
+                <Link to={`/studyroom/${clubId}`}>
+                  <Button3 text={'등록'} onClick={submitHandler} />
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -125,8 +178,17 @@ const uploadBox = css`
   height: 534px;
 `
 const buttonBox = css`
-  margin-top: 40px;
-  margin-left: 92.5%;
+  margin-top: 10px;
+`
+
+const buttonBoxContainer1 = css`
+  display: flex;
+  justify-content: right;
+`
+
+const buttonBoxContainer2 = css`
+  display: flex;
+  justify-content: right;
 `
 
 export default NoticeuploadPage

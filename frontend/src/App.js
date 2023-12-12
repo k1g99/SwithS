@@ -18,6 +18,7 @@ import ResourceuploadPage from './Pages/ResourceuploadPage'
 import NoticeuploadPage from './Pages/NoticeuploadPage'
 import { userLogin } from './components/hooks/UserLogin'
 import UserStudyPage from './Pages/UserStudyPage'
+import { RecoilRoot } from 'recoil'
 
 function App() {
   // 로그인 상태 LocalStorage에 저장
@@ -50,28 +51,30 @@ function App() {
   }, [])
 
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/write" element={<WritePage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
-      <Route path="/search" element={<SearchPage />} />
-      <Route path="/scheduleupload" element={<ScheduleuploadPage />} />
-      <Route path="/studydetail/:item_id" element={<StudydetailPage />} />
-      <Route path="/category" element={<CategoryPage />} />
-      <Route path="/studyroom/:study_id" element={<StudyroomPage />} />
-      <Route path="/mystudy" element={<UserStudyPage />} />
-      <Route
-        path="/noticedetail/:study_id/:post_id"
-        element={<NoticedetailPage />}
-      />
-      <Route path="/resource/:study_id" element={<ResourcePage />} />
-      <Route
-        path="/resourceupload/:study_id"
-        element={<ResourceuploadPage />}
-      />
-      <Route path="/noticeupload/:study_id" element={<NoticeuploadPage />} />
-    </Routes>
+    <RecoilRoot>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/write" element={<WritePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="/scheduleupload" element={<ScheduleuploadPage />} />
+        <Route path="/studydetail/:item_id" element={<StudydetailPage />} />
+        <Route path="/category" element={<CategoryPage />} />
+        <Route path="/studyroom/:study_id" element={<StudyroomPage />} />
+        <Route path="/mystudy" element={<UserStudyPage />} />
+        <Route
+          path="/noticedetail/:study_id/:post_id"
+          element={<NoticedetailPage />}
+        />
+        <Route path="/resource/:study_id" element={<ResourcePage />} />
+        <Route
+          path="/resourceupload/:study_id"
+          element={<ResourceuploadPage />}
+        />
+        <Route path="/noticeupload/:study_id" element={<NoticeuploadPage />} />
+      </Routes>
+    </RecoilRoot>
   )
 }
 

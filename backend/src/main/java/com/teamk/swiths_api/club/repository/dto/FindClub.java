@@ -35,6 +35,13 @@ public class FindClub {
         private LocalDateTime endAt;
         private String description;
         private int numRecruit;
+        private Long timetable_mon;
+        private Long timetable_tue;
+        private Long timetable_wed;
+        private Long timetable_thu;
+        private Long timetable_fri;
+        private Long timetable_sat;
+        private Long timetable_sun;
         private LocalDateTime register_startAt;
         private LocalDateTime register_endAt;
 
@@ -52,6 +59,13 @@ public class FindClub {
             this.numRecruit = entity.getNumRecruit();
             this.register_startAt = entity.getRegisterStartAt();
             this.register_endAt = entity.getRegisterEndAt();
+            this.timetable_mon = entity.getTimetableMon();
+            this.timetable_tue = entity.getTimetableTue();
+            this.timetable_wed = entity.getTimetableWed();
+            this.timetable_thu = entity.getTimetableThu();
+            this.timetable_fri = entity.getTimetableFri();
+            this.timetable_sat = entity.getTimetableSat();
+            this.timetable_sun = entity.getTimetableSun();
         }
     }
 

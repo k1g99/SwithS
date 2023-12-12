@@ -10,6 +10,7 @@ import axios from 'axios'
 import Button2 from '../components/Button2'
 import { api } from '../api'
 import { useNavigate } from 'react-router'
+import Timetable from '../components/Timetable'
 
 function StudydetailPage() {
   const navigate = useNavigate()
@@ -81,6 +82,7 @@ function StudydetailPage() {
             <div css={infoTitle}>설명</div>
             <div css={infoText}>{data.description}</div>
           </div>
+          <Timetable clubId={clubId} />
           <div css={buttonBox}>
             <Button2 text={'참여하기'} onClick={joinStudy} />
           </div>

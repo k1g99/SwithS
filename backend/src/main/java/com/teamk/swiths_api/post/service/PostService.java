@@ -9,7 +9,6 @@ import java.util.List;
 public interface PostService {
     PostEntity createPost(CreatePost.CreatePostRequest createPostRequest);
     List<PostEntity> findAllPost(Long club);
-    List<PostEntity> findAllVotePost(Long club);
     PostEntity patchPost(PatchPost.PatchPostRequest patchPostRequest);
     PostEntity findPost(Long id);
 }

@@ -21,9 +21,7 @@ const Timetable = (props) => {
 
     if (clubId) {
       api
-        .get(
-          `http://localhost:8080/api/userclub/clubs/${clubId}/user/${userId}`
-        )
+        .get(`/userclub/clubs/${clubId}/user/${userId}`)
         .then((res) => {
           console.log(res.data)
           const timetableData = res.data.timetables || [0, 0, 0, 0, 0, 0, 0]

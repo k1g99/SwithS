@@ -41,7 +41,7 @@ function NoticeuploadPage() {
         endAt: endDate.toISOString(),
       }
 
-      api.post('http://localhost:8080/api/vote', voteData).then((voteRes) => {
+      api.post('/vote', voteData).then((voteRes) => {
         console.log('투표가 등록되었습니다.', voteRes.data.voteID)
         api
           .post(`/post/${clubId}`, {

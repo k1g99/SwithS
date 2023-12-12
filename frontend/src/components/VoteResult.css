@@ -1,0 +1,82 @@
+.time-slots-container {
+  display: flex;
+}
+.time-table {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+
+.time-slots {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.time-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 8px;
+  width: 50px;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-top: 1px solid #ccc;
+}
+.zero-m {
+  border-top: 1px solid black;
+}
+.f-m {
+  border-bottom: 1px solid black;
+}
+
+.time-slott {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 8px;
+  width: 20;
+  border-left: 1px solid rgba(0, 0, 0, 0);
+  border-right: 1px solid rgba(0, 0, 0, 0);
+  border-top: 1px solid rgba(0, 0, 0, 0);
+}
+.zero-mm {
+  border-top: 1px solid rgba(0, 0, 0, 0);
+}
+.f-mm {
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
+}
+
+.time {
+  border: 1px solid white;
+}
+
+.time-slot-time {
+  font-weight: bold;
+}
+
+.selected {
+  background-color: #4caf50; /* Green */
+  color: white;
+}
+
+.h3123 {
+  font-size: 15px;
+  margin-bottom: 0;
+}
+.selected25 {
+  background-color: rgba(126, 207, 126, 0.25);
+}
+
+.selected50 {
+  background-color: rgba(109, 189, 109, 0.5);
+}
+
+.selected75 {
+  background-color: rgba(93, 170, 93, 0.75);
+}
+
+.selected100 {
+  background-color: #4c994c; /* 가장 진한 색상으로 설정 */
+}

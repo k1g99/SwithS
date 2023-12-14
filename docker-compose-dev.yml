@@ -1,0 +1,33 @@
+version: "3.8"
+networks:
+  swiths-nt:
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: db
+    ports:
+      - "13306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      TZ: "Asia/Seoul"
+    volumes:
+      - ./mysql/db:/var/lib/mysql
+    command:
+      - --lower-case-table-names=1
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --skip-character-set-client-handshake
+    restart: always
+    networks:
+      - swiths-nt
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - swiths-nt

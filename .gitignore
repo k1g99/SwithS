@@ -1,0 +1,50 @@
+# .env (어차피 반영 안됨)
+*.http
+
+HELP.md
+backend/.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+.env
+
+backend/src/main/resources/application.yml
+backend/src/main/resources/application-dev.yml
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+# http client plugin
+backend/src/main/http/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### MySQL ###
+/mysql/
+
+### VS Code ###
+.vscode/
